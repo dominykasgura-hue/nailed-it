@@ -760,6 +760,20 @@ select option { background: #fff; }
       </div>
     </div>
 
+    <!-- Pricing Mode Toggle -->
+    <div class="card" style="padding:20px 32px">
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px">
+        <div>
+          <div style="font-family:'Playfair Display',serif;font-size:15px;font-weight:600;color:var(--dark);margin-bottom:3px">Pricing Mode</div>
+          <div style="font-size:12.5px;color:var(--mid);line-height:1.4" id="pricingModeHint">Market-Based: recommended price uses market benchmarks + your positioning. Switch to Cost-Based to price purely from your overhead and income goals.</div>
+        </div>
+        <div class="mode-bar" style="flex-shrink:0;min-width:280px">
+          <button class="mode-btn active" id="modeMarketBtn" type="button">📊 Market-Based</button>
+          <button class="mode-btn" id="modeCostBtn" type="button">🧮 Cost-Based</button>
+        </div>
+      </div>
+    </div>
+
     <!-- Market Context Insight -->
     <div class="insight-card">
       <div class="insight-label">✦ Market Context</div>
@@ -886,11 +900,17 @@ select option { background: #fff; }
       <div class="field" style="margin-top:14px">
         <label for="priceListTier">Price tier to display</label>
         <select id="priceListTier">
-          <option value="trueBreakEven">Break-Even — materials + overhead only</option>
-          <option value="minimumViable">Minimum Viable — lowest sustainable rate</option>
           <option value="recommended" selected>Recommended — your standard posted rate</option>
           <option value="premium">Premium — specialist or luxury positioning</option>
+          <option value="minimumViable" class="internal-tier" style="display:none">Minimum Viable — internal reference only</option>
+          <option value="trueBreakEven" class="internal-tier" style="display:none">Break-Even — internal reference only</option>
         </select>
+      </div>
+      <div style="margin-top:10px;display:flex;align-items:center;gap:8px">
+        <input type="checkbox" id="showInternalTiers" style="width:16px;height:16px;accent-color:var(--deep-rose);cursor:pointer">
+        <label for="showInternalTiers" style="font-size:12.5px;color:var(--mid);cursor:pointer;text-transform:none;font-weight:500;letter-spacing:0">
+          Show internal pricing tiers (Break-Even &amp; Minimum Viable — for personal use only, not for clients)
+        </label>
       </div>
     </div>
 
@@ -994,6 +1014,7 @@ var reqHourly    = 0;
 var ohPerClient  = 0;
 var hourlyMode   = 'auto';
 var businessType = 'Solo';
+var pricingMode  = 'market'; // 'market' | 'cost'
 
 /* ════════════════════════════════════════════════
    INIT
@@ -1098,8 +1119,22 @@ function setHourlyMode(mode) {
 }
 
 /* ════════════════════════════════════════════════
-   EVENT LISTENERS — attached once
+   PRICING MODE TOGGLE
 ════════════════════════════════════════════════ */
+function setPricingMode(mode) {
+  pricingMode = mode;
+  document.getElementById('modeMarketBtn').classList.toggle('active', mode === 'market');
+  document.getElementById('modeCostBtn').classList.toggle('active',   mode === 'cost');
+  var hintEl = document.getElementById('pricingModeHint');
+  if (hintEl) {
+    hintEl.textContent = mode === 'market'
+      ? 'Market-Based: recommended price uses market benchmarks + your positioning. Switch to Cost-Based to price purely from your overhead and income goals.'
+      : 'Cost-Based: ignores market benchmarks entirely. Recommended = Minimum Viable × 1.15. Use this if you want pure cost-first pricing.';
+  }
+  saveToStorage(); patchServicePrices(); renderPriceList(); updateSummary();
+}
+
+
 function attachEventListeners() {
 
   document.getElementById('desktopTabs').addEventListener('click', function (e) {
@@ -1121,6 +1156,10 @@ function attachEventListeners() {
   document.getElementById('resetBtn').addEventListener('click', resetAll);
   document.getElementById('modeAutoBtn').addEventListener('click', function () { setHourlyMode('auto'); });
   document.getElementById('modeManualBtn').addEventListener('click', function () { setHourlyMode('manual'); });
+
+  // Pricing mode (market vs cost)
+  document.getElementById('modeMarketBtn').addEventListener('click', function () { setPricingMode('market'); });
+  document.getElementById('modeCostBtn').addEventListener('click',   function () { setPricingMode('cost'); });
 
   // Business type toggle
   document.getElementById('bizTypeBar').addEventListener('click', function (e) {
@@ -1149,6 +1188,21 @@ function attachEventListeners() {
   document.getElementById('businessName').addEventListener('input', function () { saveToStorage(); renderPriceList(); });
   document.getElementById('businessLocation').addEventListener('input', function () { saveToStorage(); renderPriceList(); });
   document.getElementById('priceListTier').addEventListener('change', function () { saveToStorage(); renderPriceList(); });
+  document.getElementById('showInternalTiers').addEventListener('change', function () {
+    var show = this.checked;
+    document.querySelectorAll('#priceListTier .internal-tier').forEach(function (opt) {
+      opt.style.display = show ? '' : 'none';
+    });
+    // If an internal tier is selected but toggle turned off, revert to recommended
+    if (!show) {
+      var sel = document.getElementById('priceListTier');
+      if (sel.value === 'trueBreakEven' || sel.value === 'minimumViable') {
+        sel.value = 'recommended';
+        saveToStorage();
+        renderPriceList();
+      }
+    }
+  });
 
   // Service list — stable delegation
   var svcList = document.getElementById('servicesList');
@@ -1314,11 +1368,12 @@ function calcServicePrices(s) {
   var timeBasedCost    = (mins / 60) * eff;
   var complexitySurcharge = timeBasedCost * complexMult;
 
-  // A. True Break-Even: materials + overhead only (no income)
+  // A. True Break-Even: materials + overhead allocation (pure survival floor, no income wage)
   var trueBreakEven = materials + ohPerClient;
 
-  // B. Minimum Viable: time + materials + overhead + complexity
-  var minimumViable = timeBasedCost + materials + ohPerClient + complexitySurcharge;
+  // B. Minimum Viable: time-cost already contains overhead via hourly rate — do NOT add ohPerClient again
+  // autoHourlyRate = (income + overhead) / hours → overhead already embedded in timeBasedCost
+  var minimumViable = timeBasedCost + materials + complexitySurcharge;
 
   // C. Market Benchmark
   var countryName = document.getElementById('country').value;
@@ -1329,10 +1384,14 @@ function calcServicePrices(s) {
     marketBenchmark = median * getAreaModifier() * getSliderValue();
   }
 
-  // D. Recommended = max(minimumViable, marketBenchmark)
+  // D. Recommended = max(minimumViable, marketBenchmark) in market mode
+  //                = minimumViable × 1.15 in cost mode (pure cost-first)
   var recommended;
   var isMarketLed = false;
-  if (marketBenchmark !== null && marketBenchmark > minimumViable) {
+  if (pricingMode === 'cost') {
+    recommended = minimumViable * 1.15;
+    isMarketLed = false;
+  } else if (marketBenchmark !== null && marketBenchmark > minimumViable) {
     recommended = marketBenchmark;
     isMarketLed = true;
   } else {
@@ -1420,10 +1479,9 @@ function getBreakdownHTML(p, s) {
   html += '<div class="bd-section">';
   html += '<div class="bd-section-heading">Your Cost Structure</div>';
   html += '<div class="bd-row"><span class="bd-row-label">Market duration</span><span class="bd-row-val">' + p._mins + ' mins</span></div>';
-  html += '<div class="bd-row"><span class="bd-row-label">Effective hourly rate</span><span class="bd-row-val">' + sym + p._eff.toFixed(2) + '/hr</span></div>';
+  html += '<div class="bd-row"><span class="bd-row-label">Effective hourly rate</span><span class="bd-row-val">' + sym + p._eff.toFixed(2) + '/hr <span style="font-size:10px;color:var(--light-mid)">(incl. overhead)</span></span></div>';
   html += '<div class="bd-row"><span class="bd-row-label">Time-based cost</span><span class="bd-row-val">' + sym + p._timeCost + '</span></div>';
   html += '<div class="bd-row"><span class="bd-row-label">Materials</span><span class="bd-row-val">' + sym + p._materials.toFixed(2) + '</span></div>';
-  html += '<div class="bd-row"><span class="bd-row-label">Overhead per client</span><span class="bd-row-val">' + sym + p._ohPerClient.toFixed(2) + '</span></div>';
   if (parseFloat(p._complexSurcharge) > 0) {
     html += '<div class="bd-row"><span class="bd-row-label">Complexity surcharge</span><span class="bd-row-val">' + sym + p._complexSurcharge + '</span></div>';
   }
@@ -1995,7 +2053,8 @@ function resetAll() {
 ════════════════════════════════════════════════ */
 function roundP(v) {
   if (!v || v <= 0) return 0;
-  return Math.round(v);
+  // Round to nearest 0.5 — produces realistic salon prices (e.g. 34.5, 39, 42.5)
+  return Math.round(v * 2) / 2;
 }
 function fmt(v) {
   var n = parseFloat(v);
@@ -2023,6 +2082,7 @@ function saveToStorage() {
     localStorage.setItem('ni2_addons',       JSON.stringify(addons));
     localStorage.setItem('ni2_hourlyMode',   hourlyMode);
     localStorage.setItem('ni2_businessType', businessType);
+    localStorage.setItem('ni2_pricingMode',  pricingMode);
     var bn=document.getElementById('businessName'), bl=document.getElementById('businessLocation');
     if(bn) localStorage.setItem('ni2_biz', bn.value);
     if(bl) localStorage.setItem('ni2_loc', bl.value);
@@ -2063,6 +2123,9 @@ function loadFromStorage() {
 
     var adnRaw = localStorage.getItem('ni2_addons');
     addons = adnRaw ? JSON.parse(adnRaw) : DEFAULT_ADDONS.map(function (a) { return Object.assign({},a); });
+
+    var savedPricingMode = localStorage.getItem('ni2_pricingMode');
+    if (savedPricingMode === 'cost') { pricingMode = 'cost'; setPricingMode('cost'); }
 
     var savedMode = localStorage.getItem('ni2_hourlyMode');
     if (savedMode === 'manual') {
