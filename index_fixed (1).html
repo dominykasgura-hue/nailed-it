@@ -1,0 +1,2154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Nailed It — Pricing Studio for Nail Technicians</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+/* ════════════════════════════════════════════════
+   DESIGN TOKENS
+════════════════════════════════════════════════ */
+:root {
+  --cream:        #FAF8F5;
+  --white:        #FFFFFF;
+  --blush:        #F2C4CE;
+  --rose:         #D4708A;
+  --deep-rose:    #B5516C;
+  --mauve:        #8B5E6E;
+  --taupe:        #C9B8B1;
+  --charcoal:     #2C2420;
+  --dark:         #3D2B2F;
+  --mid:          #7A6169;
+  --light-mid:    #B8A9AF;
+  --border:       #EDE5E8;
+  --shadow:       rgba(180,100,120,0.10);
+  --shadow-deep:  rgba(44,36,32,0.14);
+  --green:        #3D7A5E;
+  --green-bg:     #EEF7F2;
+  --amber:        #9A6B1A;
+  --amber-bg:     #FDF4E4;
+  --red:          #A0334A;
+  --red-bg:       #FBE9ED;
+  --purple:       #6B3C8A;
+  --purple-bg:    #F0E8F4;
+  --tab-bar-h:    62px;
+  --header-h:     64px;
+}
+
+/* ════════════════════════════════════════════════
+   RESET & BASE
+════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--charcoal);
+  min-height: 100dvh;
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+button {
+  font-family: inherit; cursor: pointer; border: none; background: none;
+  -webkit-tap-highlight-color: transparent; touch-action: manipulation; user-select: none;
+}
+input, select, textarea { font-family: inherit; -webkit-tap-highlight-color: transparent; }
+
+/* ════════════════════════════════════════════════
+   HEADER
+════════════════════════════════════════════════ */
+.header {
+  position: sticky; top: 0; z-index: 300;
+  height: var(--header-h);
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 2px 16px var(--shadow);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 40px;
+}
+.logo { display: flex; align-items: baseline; gap: 8px; text-decoration: none; }
+.logo-text { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--deep-rose); letter-spacing: -0.3px; }
+.logo-sub  { font-size: 11.5px; color: var(--light-mid); font-weight: 400; letter-spacing: 0.5px; text-transform: uppercase; }
+
+.desktop-tabs { display: flex; gap: 4px; }
+.tab-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 18px; border-radius: 8px;
+  font-size: 13.5px; font-weight: 500; color: var(--mid);
+  transition: background 0.18s, color 0.18s;
+  min-height: 44px;
+}
+.tab-btn:hover  { background: var(--cream); color: var(--charcoal); }
+.tab-btn.active { background: var(--deep-rose); color: #fff; }
+.tab-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 18px; height: 18px; border-radius: 50%;
+  font-size: 10px; font-weight: 700; background: rgba(255,255,255,0.25);
+}
+.tab-btn:not(.active) .tab-num { background: var(--border); color: var(--mid); }
+
+/* ════════════════════════════════════════════════
+   MAIN
+════════════════════════════════════════════════ */
+.main {
+  max-width: 1100px; margin: 0 auto;
+  padding: 40px 24px calc(var(--tab-bar-h) + env(safe-area-inset-bottom, 0px) + 32px);
+}
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+.section-heading { margin-bottom: 28px; }
+.section-heading h2 { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 600; color: var(--charcoal); }
+.section-heading p  { color: var(--mid); margin-top: 6px; font-size: 14.5px; }
+
+/* ════════════════════════════════════════════════
+   CARDS
+════════════════════════════════════════════════ */
+.card {
+  background: var(--white); border-radius: 16px;
+  padding: 28px 32px; border: 1px solid var(--border);
+  box-shadow: 0 4px 20px var(--shadow); margin-bottom: 20px;
+}
+.card-title {
+  font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 600; color: var(--dark);
+  margin-bottom: 20px; display: flex; align-items: center; gap: 10px;
+}
+.card-icon {
+  width: 32px; height: 32px; border-radius: 8px;
+  background: linear-gradient(135deg, var(--blush), var(--rose));
+  display: flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0;
+}
+
+/* ════════════════════════════════════════════════
+   GRIDS
+════════════════════════════════════════════════ */
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+/* ════════════════════════════════════════════════
+   FORM FIELDS
+════════════════════════════════════════════════ */
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field label {
+  font-size: 12.5px; font-weight: 600; color: var(--mauve);
+  letter-spacing: 0.4px; text-transform: uppercase;
+}
+.field input[type="text"],
+.field input[type="number"],
+.field select {
+  padding: 11px 14px;
+  border: 1.5px solid var(--border); border-radius: 10px;
+  font-size: 16px; color: var(--charcoal); background: var(--cream);
+  outline: none; transition: border-color 0.2s, background 0.2s;
+  -webkit-appearance: none; width: 100%;
+}
+.field input:focus, .field select:focus { border-color: var(--rose); background: var(--white); }
+.helper { font-size: 12px; color: var(--light-mid); margin-top: 2px; line-height: 1.4; }
+
+/* ── Prefix wrap ── */
+.prefix-wrap { position: relative; display: flex; align-items: stretch; }
+.prefix-wrap .prefix {
+  position: absolute; left: 0; top: 0; bottom: 0; width: 36px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--mid); font-weight: 600; font-size: 14px;
+  pointer-events: none; z-index: 1;
+  border-right: 1px solid var(--border);
+  background: rgba(237,229,232,0.45);
+  border-radius: 10px 0 0 10px;
+}
+.prefix-wrap input { padding-left: 46px !important; flex: 1; }
+
+/* ── Rate display ── */
+.rate-display {
+  padding: 11px 14px;
+  border: 1.5px solid var(--border); border-radius: 10px;
+  font-size: 16px;
+  background: linear-gradient(135deg, #fdf5f7, #faf0f3);
+  display: flex; align-items: center; gap: 6px;
+  min-height: 46px;
+}
+.rate-display .rate-val { font-family: 'Playfair Display', serif; font-weight: 600; color: var(--deep-rose); }
+.rate-display .rate-note { font-size: 12px; color: var(--light-mid); }
+.rate-display .rate-sym  { font-size: 14px; font-weight: 600; color: var(--mauve); }
+
+/* ── Mode bar (hourly toggle) ── */
+.mode-bar {
+  display: flex; background: var(--cream);
+  border: 1.5px solid var(--border); border-radius: 10px;
+  overflow: hidden; margin-bottom: 10px;
+}
+.mode-btn {
+  flex: 1; padding: 9px 12px;
+  font-size: 12.5px; font-weight: 600; color: var(--mid);
+  border: none; background: transparent; cursor: pointer;
+  transition: background 0.18s, color 0.18s;
+  text-align: center; min-height: 40px;
+  -webkit-tap-highlight-color: transparent; touch-action: manipulation;
+}
+.mode-btn.active { background: var(--deep-rose); color: #fff; }
+
+/* ════════════════════════════════════════════════
+   BUSINESS TYPE TOGGLE  — prominent on screen 1
+════════════════════════════════════════════════ */
+.biz-type-bar {
+  display: flex; gap: 12px; margin-bottom: 4px;
+}
+.biz-type-btn {
+  flex: 1; padding: 16px 14px;
+  border: 2px solid var(--border); border-radius: 12px;
+  background: var(--cream); cursor: pointer;
+  text-align: left; transition: border-color 0.18s, background 0.18s, box-shadow 0.18s;
+  -webkit-tap-highlight-color: transparent;
+}
+.biz-type-btn.active {
+  border-color: var(--deep-rose);
+  background: linear-gradient(135deg, #fdf5f7, #fdf0f3);
+  box-shadow: 0 2px 12px rgba(181,81,108,0.15);
+}
+.biz-type-name {
+  font-weight: 700; font-size: 15px; color: var(--dark);
+  display: flex; align-items: center; gap: 7px; margin-bottom: 4px;
+}
+.biz-type-btn.active .biz-type-name { color: var(--deep-rose); }
+.biz-type-check {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 18px; height: 18px; border-radius: 50%;
+  background: var(--border); font-size: 9px; color: transparent;
+  transition: background 0.18s, color 0.18s; flex-shrink: 0;
+}
+.biz-type-btn.active .biz-type-check { background: var(--deep-rose); color: #fff; }
+.biz-type-hint { font-size: 12px; color: var(--mid); line-height: 1.35; }
+
+/* ════════════════════════════════════════════════
+   SLIDER
+════════════════════════════════════════════════ */
+.slider-section { margin-top: 4px; }
+.slider-labels {
+  display: flex; justify-content: space-between;
+  font-size: 12px; color: var(--light-mid);
+  margin-bottom: 4px; user-select: none;
+}
+.slider-hit-area {
+  padding: 14px 0; cursor: pointer;
+  touch-action: none; -webkit-user-select: none; user-select: none;
+  position: relative;
+}
+input[type="range"] {
+  -webkit-appearance: none; appearance: none;
+  width: 100%; height: 6px; border-radius: 3px;
+  background: linear-gradient(to right,
+    var(--deep-rose) 0%, var(--deep-rose) var(--fill, 40%), var(--border) var(--fill, 40%)
+  );
+  outline: none; cursor: pointer; display: block; margin: 0; padding: 0;
+  pointer-events: none;
+}
+@media (hover: hover) and (pointer: fine) { input[type="range"] { pointer-events: auto; } }
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 28px; height: 28px; border-radius: 50%;
+  background: var(--deep-rose);
+  box-shadow: 0 2px 10px rgba(181,81,108,0.45);
+  border: 3px solid #fff; cursor: grab; margin-top: -11px;
+}
+input[type="range"]::-moz-range-thumb {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: var(--deep-rose); border: 3px solid #fff;
+  cursor: grab; box-shadow: 0 2px 10px rgba(181,81,108,0.45);
+}
+input[type="range"]::-webkit-slider-runnable-track { height: 6px; border-radius: 3px; }
+input[type="range"]::-moz-range-track { height: 6px; border-radius: 3px; background: var(--border); }
+.slider-value-row { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 6px; }
+.slider-val-badge { font-weight: 700; color: var(--deep-rose); font-size: 16px; }
+.slider-meaning { font-size: 12.5px; color: var(--mid); margin-top: 2px; text-align: center; }
+
+/* ════════════════════════════════════════════════
+   STAT TILES
+════════════════════════════════════════════════ */
+.stat-row {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 14px; margin-bottom: 20px;
+}
+.stat-tile {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 14px; padding: 18px 12px;
+  text-align: center; box-shadow: 0 2px 12px var(--shadow);
+}
+.stat-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--light-mid); margin-bottom: 6px; }
+.stat-value { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700; color: var(--deep-rose); line-height: 1; }
+.stat-sub   { font-size: 11px; color: var(--taupe); margin-top: 4px; }
+
+/* ════════════════════════════════════════════════
+   BUSINESS SUMMARY CARD
+════════════════════════════════════════════════ */
+.summary-card {
+  background: linear-gradient(135deg, #2C2420 0%, #3D2B2F 100%);
+  border-radius: 16px; padding: 28px 32px; margin-bottom: 20px;
+  color: #fff; position: relative; overflow: hidden;
+}
+.summary-card::before {
+  content: ''; position: absolute; top: -40px; right: -40px;
+  width: 160px; height: 160px; border-radius: 50%;
+  background: rgba(212,112,138,0.12); pointer-events: none;
+}
+.summary-card::after {
+  content: ''; position: absolute; bottom: -20px; left: 60px;
+  width: 100px; height: 100px; border-radius: 50%;
+  background: rgba(242,196,206,0.07); pointer-events: none;
+}
+.summary-label {
+  font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+  color: var(--blush); margin-bottom: 16px; display: flex; align-items: center; gap: 7px;
+}
+.summary-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 16px; margin-bottom: 16px; position: relative; z-index: 1;
+}
+.summary-tile { text-align: center; }
+.summary-val   { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--blush); line-height: 1; }
+.summary-tlabel { font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 4px; font-weight: 500; }
+.summary-divider { height: 1px; background: rgba(255,255,255,0.1); margin: 16px 0; position: relative; z-index: 1; }
+.summary-narrative {
+  font-size: 13.5px; color: rgba(255,255,255,0.72); line-height: 1.55;
+  position: relative; z-index: 1;
+}
+.summary-narrative strong { color: #fff; }
+
+/* ════════════════════════════════════════════════
+   MARKET INSIGHT CARD
+════════════════════════════════════════════════ */
+.insight-card {
+  background: linear-gradient(135deg, #FDF0F3 0%, #FAF5F7 100%);
+  border: 1.5px solid var(--blush); border-radius: 16px;
+  padding: 24px 28px; margin-bottom: 20px;
+}
+.insight-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--rose); margin-bottom: 8px; }
+.insight-text  { font-family: 'Playfair Display', serif; font-size: 17px; color: var(--dark); line-height: 1.55; font-style: italic; }
+.insight-badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  margin-top: 12px; padding: 5px 12px; border-radius: 20px;
+  font-size: 12px; font-weight: 600;
+}
+.badge-conservative { background: var(--amber-bg); color: var(--amber); }
+.badge-standard     { background: var(--green-bg);  color: var(--green); }
+.badge-premium      { background: var(--purple-bg);  color: var(--purple); }
+.badge-market-led   { background: var(--green-bg);  color: var(--green); }
+.badge-cost-led     { background: var(--amber-bg);  color: var(--amber); }
+
+/* ════════════════════════════════════════════════
+   BUTTONS
+════════════════════════════════════════════════ */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: 8px; padding: 13px 24px; border-radius: 10px;
+  font-size: 14px; font-weight: 600;
+  min-height: 50px; transition: opacity 0.15s, transform 0.1s;
+  white-space: nowrap; position: relative;
+}
+.btn:active { transform: scale(0.97); opacity: 0.88; }
+.btn-primary   { background: var(--deep-rose); color: #fff; box-shadow: 0 4px 16px rgba(181,81,108,0.3); }
+.btn-secondary { background: var(--cream); color: var(--charcoal); border: 1.5px solid var(--border); }
+.btn-danger    { background: transparent; color: var(--red); border: 1.5px solid #F5C0C8; padding: 9px 15px; font-size: 13px; min-height: 42px; }
+.btn-pdf       { background: linear-gradient(135deg, #B5516C, #8B3A52); color: #fff; box-shadow: 0 4px 16px rgba(139,58,82,0.35); }
+.btn-demo      { background: linear-gradient(135deg, #f0e0e6, #f5e8ec); color: var(--mauve); border: 1.5px solid var(--blush); font-size: 13px; }
+.btn-ghost     { background: transparent; color: var(--mid); border: 1.5px solid var(--border); font-size: 13px; }
+
+.nav-row {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-top: 24px; gap: 12px; flex-wrap: wrap;
+}
+
+/* ════════════════════════════════════════════════
+   SERVICE CARDS
+════════════════════════════════════════════════ */
+.service-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 16px; padding: 24px; margin-bottom: 16px;
+  box-shadow: 0 3px 16px var(--shadow);
+}
+.service-card-header {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  margin-bottom: 16px; gap: 12px;
+}
+.svc-name-input {
+  font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 600; color: var(--dark);
+  border: none; background: transparent; outline: none;
+  flex: 1; padding: 0;
+  border-bottom: 1.5px solid transparent; transition: border-color 0.2s;
+  min-width: 0; -webkit-appearance: none;
+}
+.svc-name-input:focus { border-bottom-color: var(--rose); }
+.svc-name-input::placeholder { color: var(--taupe); }
+
+/* ── Market category banner ── */
+.market-cat-row {
+  margin-bottom: 16px; padding: 10px 14px;
+  background: var(--cream); border-radius: 10px;
+  border: 1px solid var(--border);
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+}
+.market-cat-label { font-size: 12px; font-weight: 700; color: var(--mauve); text-transform: uppercase; letter-spacing: 0.4px; white-space: nowrap; }
+.market-cat-row select {
+  flex: 1; min-width: 180px;
+  padding: 7px 12px;
+  border: 1.5px solid var(--border); border-radius: 8px;
+  font-size: 14px; color: var(--charcoal); background: var(--white);
+  -webkit-appearance: none; outline: none;
+}
+.market-cat-row select:focus { border-color: var(--rose); }
+.no-benchmark-note {
+  margin-top: 6px; padding: 8px 12px; border-radius: 8px;
+  font-size: 12px; color: var(--amber); background: var(--amber-bg);
+  line-height: 1.4; display: none;
+}
+.no-benchmark-note.visible { display: block; }
+
+/* ── 4-tier price grid ── */
+.service-prices {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 10px; margin-top: 18px;
+}
+.price-bubble { border-radius: 12px; padding: 12px 14px; text-align: center; position: relative; }
+.price-bubble.tier-be    { background: #F5F3F0; }
+.price-bubble.tier-mv    { background: linear-gradient(135deg, #FDF8EC, #FDF4E4); border: 1px solid #F0DDB0; }
+.price-bubble.tier-rec   { background: linear-gradient(135deg, var(--blush), #F8D5DC); }
+.price-bubble.tier-pre   { background: linear-gradient(135deg, var(--rose), var(--deep-rose)); }
+
+.pb-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 2px; }
+.tier-be  .pb-label { color: var(--mid); }
+.tier-mv  .pb-label { color: var(--amber); }
+.tier-rec .pb-label { color: var(--mauve); }
+.tier-pre .pb-label { color: rgba(255,255,255,0.8); }
+
+.pb-desc { font-size: 9px; line-height: 1.3; margin-bottom: 5px; }
+.tier-be  .pb-desc { color: var(--light-mid); }
+.tier-mv  .pb-desc { color: var(--amber); opacity: 0.8; }
+.tier-rec .pb-desc { color: var(--mauve); opacity: 0.75; }
+.tier-pre .pb-desc { color: rgba(255,255,255,0.55); }
+
+.pb-value {
+  font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; line-height: 1.1;
+}
+.tier-be  .pb-value { color: var(--mid); }
+.tier-mv  .pb-value { color: var(--amber); }
+.tier-rec .pb-value { color: var(--deep-rose); }
+.tier-pre .pb-value { color: #fff; }
+
+/* ── Cost-led / Market-led badge ── */
+.pb-lead-badge {
+  display: inline-block; margin-top: 5px;
+  padding: 2px 8px; border-radius: 20px;
+  font-size: 9px; font-weight: 700; letter-spacing: 0.3px; text-transform: uppercase;
+}
+.lead-market { background: rgba(61,122,94,0.15); color: var(--green); }
+.lead-cost   { background: rgba(154,107,26,0.15); color: var(--amber); }
+.lead-none   { background: rgba(180,169,175,0.2); color: var(--mid); }
+
+/* ── Market benchmark info bar ── */
+.market-bench-bar {
+  margin-top: 10px; padding: 10px 14px; border-radius: 8px;
+  background: var(--green-bg); border: 1px solid rgba(61,122,94,0.2);
+  font-size: 12.5px; color: var(--green);
+  display: none; align-items: center; justify-content: space-between; gap: 10px;
+  flex-wrap: wrap;
+}
+.market-bench-bar.visible { display: flex; }
+.mbb-label { font-weight: 600; }
+.mbb-value { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 15px; }
+
+/* ── Why this price / breakdown toggle ── */
+.breakdown-toggle-btn {
+  display: inline-flex; align-items: center; gap: 5px;
+  margin-top: 10px; font-size: 12px; font-weight: 600;
+  color: var(--mid); padding: 5px 10px;
+  border: 1.5px solid var(--border); border-radius: 6px;
+  background: transparent; cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+.breakdown-toggle-btn:hover { color: var(--deep-rose); border-color: var(--rose); }
+.breakdown-toggle-btn.open  { color: var(--deep-rose); border-color: var(--rose); }
+
+.breakdown-panel {
+  display: none; margin-top: 10px;
+  background: var(--cream); border-radius: 10px;
+  padding: 14px 16px; border: 1px solid var(--border);
+}
+.breakdown-panel.visible { display: block; }
+.breakdown-title {
+  font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+  color: var(--mauve); margin-bottom: 10px;
+}
+.bd-section { margin-bottom: 10px; }
+.bd-section-heading {
+  font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px;
+  color: var(--light-mid); margin-bottom: 5px; padding-bottom: 4px;
+  border-bottom: 1px solid var(--border);
+}
+.bd-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 3px 0; font-size: 12.5px;
+}
+.bd-row-label { color: var(--mid); }
+.bd-row-val   { font-weight: 600; color: var(--charcoal); }
+.bd-result-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 8px 10px; border-radius: 8px; margin-top: 8px;
+  font-size: 13.5px; font-weight: 700;
+}
+.bd-result-row.cost-led   { background: var(--amber-bg); color: var(--amber); }
+.bd-result-row.market-led { background: var(--green-bg); color: var(--green); }
+.bd-result-row.no-bench   { background: #F5F3F0; color: var(--mid); }
+
+/* ── Service insight ── */
+.svc-insight {
+  margin-top: 12px; padding: 10px 14px; border-radius: 8px;
+  font-size: 13px; font-weight: 500;
+  display: flex; align-items: flex-start; gap: 7px; line-height: 1.45;
+}
+.si-green { background: var(--green-bg); color: var(--green); }
+.si-amber { background: var(--amber-bg); color: var(--amber); }
+.si-red   { background: var(--red-bg);   color: var(--red);   }
+.si-purple { background: var(--purple-bg); color: var(--purple); }
+
+/* ── Monthly impact ── */
+.impact-note {
+  margin-top: 10px; padding: 10px 14px; border-radius: 8px;
+  font-size: 12.5px; background: var(--purple-bg); color: var(--purple);
+  display: none; align-items: flex-start; gap: 7px; line-height: 1.45;
+}
+.impact-note.visible { display: flex; }
+.impact-warning {
+  margin-top: 8px; padding: 8px 14px; border-radius: 8px;
+  font-size: 12.5px; background: var(--red-bg); color: var(--red);
+  display: none; line-height: 1.4;
+}
+.impact-warning.visible { display: block; }
+
+/* ── Duration section ── */
+.duration-section { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border); }
+.duration-title {
+  font-size: 11.5px; font-weight: 700; color: var(--mauve);
+  letter-spacing: 0.5px; text-transform: uppercase;
+  margin-bottom: 4px; display: flex; align-items: center; gap: 6px;
+}
+.duration-subtitle { font-size: 12px; color: var(--light-mid); margin-bottom: 12px; line-height: 1.4; }
+.duration-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.pace-note {
+  margin-top: 10px; padding: 10px 14px; border-radius: 8px;
+  font-size: 12.5px; color: var(--amber); background: var(--amber-bg);
+  display: none; line-height: 1.45; gap: 7px;
+}
+.pace-note.visible { display: flex; align-items: flex-start; }
+
+/* ── Frequency row ── */
+.freq-row {
+  display: flex; align-items: center; gap: 12px;
+  margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border);
+}
+.freq-row .field { flex: 0 0 180px; }
+.freq-hint { font-size: 12px; color: var(--light-mid); line-height: 1.4; }
+
+/* ════════════════════════════════════════════════
+   ADD-ONS
+════════════════════════════════════════════════ */
+.addon-row {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 12px; align-items: end;
+  padding: 16px 0; border-bottom: 1px solid var(--border);
+}
+.addon-row:last-child { border-bottom: none; }
+.addon-price-display {
+  font-family: 'Playfair Display', serif; font-size: 18px;
+  font-weight: 700; color: var(--deep-rose); padding-bottom: 11px;
+}
+
+/* ════════════════════════════════════════════════
+   PRICE LIST PREVIEW
+════════════════════════════════════════════════ */
+.price-list-preview {
+  background: #fff; border-radius: 20px; padding: 50px 48px;
+  border: 1px solid var(--border); box-shadow: 0 6px 40px var(--shadow-deep);
+  max-width: 680px; margin: 0 auto 28px;
+}
+.pl-biz-name { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 700; color: var(--charcoal); text-align: center; margin-bottom: 4px; }
+.pl-location { text-align: center; color: var(--mid); font-size: 14px; margin-bottom: 32px; font-style: italic; }
+.pl-divider  { height: 2px; background: linear-gradient(90deg, transparent, var(--rose), transparent); margin: 20px 0; }
+.pl-section-title { font-family: 'Playfair Display', serif; font-size: 13px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--rose); margin: 28px 0 14px; }
+.pl-item { display: flex; justify-content: space-between; align-items: baseline; padding: 9px 0; border-bottom: 1px dotted var(--border); }
+.pl-item:last-child { border-bottom: none; }
+.pl-item-name  { font-weight: 500; color: var(--charcoal); font-size: 15px; }
+.pl-item-dur   { color: var(--light-mid); font-size: 13px; margin-left: 8px; }
+.pl-item-price { font-family: 'Playfair Display', serif; font-weight: 700; color: var(--deep-rose); font-size: 16px; }
+.pl-footer     { margin-top: 36px; text-align: center; font-size: 12px; color: var(--taupe); font-style: italic; }
+.export-row { display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; margin-bottom: 40px; }
+
+/* ════════════════════════════════════════════════
+   DEMO BANNER
+════════════════════════════════════════════════ */
+.demo-banner {
+  background: linear-gradient(135deg, #fdf0f3, #faf5f7);
+  border: 1.5px solid var(--blush); border-radius: 12px;
+  padding: 14px 20px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 14px; margin-bottom: 20px; flex-wrap: wrap;
+}
+.demo-banner-text { font-size: 13.5px; color: var(--mauve); }
+.demo-banner-text strong { color: var(--deep-rose); }
+.demo-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+/* ════════════════════════════════════════════════
+   EMPTY STATE
+════════════════════════════════════════════════ */
+.empty-state { text-align: center; padding: 48px 20px; color: var(--light-mid); }
+.empty-emoji { font-size: 40px; margin-bottom: 12px; }
+
+/* ════════════════════════════════════════════════
+   MOBILE BOTTOM BAR
+════════════════════════════════════════════════ */
+.mobile-bar {
+  display: none;
+  position: fixed; bottom: 0; left: 0; right: 0;
+  z-index: 400; background: #fff; border-top: 1px solid var(--border);
+  height: calc(var(--tab-bar-h) + env(safe-area-inset-bottom, 0px));
+  padding-top: 6px; padding-bottom: env(safe-area-inset-bottom, 0px);
+  justify-content: space-around; align-items: flex-start;
+}
+.mob-btn {
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+  font-size: 10px; font-weight: 600; color: var(--light-mid);
+  padding: 4px 0; min-width: 72px; min-height: 50px;
+  justify-content: center; transition: color 0.15s;
+}
+.mob-btn.active { color: var(--deep-rose); }
+.mob-icon { font-size: 22px; line-height: 1.2; }
+
+select option { background: #fff; }
+
+/* ════════════════════════════════════════════════
+   PRINT
+════════════════════════════════════════════════ */
+@media print {
+  body * { visibility: hidden; }
+  .price-list-preview, .price-list-preview * { visibility: visible; }
+  .price-list-preview {
+    position: fixed; top: 0; left: 0; width: 100%;
+    box-shadow: none; border: none; padding: 40px 50px; border-radius: 0;
+  }
+}
+
+/* ════════════════════════════════════════════════
+   RESPONSIVE
+════════════════════════════════════════════════ */
+@media (max-width: 760px) {
+  .header { padding: 0 16px; height: 56px; }
+  .desktop-tabs { display: none; }
+  .mobile-bar { display: flex; }
+  .main { padding: 20px 14px calc(var(--tab-bar-h) + env(safe-area-inset-bottom, 0px) + 24px); }
+  .card { padding: 18px 16px; }
+  .grid-3, .grid-2 { grid-template-columns: 1fr; }
+  .stat-row { grid-template-columns: 1fr 1fr; }
+  .summary-grid { grid-template-columns: 1fr 1fr; }
+  .service-prices { grid-template-columns: 1fr 1fr; }
+  .addon-row { grid-template-columns: 1fr 1fr; }
+  .price-list-preview { padding: 28px 20px; }
+  .pl-biz-name { font-size: 24px; }
+  .export-row { flex-direction: column; align-items: stretch; }
+  .export-row .btn { width: 100%; }
+  .duration-grid { grid-template-columns: 1fr; }
+  .freq-row { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .freq-row .field { flex: none; width: 100%; }
+  .summary-card { padding: 22px 20px; }
+  .biz-type-bar { flex-direction: column; }
+  .market-cat-row { flex-direction: column; align-items: flex-start; gap: 6px; }
+  .market-cat-row select { min-width: 100%; }
+}
+@media (max-width: 400px) {
+  .service-prices { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════ HEADER ═══════════ -->
+<header class="header">
+  <div class="logo">
+    <span class="logo-text">Nailed It</span>
+    <span class="logo-sub">Pricing Studio</span>
+  </div>
+  <nav class="desktop-tabs" id="desktopTabs" aria-label="App sections">
+    <button class="tab-btn active" data-tab="0" type="button"><span class="tab-num">1</span> Setup</button>
+    <button class="tab-btn" data-tab="1" type="button"><span class="tab-num">2</span> Services</button>
+    <button class="tab-btn" data-tab="2" type="button"><span class="tab-num">3</span> Add-ons</button>
+    <button class="tab-btn" data-tab="3" type="button"><span class="tab-num">4</span> Price List</button>
+  </nav>
+</header>
+
+<!-- ═══════════ MAIN ═══════════ -->
+<main class="main" id="mainContent">
+
+  <!-- ══ TAB 0: SETUP ══ -->
+  <div class="tab-panel active" id="tab-0">
+    <div class="section-heading">
+      <h2>Business Setup</h2>
+      <p>Your market, your costs, your goals — everything flows from here.</p>
+    </div>
+
+    <div class="demo-banner" id="demoBanner">
+      <span class="demo-banner-text">New here? <strong>Load example data</strong> to explore with realistic values.</span>
+      <div class="demo-actions">
+        <button class="btn btn-demo" id="loadDemoBtn" type="button">✨ Load Example</button>
+        <button class="btn btn-ghost" id="resetBtn" type="button">↺ Reset All</button>
+      </div>
+    </div>
+
+    <!-- Business Type -->
+    <div class="card">
+      <div class="card-title"><div class="card-icon">👤</div> Your Business Type</div>
+      <div class="biz-type-bar" id="bizTypeBar">
+        <button class="biz-type-btn active" data-biz="Solo" type="button">
+          <div class="biz-type-name"><span class="biz-type-check">✓</span> Solo Nail Tech</div>
+          <div class="biz-type-hint">Home-based, independent, private studio, or freelance nail tech — you set your own prices.</div>
+        </button>
+        <button class="biz-type-btn" data-biz="Salon" type="button">
+          <div class="biz-type-name"><span class="biz-type-check">✓</span> Salon / Studio Professional</div>
+          <div class="biz-type-hint">Commercial salon, studio-based, or licensed business setting with higher expected pricing.</div>
+        </button>
+      </div>
+    </div>
+
+    <!-- Market & Location -->
+    <div class="card">
+      <div class="card-title"><div class="card-icon">📍</div> Market &amp; Location</div>
+      <div class="grid-2" style="margin-bottom:16px">
+        <div class="field">
+          <label for="country">Country</label>
+          <select id="country">
+            <option value="United Kingdom">🇬🇧 United Kingdom</option>
+            <option value="United States">🇺🇸 United States</option>
+            <option value="Canada">🇨🇦 Canada</option>
+            <option value="Australia">🇦🇺 Australia</option>
+            <option value="Ireland">🇮🇪 Ireland</option>
+            <option value="New Zealand">🇳🇿 New Zealand</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="areaType">Area Type</label>
+          <select id="areaType">
+            <option value="city">Major City / City Centre</option>
+            <option value="town" selected>Town / Suburban</option>
+            <option value="rural">Rural</option>
+          </select>
+          <span class="helper">City adds ~15% to market benchmarks. Rural deducts ~12%. Keeps geography honest without postcode guesswork.</span>
+        </div>
+      </div>
+
+      <div class="field slider-section">
+        <label>Your Position Relative to Your Local Market</label>
+        <div class="slider-labels">
+          <span>Value / Entry (×0.75)</span><span>Market Average (×1.00)</span><span>Premium (×1.35)</span>
+        </div>
+        <div class="slider-hit-area" id="sliderHitArea">
+          <input type="range" id="userSlider" min="0.75" max="1.35" step="0.05" value="1.0">
+        </div>
+        <div class="slider-value-row">
+          <span class="slider-val-badge" id="sliderValDisplay">×1.00</span>
+        </div>
+        <div class="slider-meaning" id="sliderMeaning">At the local market median — competitive and sustainable.</div>
+      </div>
+    </div>
+
+    <!-- Pricing Mode Toggle -->
+    <div class="card" style="padding:20px 32px">
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px">
+        <div>
+          <div style="font-family:'Playfair Display',serif;font-size:15px;font-weight:600;color:var(--dark);margin-bottom:3px">Pricing Mode</div>
+          <div style="font-size:12.5px;color:var(--mid);line-height:1.4" id="pricingModeHint">Market-Based: recommended price uses market benchmarks + your positioning. Switch to Cost-Based to price purely from your overhead and income goals.</div>
+        </div>
+        <div class="mode-bar" style="flex-shrink:0;min-width:280px">
+          <button class="mode-btn active" id="modeMarketBtn" type="button">📊 Market-Based</button>
+          <button class="mode-btn" id="modeCostBtn" type="button">🧮 Cost-Based</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Market Context Insight -->
+    <div class="insight-card">
+      <div class="insight-label">✦ Market Context</div>
+      <div class="insight-text" id="insightText">Select your country and area type to see your market context.</div>
+      <div id="insightBadge"></div>
+    </div>
+
+    <!-- Monthly Overhead -->
+    <div class="card">
+      <div class="card-title"><div class="card-icon">💸</div> Monthly Overhead</div>
+      <div class="grid-3">
+        <div class="field"><label>Rent / Space</label><div class="prefix-wrap"><span class="prefix currency-pfx">£</span><input type="number" id="rent" placeholder="0" min="0" inputmode="decimal"></div></div>
+        <div class="field"><label>Utilities</label><div class="prefix-wrap"><span class="prefix currency-pfx">£</span><input type="number" id="utilities" placeholder="0" min="0" inputmode="decimal"></div></div>
+        <div class="field"><label>Supplies</label><div class="prefix-wrap"><span class="prefix currency-pfx">£</span><input type="number" id="supplies" placeholder="0" min="0" inputmode="decimal"></div></div>
+        <div class="field"><label>Tools &amp; Equipment</label><div class="prefix-wrap"><span class="prefix currency-pfx">£</span><input type="number" id="tools" placeholder="0" min="0" inputmode="decimal"></div></div>
+        <div class="field"><label>Subscriptions</label><div class="prefix-wrap"><span class="prefix currency-pfx">£</span><input type="number" id="subscriptions" placeholder="0" min="0" inputmode="decimal"></div></div>
+        <div class="field"><label>Marketing</label><div class="prefix-wrap"><span class="prefix currency-pfx">£</span><input type="number" id="marketing" placeholder="0" min="0" inputmode="decimal"></div></div>
+        <div class="field"><label>Other</label><div class="prefix-wrap"><span class="prefix currency-pfx">£</span><input type="number" id="other" placeholder="0" min="0" inputmode="decimal"></div></div>
+      </div>
+    </div>
+
+    <!-- Income Goals + Hourly Rate -->
+    <div class="card">
+      <div class="card-title"><div class="card-icon">🎯</div> Income Goals</div>
+      <div class="grid-3">
+        <div class="field"><label>Target Monthly Income</label><div class="prefix-wrap"><span class="prefix currency-pfx">£</span><input type="number" id="targetIncome" placeholder="2500" min="0" inputmode="decimal"></div></div>
+        <div class="field"><label>Working Days / Month</label><input type="number" id="workingDays" placeholder="20" min="1" max="31" inputmode="numeric"></div>
+        <div class="field"><label>Clients / Month</label><input type="number" id="clientsPerMonth" placeholder="40" min="1" inputmode="numeric"></div>
+      </div>
+
+      <div style="margin-top:20px">
+        <div style="margin-bottom:6px">
+          <span style="font-size:12.5px;font-weight:600;color:var(--mauve);letter-spacing:0.4px;text-transform:uppercase">Effective Hourly Rate Used for Pricing</span>
+        </div>
+        <div class="mode-bar">
+          <button class="mode-btn active" id="modeAutoBtn" type="button">⚡ Auto-calculated from goals</button>
+          <button class="mode-btn" id="modeManualBtn" type="button">✏️ Custom override</button>
+        </div>
+        <div id="hourlyAutoBlock">
+          <div class="rate-display">
+            <span class="rate-sym currency-pfx">£</span>
+            <span class="rate-val" id="hourlyAutoVal">—</span>
+            <span class="rate-note">/ hr · auto-calculated</span>
+          </div>
+          <span class="helper" id="hourlyAutoHint">Calculated from your target income, overhead, and working hours above.</span>
+        </div>
+        <div id="hourlyManualBlock" style="display:none">
+          <div class="prefix-wrap"><span class="prefix currency-pfx">£</span><input type="number" id="hourlyRate" placeholder="30" min="0" step="0.5" inputmode="decimal"></div>
+          <span class="helper" id="hourlyManualHint">Your custom rate overrides auto-calculation for all service pricing.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stat-row">
+      <div class="stat-tile"><div class="stat-label">Total Overhead</div><div class="stat-value" id="statOverhead">—</div><div class="stat-sub">per month</div></div>
+      <div class="stat-tile"><div class="stat-label">Per-Client Cost</div><div class="stat-value" id="statPerClient">—</div><div class="stat-sub">overhead per visit</div></div>
+      <div class="stat-tile"><div class="stat-label">Working Hours</div><div class="stat-value" id="statHours">—</div><div class="stat-sub">per month</div></div>
+      <div class="stat-tile"><div class="stat-label">Effective Rate</div><div class="stat-value" id="statReqHourly">—</div><div class="stat-sub">used for pricing</div></div>
+    </div>
+
+    <!-- Business Summary -->
+    <div class="summary-card">
+      <div class="summary-label">✦ Your Business at a Glance</div>
+      <div class="summary-grid">
+        <div class="summary-tile"><div class="summary-val" id="sumRate">—</div><div class="summary-tlabel">Effective hourly rate</div></div>
+        <div class="summary-tile"><div class="summary-val" id="sumOH">—</div><div class="summary-tlabel">Overhead per client</div></div>
+        <div class="summary-tile"><div class="summary-val" id="sumAvgRec">—</div><div class="summary-tlabel">Avg recommended price</div></div>
+        <div class="summary-tile"><div class="summary-val" id="sumAvgMkt">—</div><div class="summary-tlabel">Avg market benchmark</div></div>
+      </div>
+      <div class="summary-divider"></div>
+      <div class="summary-narrative" id="summaryText">Add your income goals and overhead above to unlock your business summary.</div>
+    </div>
+
+    <div class="nav-row">
+      <div></div>
+      <button class="btn btn-primary" data-goto="1" type="button">Next: Services →</button>
+    </div>
+  </div>
+
+  <!-- ══ TAB 1: SERVICES ══ -->
+  <div class="tab-panel" id="tab-1">
+    <div class="section-heading">
+      <h2>Your Services</h2>
+      <p>Always price using the time a competent professional would take — not your current personal speed. Your current time is for speed training only and never inflates your price.</p>
+    </div>
+    <div id="servicesList"></div>
+    <button class="btn btn-primary" id="addServiceBtn" type="button" style="margin-bottom:24px">+ Add a Service</button>
+    <div class="nav-row">
+      <button class="btn btn-secondary" data-goto="0" type="button">← Back</button>
+      <button class="btn btn-primary" data-goto="2" type="button">Next: Add-ons →</button>
+    </div>
+  </div>
+
+  <!-- ══ TAB 2: ADD-ONS ══ -->
+  <div class="tab-panel" id="tab-2">
+    <div class="section-heading">
+      <h2>Add-ons &amp; Extras</h2>
+      <p>Price your add-ons right — these are often where the real profit lives.</p>
+    </div>
+    <div class="card">
+      <div class="card-title"><div class="card-icon">✨</div> Add-on Pricing</div>
+      <div id="addonsList"></div>
+    </div>
+    <div class="nav-row">
+      <button class="btn btn-secondary" data-goto="1" type="button">← Back</button>
+      <button class="btn btn-primary" data-goto="3" type="button">Next: Price List →</button>
+    </div>
+  </div>
+
+  <!-- ══ TAB 3: PRICE LIST ══ -->
+  <div class="tab-panel" id="tab-3">
+    <div class="section-heading">
+      <h2>Your Price List</h2>
+      <p>A polished, client-ready menu — export as PDF to save or print.</p>
+    </div>
+
+    <div class="card" style="margin-bottom:20px">
+      <div class="card-title"><div class="card-icon">🏷️</div> Customise Your Menu</div>
+      <div class="grid-2">
+        <div class="field"><label for="businessName">Business Name</label><input type="text" id="businessName" placeholder="e.g. The Nail Studio" autocomplete="off"></div>
+        <div class="field"><label for="businessLocation">Location Line</label><input type="text" id="businessLocation" placeholder="e.g. London, UK" autocomplete="off"></div>
+      </div>
+      <div class="field" style="margin-top:14px">
+        <label for="priceListTier">Price tier to display</label>
+        <select id="priceListTier">
+          <option value="recommended" selected>Recommended — your standard posted rate</option>
+          <option value="premium">Premium — specialist or luxury positioning</option>
+          <option value="minimumViable" class="internal-tier" style="display:none">Minimum Viable — internal reference only</option>
+          <option value="trueBreakEven" class="internal-tier" style="display:none">Break-Even — internal reference only</option>
+        </select>
+      </div>
+      <div style="margin-top:10px;display:flex;align-items:center;gap:8px">
+        <input type="checkbox" id="showInternalTiers" style="width:16px;height:16px;accent-color:var(--deep-rose);cursor:pointer">
+        <label for="showInternalTiers" style="font-size:12.5px;color:var(--mid);cursor:pointer;text-transform:none;font-weight:500;letter-spacing:0">
+          Show internal pricing tiers (Break-Even &amp; Minimum Viable — for personal use only, not for clients)
+        </label>
+      </div>
+    </div>
+
+    <div class="price-list-preview" id="plPreview">
+      <div class="pl-biz-name" id="plBizName">Your Business</div>
+      <div class="pl-location" id="plLocation" style="display:none"></div>
+      <div class="pl-divider"></div>
+      <div id="plServices"></div>
+      <div id="plAddons"></div>
+      <div class="pl-footer">Prices are subject to change. Consultation required for first visit.</div>
+    </div>
+
+    <div class="export-row">
+      <button class="btn btn-pdf" id="exportPdfBtn" type="button">🖨️ Save as PDF</button>
+      <button class="btn btn-secondary" data-goto="0" type="button">← Back to Setup</button>
+    </div>
+  </div>
+
+</main>
+
+<!-- ═══════════ MOBILE BAR ═══════════ -->
+<nav class="mobile-bar" id="mobileBar" aria-label="App sections">
+  <button class="mob-btn active" data-tab="0" type="button"><span class="mob-icon">⚙️</span>Setup</button>
+  <button class="mob-btn" data-tab="1" type="button"><span class="mob-icon">💅</span>Services</button>
+  <button class="mob-btn" data-tab="2" type="button"><span class="mob-icon">✨</span>Add-ons</button>
+  <button class="mob-btn" data-tab="3" type="button"><span class="mob-icon">📋</span>List</button>
+</nav>
+
+<script>
+'use strict';
+
+/* ════════════════════════════════════════════════════
+   MARKET DATA — Research-backed medians (Q1 2026)
+════════════════════════════════════════════════════ */
+var MARKET_DATA = {
+  'United Kingdom': {
+    currency: '£', symbol: '£', code: 'UK', hourlyDefault: 30,
+    Solo:  { Gel_Manicure: 32, BIAB_Builder_Gel: 42, Full_Set_Extensions: 45, Nail_Art_Addon: 10, Removal: 10 },
+    Salon: { Gel_Manicure: 42, BIAB_Builder_Gel: 62, Full_Set_Extensions: 65, Nail_Art_Addon: 15, Removal: 20 }
+  },
+  'United States': {
+    currency: 'USD', symbol: '$', code: 'US', hourlyDefault: 40,
+    Solo:  { Gel_Manicure: 45, BIAB_Builder_Gel: 55, Full_Set_Extensions: 65, Nail_Art_Addon: 15, Removal: 15 },
+    Salon: { Gel_Manicure: 50, BIAB_Builder_Gel: 65, Full_Set_Extensions: 72, Nail_Art_Addon: 20, Removal: 20 }
+  },
+  'Canada': {
+    currency: 'CAD', symbol: '$', code: 'CA', hourlyDefault: 35,
+    Solo:  { Gel_Manicure: 45, BIAB_Builder_Gel: 55, Full_Set_Extensions: 65, Nail_Art_Addon: 15, Removal: 15 },
+    Salon: { Gel_Manicure: 55, BIAB_Builder_Gel: 68, Full_Set_Extensions: 78, Nail_Art_Addon: 20, Removal: 20 }
+  },
+  'Australia': {
+    currency: 'AUD', symbol: '$', code: 'AU', hourlyDefault: 45,
+    Solo:  { Gel_Manicure: 65, BIAB_Builder_Gel: 85, Full_Set_Extensions: 100, Nail_Art_Addon: 20, Removal: 28 },
+    Salon: { Gel_Manicure: 75, BIAB_Builder_Gel: 100, Full_Set_Extensions: 120, Nail_Art_Addon: 30, Removal: 45 }
+  },
+  'Ireland': {
+    currency: 'EUR', symbol: '€', code: 'IE', hourlyDefault: 28,
+    Solo:  { Gel_Manicure: 40, BIAB_Builder_Gel: 48, Full_Set_Extensions: 55, Nail_Art_Addon: 10, Removal: 15 },
+    Salon: { Gel_Manicure: 52, BIAB_Builder_Gel: 62, Full_Set_Extensions: 68, Nail_Art_Addon: 15, Removal: 20 }
+  },
+  'New Zealand': {
+    currency: 'NZD', symbol: '$', code: 'NZ', hourlyDefault: 38,
+    Solo:  { Gel_Manicure: 55, BIAB_Builder_Gel: 70, Full_Set_Extensions: 90, Nail_Art_Addon: 15, Removal: 28 },
+    Salon: { Gel_Manicure: 65, BIAB_Builder_Gel: 82, Full_Set_Extensions: 105, Nail_Art_Addon: 22, Removal: 35 }
+  }
+};
+
+/* Area modifiers — research-backed */
+var AREA_MODIFIERS = { city: 1.15, town: 1.00, rural: 0.88 };
+
+/* Market category keys and display names */
+var MARKET_CATS = [
+  { key: 'Gel_Manicure',        label: 'Gel Manicure'           },
+  { key: 'BIAB_Builder_Gel',    label: 'BIAB / Builder Gel'     },
+  { key: 'Full_Set_Extensions', label: 'Full Set Extensions'    },
+  { key: 'Nail_Art_Addon',      label: 'Nail Art Add-on'        },
+  { key: 'Removal',             label: 'Removal'                },
+  { key: 'Custom',              label: 'Custom / Not in benchmark' }
+];
+
+/* Complexity multipliers (applied to time-based cost) */
+var COMPLEXITY = { none: 0, medium: 0.10, advanced: 0.20 };
+
+var DEFAULT_ADDONS = [
+  { name: 'Nail Art (per nail)', mode: 'fixed', fixedVal: 3,  time: 5  },
+  { name: 'French Tip',          mode: 'time',  fixedVal: 10, time: 15 },
+  { name: 'Chrome Powder',       mode: 'time',  fixedVal: 8,  time: 10 },
+  { name: 'Gems / Crystals',     mode: 'fixed', fixedVal: 5,  time: 10 },
+  { name: 'Removal',             mode: 'time',  fixedVal: 15, time: 20 },
+  { name: 'Repair (per nail)',   mode: 'fixed', fixedVal: 4,  time: 10 },
+  { name: 'Extra Length',        mode: 'time',  fixedVal: 8,  time: 10 }
+];
+
+/* ════════════════════════════════════════════════
+   STATE
+════════════════════════════════════════════════ */
+var services     = [];
+var addons       = [];
+var currSym      = '£';
+var reqHourly    = 0;
+var ohPerClient  = 0;
+var hourlyMode   = 'auto';
+var businessType = 'Solo';
+var pricingMode  = 'market'; // 'market' | 'cost'
+
+/* ════════════════════════════════════════════════
+   INIT
+════════════════════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', function () {
+  loadFromStorage();
+  applyCountry(true);
+  recalculate();
+  renderServices();
+  rebuildAddons();
+  renderPriceList();
+  initSlider();
+  attachEventListeners();
+  updateSummary();
+});
+
+/* ════════════════════════════════════════════════
+   TAB SWITCHING
+════════════════════════════════════════════════ */
+function switchTab(idx) {
+  idx = parseInt(idx, 10);
+  document.querySelectorAll('.tab-panel').forEach(function (p, i) { p.classList.toggle('active', i === idx); });
+  document.querySelectorAll('#desktopTabs .tab-btn').forEach(function (b, i) { b.classList.toggle('active', i === idx); });
+  document.querySelectorAll('#mobileBar .mob-btn').forEach(function (b, i) { b.classList.toggle('active', i === idx); });
+  if (idx === 3) renderPriceList();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* ════════════════════════════════════════════════
+   SLIDER
+════════════════════════════════════════════════ */
+function initSlider() {
+  var slider  = document.getElementById('userSlider');
+  var hitArea = document.getElementById('sliderHitArea');
+  var min = parseFloat(slider.min), max = parseFloat(slider.max), step = parseFloat(slider.step);
+  var dragging = false;
+
+  function valFromX(clientX) {
+    var rect = slider.getBoundingClientRect();
+    var thumb = 14, usable = rect.width - thumb * 2;
+    var relX = Math.max(0, Math.min(usable, clientX - rect.left - thumb));
+    var raw = min + (relX / usable) * (max - min);
+    var snapped = Math.round(raw / step) * step;
+    return Math.max(min, Math.min(max, Math.round(snapped * 100) / 100));
+  }
+  function applyVal(val) {
+    slider.value = val;
+    updateSliderFill(val);
+    document.getElementById('sliderValDisplay').textContent = '×' + val.toFixed(2);
+    updateSliderMeaning(val);
+    saveAndUpdate();
+  }
+  function updateSliderFill(val) {
+    slider.style.setProperty('--fill', ((val - min) / (max - min) * 100).toFixed(2) + '%');
+  }
+
+  hitArea.addEventListener('touchstart', function (e) {
+    dragging = true; e.preventDefault();
+    applyVal(valFromX(e.touches[0].clientX));
+  }, { passive: false });
+  hitArea.addEventListener('touchmove', function (e) {
+    if (!dragging) return; e.preventDefault();
+    applyVal(valFromX(e.touches[0].clientX));
+  }, { passive: false });
+  hitArea.addEventListener('touchend', function (e) {
+    dragging = false; e.preventDefault();
+    if (e.changedTouches.length) applyVal(valFromX(e.changedTouches[0].clientX));
+  }, { passive: false });
+  slider.addEventListener('input', function () {
+    var val = parseFloat(slider.value);
+    updateSliderFill(val);
+    document.getElementById('sliderValDisplay').textContent = '×' + val.toFixed(2);
+    updateSliderMeaning(val);
+    saveAndUpdate();
+  });
+  updateSliderFill(parseFloat(slider.value));
+  updateSliderMeaning(parseFloat(slider.value));
+}
+
+function updateSliderMeaning(val) {
+  var el = document.getElementById('sliderMeaning');
+  if (!el) return;
+  var msg;
+  if (val < 0.85)       msg = 'Entry-level positioning — effective while building a portfolio or client base.';
+  else if (val < 0.95)  msg = 'Conservative positioning — below the market average. Check your books before going lower.';
+  else if (val <= 1.05) msg = 'At the local market median — competitive and commercially sustainable.';
+  else if (val <= 1.20) msg = 'Above the market median — strong positioning. Back it with quality and consistency.';
+  else                  msg = 'Premium tier — specialist positioning. Strong brand and presentation essential at this level.';
+  el.textContent = msg;
+}
+
+/* ════════════════════════════════════════════════
+   HOURLY MODE TOGGLE
+════════════════════════════════════════════════ */
+function setHourlyMode(mode) {
+  hourlyMode = mode;
+  document.getElementById('modeAutoBtn').classList.toggle('active', mode === 'auto');
+  document.getElementById('modeManualBtn').classList.toggle('active', mode === 'manual');
+  document.getElementById('hourlyAutoBlock').style.display   = mode === 'auto'   ? 'block' : 'none';
+  document.getElementById('hourlyManualBlock').style.display = mode === 'manual' ? 'block' : 'none';
+  saveAndUpdate();
+}
+
+/* ════════════════════════════════════════════════
+   PRICING MODE TOGGLE
+════════════════════════════════════════════════ */
+function setPricingMode(mode) {
+  pricingMode = mode;
+  document.getElementById('modeMarketBtn').classList.toggle('active', mode === 'market');
+  document.getElementById('modeCostBtn').classList.toggle('active',   mode === 'cost');
+  var hintEl = document.getElementById('pricingModeHint');
+  if (hintEl) {
+    hintEl.textContent = mode === 'market'
+      ? 'Market-Based: recommended price uses market benchmarks + your positioning. Switch to Cost-Based to price purely from your overhead and income goals.'
+      : 'Cost-Based: ignores market benchmarks entirely. Recommended = Minimum Viable × 1.15. Use this if you want pure cost-first pricing.';
+  }
+  saveToStorage(); patchServicePrices(); renderPriceList(); updateSummary();
+}
+
+
+function attachEventListeners() {
+
+  document.getElementById('desktopTabs').addEventListener('click', function (e) {
+    var btn = e.target.closest('[data-tab]');
+    if (btn) switchTab(btn.dataset.tab);
+  });
+  document.getElementById('mobileBar').addEventListener('click', function (e) {
+    var btn = e.target.closest('[data-tab]');
+    if (btn) switchTab(btn.dataset.tab);
+  });
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest('[data-goto]');
+    if (btn) switchTab(btn.dataset.goto);
+  });
+
+  document.getElementById('exportPdfBtn').addEventListener('click', function () { window.print(); });
+  document.getElementById('addServiceBtn').addEventListener('click', addService);
+  document.getElementById('loadDemoBtn').addEventListener('click', loadDemoData);
+  document.getElementById('resetBtn').addEventListener('click', resetAll);
+  document.getElementById('modeAutoBtn').addEventListener('click', function () { setHourlyMode('auto'); });
+  document.getElementById('modeManualBtn').addEventListener('click', function () { setHourlyMode('manual'); });
+
+  // Pricing mode (market vs cost)
+  document.getElementById('modeMarketBtn').addEventListener('click', function () { setPricingMode('market'); });
+  document.getElementById('modeCostBtn').addEventListener('click',   function () { setPricingMode('cost'); });
+
+  // Business type toggle
+  document.getElementById('bizTypeBar').addEventListener('click', function (e) {
+    var btn = e.target.closest('[data-biz]');
+    if (!btn) return;
+    businessType = btn.dataset.biz;
+    document.querySelectorAll('.biz-type-btn').forEach(function (b) {
+      b.classList.toggle('active', b.dataset.biz === businessType);
+    });
+    saveAndUpdate();
+    patchServicePrices();
+    updateInsight();
+    updateSummary();
+  });
+
+  // Setup inputs
+  ['rent','utilities','supplies','tools','subscriptions','marketing','other',
+   'targetIncome','workingDays','clientsPerMonth','hourlyRate'].forEach(function (id) {
+    var el = document.getElementById(id);
+    if (el) el.addEventListener('input', saveAndUpdate);
+  });
+  document.getElementById('country').addEventListener('change', function () { applyCountry(false); });
+  document.getElementById('areaType').addEventListener('change', function () { saveAndUpdate(); updateInsight(); });
+
+  // Price list
+  document.getElementById('businessName').addEventListener('input', function () { saveToStorage(); renderPriceList(); });
+  document.getElementById('businessLocation').addEventListener('input', function () { saveToStorage(); renderPriceList(); });
+  document.getElementById('priceListTier').addEventListener('change', function () { saveToStorage(); renderPriceList(); });
+  document.getElementById('showInternalTiers').addEventListener('change', function () {
+    var show = this.checked;
+    document.querySelectorAll('#priceListTier .internal-tier').forEach(function (opt) {
+      opt.style.display = show ? '' : 'none';
+    });
+    // If an internal tier is selected but toggle turned off, revert to recommended
+    if (!show) {
+      var sel = document.getElementById('priceListTier');
+      if (sel.value === 'trueBreakEven' || sel.value === 'minimumViable') {
+        sel.value = 'recommended';
+        saveToStorage();
+        renderPriceList();
+      }
+    }
+  });
+
+  // Service list — stable delegation
+  var svcList = document.getElementById('servicesList');
+  svcList.addEventListener('input', function (e) {
+    var el = e.target, sid = el.dataset.sid, key = el.dataset.key;
+    if (!sid || !key) return;
+    var s = services.find(function (x) { return x.id === +sid; });
+    if (!s) return;
+    s[key] = (el.dataset.type === 'str') ? el.value : +el.value;
+    if (key === 'marketDuration' || key === 'personalDuration') updatePaceNote(s);
+    if (key === 'monthlyFreq') updateImpactNote(s);
+    saveToStorage(); patchServicePrices(); renderPriceList(); updateSummary();
+  });
+  svcList.addEventListener('change', function (e) {
+    var el = e.target, sid = el.dataset.sid, key = el.dataset.key;
+    if (!sid || !key) return;
+    var s = services.find(function (x) { return x.id === +sid; });
+    if (!s) return;
+    s[key] = el.value; // store as string for marketCategory/complexity
+    saveToStorage(); patchServicePrices(); renderPriceList(); updateSummary();
+  });
+  svcList.addEventListener('click', function (e) {
+    // Remove service
+    var removeBtn = e.target.closest('[data-remove]');
+    if (removeBtn) {
+      var id = +removeBtn.dataset.remove;
+      services = services.filter(function (x) { return x.id !== id; });
+      var card = document.getElementById('sc-' + id);
+      if (card) card.remove();
+      if (!services.length) svcList.innerHTML = emptyState('💅', 'No services yet. Add your first service above.');
+      saveToStorage(); renderPriceList(); updateSummary();
+      return;
+    }
+    // Breakdown toggle
+    var bdBtn = e.target.closest('.breakdown-toggle-btn');
+    if (bdBtn) {
+      var sid2 = bdBtn.dataset.sid;
+      var panel = document.getElementById('bd-' + sid2);
+      if (panel) {
+        var isOpen = panel.classList.contains('visible');
+        panel.classList.toggle('visible', !isOpen);
+        bdBtn.textContent = isOpen ? '▾ Why this price?' : '▴ Close breakdown';
+        bdBtn.classList.toggle('open', !isOpen);
+      }
+    }
+  });
+
+  // Add-ons — stable delegation
+  var adnList = document.getElementById('addonsList');
+  adnList.addEventListener('input', function (e) {
+    var el = e.target, i = el.dataset.addonI, key = el.dataset.addonKey;
+    if (i === undefined || !key) return;
+    addons[+i][key] = key === 'name' ? el.value : +el.value;
+    saveToStorage();
+    var priceEl = document.getElementById('addon-price-' + i);
+    if (priceEl) priceEl.textContent = currSym + calcAddon(addons[+i]);
+    renderPriceList();
+  });
+  adnList.addEventListener('change', function (e) {
+    var el = e.target, i = el.dataset.addonMode;
+    if (i === undefined) return;
+    addons[+i].mode = el.value;
+    saveToStorage();
+    rebuildAddons();
+  });
+}
+
+/* ════════════════════════════════════════════════
+   COUNTRY
+════════════════════════════════════════════════ */
+function getCountryData() {
+  var name = document.getElementById('country').value;
+  return MARKET_DATA[name] || MARKET_DATA['United Kingdom'];
+}
+
+function applyCountry(skipSave) {
+  var cfg = getCountryData();
+  currSym = cfg.symbol;
+  document.querySelectorAll('.currency-pfx').forEach(function (el) { el.textContent = currSym; });
+  var rateEl = document.getElementById('hourlyRate');
+  if (!rateEl.value || skipSave) rateEl.value = cfg.hourlyDefault;
+  document.getElementById('hourlyManualHint').textContent =
+    'Suggested for ' + document.getElementById('country').value + ': ' + cfg.symbol + cfg.hourlyDefault + '/hr. Adjust to your experience.';
+  if (skipSave) recalculate(); else saveAndUpdate();
+  updateInsight();
+}
+
+/* ════════════════════════════════════════════════
+   GETTERS
+════════════════════════════════════════════════ */
+function getAreaModifier() {
+  return AREA_MODIFIERS[document.getElementById('areaType').value] || 1.0;
+}
+
+function getSliderValue() {
+  return parseFloat(document.getElementById('userSlider').value) || 1.0;
+}
+
+function effectiveRate() {
+  if (hourlyMode === 'manual') return parseFloat(document.getElementById('hourlyRate').value) || 0;
+  return reqHourly || parseFloat(document.getElementById('hourlyRate').value) || 0;
+}
+
+function getMarketMedian(countryName, bizType, categoryKey) {
+  if (!categoryKey || categoryKey === 'Custom') return null;
+  var countryData = MARKET_DATA[countryName];
+  if (!countryData) return null;
+  var typeData = countryData[bizType];
+  if (!typeData) return null;
+  return typeData[categoryKey] || null;
+}
+
+/* ════════════════════════════════════════════════
+   CALCULATE
+════════════════════════════════════════════════ */
+function saveAndUpdate() { saveToStorage(); recalculate(); }
+
+function recalculate() {
+  var ohFields = ['rent','utilities','supplies','tools','subscriptions','marketing','other'];
+  var totalOH  = ohFields.reduce(function (s, id) {
+    return s + (parseFloat(document.getElementById(id).value) || 0);
+  }, 0);
+  var clients  = parseFloat(document.getElementById('clientsPerMonth').value) || 1;
+  ohPerClient  = totalOH / clients;
+
+  var days  = parseFloat(document.getElementById('workingDays').value) || 20;
+  var hours = days * 8;
+  var target = parseFloat(document.getElementById('targetIncome').value) || 0;
+  reqHourly  = hours > 0 ? (target + totalOH) / hours : 0;
+
+  document.getElementById('hourlyAutoVal').textContent = reqHourly > 0 ? reqHourly.toFixed(2) : '—';
+  document.getElementById('hourlyAutoHint').textContent = reqHourly > 0
+    ? 'Calculated: (' + currSym + target + ' income + ' + currSym + Math.round(totalOH) + ' overhead) ÷ ' + hours + ' hrs.'
+    : 'Enter your income goals above to auto-calculate.';
+
+  var eff = effectiveRate();
+  document.getElementById('statOverhead').textContent  = fmt(totalOH);
+  document.getElementById('statPerClient').textContent = fmt(ohPerClient);
+  document.getElementById('statHours').textContent     = hours;
+  document.getElementById('statReqHourly').textContent = fmt(eff);
+
+  updateInsight();
+  patchServicePrices();
+
+  addons.forEach(function (a, i) {
+    var el = document.getElementById('addon-price-' + i);
+    if (el) el.textContent = currSym + calcAddon(a);
+  });
+
+  updateSummary();
+}
+
+/* ════════════════════════════════════════════════
+   SERVICE MATH — full hybrid pricing
+════════════════════════════════════════════════ */
+function calcServicePrices(s) {
+  var eff        = effectiveRate();
+  var mins       = parseFloat(s.marketDuration) || 60;
+  var materials  = parseFloat(s.materialCost) || 0;
+  var complexKey = s.complexity || 'none';
+  var complexMult = COMPLEXITY[complexKey] !== undefined ? COMPLEXITY[complexKey] : 0;
+
+  var timeBasedCost    = (mins / 60) * eff;
+  var complexitySurcharge = timeBasedCost * complexMult;
+
+  // A. True Break-Even: materials + overhead allocation (pure survival floor, no income wage)
+  var trueBreakEven = materials + ohPerClient;
+
+  // B. Minimum Viable: time-cost already contains overhead via hourly rate — do NOT add ohPerClient again
+  // autoHourlyRate = (income + overhead) / hours → overhead already embedded in timeBasedCost
+  var minimumViable = timeBasedCost + materials + complexitySurcharge;
+
+  // C. Market Benchmark
+  var countryName = document.getElementById('country').value;
+  var catKey      = s.marketCategory || 'Custom';
+  var median      = getMarketMedian(countryName, businessType, catKey);
+  var marketBenchmark = null;
+  if (median !== null) {
+    marketBenchmark = median * getAreaModifier() * getSliderValue();
+  }
+
+  // D. Recommended = max(minimumViable, marketBenchmark) in market mode
+  //                = minimumViable × 1.15 in cost mode (pure cost-first)
+  var recommended;
+  var isMarketLed = false;
+  if (pricingMode === 'cost') {
+    recommended = minimumViable * 1.15;
+    isMarketLed = false;
+  } else if (marketBenchmark !== null && marketBenchmark > minimumViable) {
+    recommended = marketBenchmark;
+    isMarketLed = true;
+  } else {
+    recommended = minimumViable;
+    isMarketLed = false;
+  }
+
+  // E. Premium = recommended × 1.2
+  var premium = recommended * 1.2;
+
+  return {
+    trueBreakEven:  roundP(trueBreakEven),
+    minimumViable:  roundP(minimumViable),
+    marketBenchmark: marketBenchmark !== null ? roundP(marketBenchmark) : null,
+    recommended:    roundP(recommended),
+    premium:        roundP(premium),
+    isMarketLed:    isMarketLed,
+    hasMarket:      marketBenchmark !== null,
+    // raw values for breakdown
+    _median:        median,
+    _area:          getAreaModifier(),
+    _slider:        getSliderValue(),
+    _eff:           eff,
+    _mins:          mins,
+    _materials:     materials,
+    _ohPerClient:   ohPerClient,
+    _complexSurcharge: roundP(complexitySurcharge),
+    _timeCost:      roundP(timeBasedCost)
+  };
+}
+
+function getInsight(p, s) {
+  if (!p) return { t: 'amber', msg: 'Complete your business setup to see accurate pricing insights.' };
+  var rec = p.recommended, mv = p.minimumViable, mkt = p.marketBenchmark;
+
+  if (p.recommended <= 0 || mv <= 0) {
+    return { t: 'amber', msg: 'Complete your income goals in Setup to see accurate pricing insights.' };
+  }
+
+  var catKey = s.marketCategory || 'Custom';
+
+  // Removal under-pricing warning
+  if (catKey === 'Removal' && mkt !== null && rec < 12) {
+    return { t: 'amber', msg: 'Removal is chronically underpriced across all markets. Even at the minimum viable rate, ensure this covers your active time properly — 20–30 minutes of hands-on work deserves more than a token fee.' };
+  }
+
+  // Market-led insights
+  if (p.isMarketLed) {
+    if (mkt !== null && mkt > mv * 1.25) {
+      return { t: 'green', msg: '✦ Market-led — your area supports significantly higher pricing than your personal cost floor. You have genuine room to grow into this rate with confidence.' };
+    }
+    if (catKey === 'BIAB_Builder_Gel') {
+      return { t: 'green', msg: '✦ Market-led — BIAB has the strongest markup potential of any service in this market. Your benchmark reflects that well.' };
+    }
+    return { t: 'green', msg: '✦ Market-led — your area supports higher pricing than your personal floor. Price at the benchmark confidently.' };
+  }
+
+  // Cost-led insights
+  if (!p.isMarketLed) {
+    if (mkt !== null && mv > mkt * 1.15) {
+      return { t: 'red', msg: '↑ Cost-led — your required rate sits notably above the market benchmark. Consider whether you can reduce time, reduce material cost, or build a stronger premium positioning to justify this price.' };
+    }
+    if (!p.hasMarket) {
+      return { t: 'amber', msg: 'No market benchmark for this category — recommendation is based purely on your cost structure. Assign a market category for a full hybrid analysis.' };
+    }
+    if (s.materialCost > p.recommended * 0.35) {
+      return { t: 'amber', msg: '⚠ Cost-led — and your material costs are high relative to this price. Buying in bulk or reassessing product choices could significantly improve your margin here.' };
+    }
+    return { t: 'amber', msg: '⚠ Cost-led — your business needs to charge this rate to be viable. Your market benchmark is lower, so position carefully and communicate your value clearly.' };
+  }
+
+  return { t: 'green', msg: 'Well balanced. This service is priced to support your goals.' };
+}
+
+function getBreakdownHTML(p, s) {
+  var sym = currSym;
+  var hasMarket = p.hasMarket;
+  var catLabel = 'Custom';
+  MARKET_CATS.forEach(function (c) { if (c.key === (s.marketCategory || 'Custom')) catLabel = c.label; });
+  var areaLabel = { city: 'Major City / City Centre (+15%)', town: 'Town / Suburban (×1.00)', rural: 'Rural (−12%)' };
+
+  var html = '<div class="breakdown-title">Pricing Breakdown</div>';
+
+  // Cost section
+  html += '<div class="bd-section">';
+  html += '<div class="bd-section-heading">Your Cost Structure</div>';
+  html += '<div class="bd-row"><span class="bd-row-label">Market duration</span><span class="bd-row-val">' + p._mins + ' mins</span></div>';
+  html += '<div class="bd-row"><span class="bd-row-label">Effective hourly rate</span><span class="bd-row-val">' + sym + p._eff.toFixed(2) + '/hr <span style="font-size:10px;color:var(--light-mid)">(incl. overhead)</span></span></div>';
+  html += '<div class="bd-row"><span class="bd-row-label">Time-based cost</span><span class="bd-row-val">' + sym + p._timeCost + '</span></div>';
+  html += '<div class="bd-row"><span class="bd-row-label">Materials</span><span class="bd-row-val">' + sym + p._materials.toFixed(2) + '</span></div>';
+  if (parseFloat(p._complexSurcharge) > 0) {
+    html += '<div class="bd-row"><span class="bd-row-label">Complexity surcharge</span><span class="bd-row-val">' + sym + p._complexSurcharge + '</span></div>';
+  }
+  html += '</div>';
+
+  // Market section
+  if (hasMarket) {
+    html += '<div class="bd-section">';
+    html += '<div class="bd-section-heading">Market Benchmark</div>';
+    html += '<div class="bd-row"><span class="bd-row-label">Category</span><span class="bd-row-val">' + esc(catLabel) + '</span></div>';
+    html += '<div class="bd-row"><span class="bd-row-label">Market median (' + businessType + ')</span><span class="bd-row-val">' + sym + p._median + '</span></div>';
+    html += '<div class="bd-row"><span class="bd-row-label">Area adjustment</span><span class="bd-row-val">×' + p._area.toFixed(2) + ' (' + (areaLabel[document.getElementById('areaType').value] || '') + ')</span></div>';
+    html += '<div class="bd-row"><span class="bd-row-label">Positioning</span><span class="bd-row-val">×' + p._slider.toFixed(2) + '</span></div>';
+    html += '</div>';
+  } else {
+    html += '<div class="bd-section">';
+    html += '<div class="bd-section-heading">Market Benchmark</div>';
+    html += '<div class="bd-row"><span class="bd-row-label" style="color:var(--amber)">No direct market benchmark for this category. Recommendation relies on your cost structure.</span></div>';
+    html += '</div>';
+  }
+
+  // Result
+  var cls = !hasMarket ? 'no-bench' : (p.isMarketLed ? 'market-led' : 'cost-led');
+  var icon = !hasMarket ? '—' : (p.isMarketLed ? '✦ Market-led' : '⚠ Cost-led');
+  html += '<div class="bd-result-row ' + cls + '">';
+  html += '<span>' + icon + '</span>';
+  html += '<span>';
+  if (hasMarket) {
+    html += 'Min Viable: ' + sym + p.minimumViable + ' · Benchmark: ' + sym + (p.marketBenchmark || '—');
+  }
+  html += '</span>';
+  html += '<span style="font-size:15px">→ Recommended: ' + sym + p.recommended + '</span>';
+  html += '</div>';
+
+  return html;
+}
+
+function getPaceNote(s) {
+  var market = parseFloat(s.marketDuration) || 0;
+  var personal = parseFloat(s.personalDuration) || 0;
+  if (!market || !personal || personal <= market) return null;
+  var diff = personal - market;
+  var h = Math.floor(diff/60), m = diff%60;
+  var diffStr = h > 0 ? (h+'h'+(m?' '+m+'m':'')) : (m+'m');
+  var mH = Math.floor(market/60), mM = market%60;
+  var mktStr = mH > 0 ? (mH+'h'+(mM?' '+mM+'m':'')) : (market+'m');
+  return '⏱ Priced on the ' + mktStr + ' market standard — you currently take ' + diffStr + ' longer. ' +
+    'Use the market rate now and treat your current time as a personal speed target. This is normal at your stage.';
+}
+
+function getImpactNote(s) {
+  var freq = parseFloat(s.monthlyFreq) || 0;
+  if (freq <= 0) return null;
+  var p = calcServicePrices(s);
+  var rec = p.recommended, be = p.trueBreakEven;
+  if (rec <= 0 || be <= 0 || rec <= be) return null;
+  var monthly = (rec - be) * freq;
+  return '💜 Charging your recommended price ' + freq + '×/month instead of break-even earns you an extra <strong>' + fmt(monthly) + ' per month</strong>. Pricing at break-even feels safe — but it costs you real income.';
+}
+
+function getImpactWarning(s) {
+  // If cost-led and above market benchmark, show gap warning
+  var freq = parseFloat(s.monthlyFreq) || 0;
+  if (freq <= 0) return null;
+  var p = calcServicePrices(s);
+  if (!p.hasMarket || p.isMarketLed || !p.marketBenchmark) return null;
+  var gap = p.minimumViable - p.marketBenchmark;
+  if (gap <= 2) return null;
+  var monthlyGap = gap * freq;
+  return 'If you charged the market benchmark instead of your viable rate for this service ' + freq + '×/month, you\'d leave approximately <strong>' + fmt(monthlyGap) + '/month</strong> uncovered. Your cost floor demands this rate.';
+}
+
+function updatePaceNote(s) {
+  var el = document.getElementById('pace-' + s.id);
+  if (!el) return;
+  var note = getPaceNote(s);
+  if (note) { el.textContent = note; el.classList.add('visible'); }
+  else      { el.textContent = '';   el.classList.remove('visible'); }
+}
+
+function updateImpactNote(s) {
+  var el = document.getElementById('impact-' + s.id);
+  if (el) {
+    var note = getImpactNote(s);
+    if (note) { el.innerHTML = note; el.classList.add('visible'); }
+    else      { el.innerHTML = '';   el.classList.remove('visible'); }
+  }
+  var wel = document.getElementById('impact-warn-' + s.id);
+  if (wel) {
+    var warn = getImpactWarning(s);
+    if (warn) { wel.innerHTML = warn; wel.classList.add('visible'); }
+    else      { wel.innerHTML = '';   wel.classList.remove('visible'); }
+  }
+}
+
+function patchServicePrices() {
+  services.forEach(function (s) {
+    var card = document.getElementById('sc-' + s.id);
+    if (!card) return;
+    var p   = calcServicePrices(s);
+    var ins = getInsight(p, s);
+    var icons = { green: '✓', amber: '⚠', red: '↑', purple: '✦' };
+
+    card.querySelector('.pb-be').textContent   = currSym + p.trueBreakEven;
+    card.querySelector('.pb-mv').textContent   = currSym + p.minimumViable;
+    card.querySelector('.pb-rec').textContent  = currSym + p.recommended;
+    card.querySelector('.pb-pre').textContent  = currSym + p.premium;
+    card.querySelectorAll('.svc-pfx').forEach(function (el) { el.textContent = currSym; });
+
+    // Lead badge on recommended
+    var leadEl = card.querySelector('.pb-lead-badge');
+    if (leadEl) {
+      if (!p.hasMarket) { leadEl.className = 'pb-lead-badge lead-none'; leadEl.textContent = 'Cost-based'; }
+      else if (p.isMarketLed) { leadEl.className = 'pb-lead-badge lead-market'; leadEl.textContent = 'Market-led'; }
+      else { leadEl.className = 'pb-lead-badge lead-cost'; leadEl.textContent = 'Cost-led'; }
+    }
+
+    // Market benchmark bar
+    var mbbBar = card.querySelector('.market-bench-bar');
+    if (mbbBar) {
+      if (p.hasMarket) {
+        mbbBar.classList.add('visible');
+        var mbbVal = mbbBar.querySelector('.mbb-value');
+        if (mbbVal) mbbVal.textContent = currSym + p.marketBenchmark;
+      } else {
+        mbbBar.classList.remove('visible');
+      }
+    }
+
+    // No-benchmark note
+    var nbNote = card.querySelector('.no-benchmark-note');
+    if (nbNote) {
+      if (!p.hasMarket && (s.marketCategory === 'Custom' || !s.marketCategory)) {
+        nbNote.classList.add('visible');
+      } else {
+        nbNote.classList.remove('visible');
+      }
+    }
+
+    // Insight
+    var pill = card.querySelector('.svc-insight');
+    if (pill) {
+      pill.className = 'svc-insight si-' + ins.t;
+      pill.innerHTML = '<span>' + (icons[ins.t] || '•') + '</span> ' + ins.msg;
+    }
+
+    // Breakdown content
+    var bd = document.getElementById('bd-' + s.id);
+    if (bd) bd.innerHTML = getBreakdownHTML(p, s);
+
+    updatePaceNote(s);
+    updateImpactNote(s);
+  });
+}
+
+/* ════════════════════════════════════════════════
+   MARKET INSIGHT (setup tab)
+════════════════════════════════════════════════ */
+function updateInsight() {
+  var countryName = document.getElementById('country').value;
+  var cfg = MARKET_DATA[countryName] || MARKET_DATA['United Kingdom'];
+  var areaVal = document.getElementById('areaType').value;
+  var areaLabel = { city: 'Major City', town: 'Town / Suburban', rural: 'Rural' }[areaVal] || 'Suburban';
+  var slider = getSliderValue();
+  var areaMod = getAreaModifier();
+
+  var typeData = cfg[businessType] || cfg['Solo'];
+  var gelMedian = typeData.Gel_Manicure;
+  var biabMedian = typeData.BIAB_Builder_Gel;
+
+  var adjGel  = Math.round(gelMedian * areaMod * slider);
+  var adjBiab = Math.round(biabMedian * areaMod * slider);
+
+  var text, cls, label, icon;
+  if (slider < 0.85) {
+    text = 'As a ' + businessType + ' nail tech in ' + countryName + '\'s ' + areaLabel + ' market, your positioning at ×' + slider.toFixed(2) + ' places you in entry-level territory. Your adjusted benchmark: Gel Manicure ' + cfg.symbol + adjGel + ' · BIAB ' + cfg.symbol + adjBiab + '. This can work while building your client base.';
+    cls = 'badge-conservative'; label = 'Entry Positioning'; icon = '↗';
+  } else if (slider < 0.98) {
+    text = 'As a ' + businessType + ' tech in ' + countryName + '\'s ' + areaLabel + ' market, you\'re pricing conservatively — at ×' + slider.toFixed(2) + ' of the benchmark. Adjusted targets: Gel Manicure ' + cfg.symbol + adjGel + ' · BIAB ' + cfg.symbol + adjBiab + '. If your books are full, there\'s real room to move up.';
+    cls = 'badge-conservative'; label = 'Conservative Positioning'; icon = '⬇';
+  } else if (slider <= 1.08) {
+    text = 'As a ' + businessType + ' tech in ' + countryName + '\'s ' + areaLabel + ' market, you\'re at the sweet spot — right at the market median. Adjusted targets: Gel Manicure ' + cfg.symbol + adjGel + ' · BIAB ' + cfg.symbol + adjBiab + '. Strong, sustainable, and commercially credible.';
+    cls = 'badge-standard'; label = 'Market-Aligned'; icon = '✓';
+  } else if (slider <= 1.20) {
+    text = 'You\'re positioning above the ' + areaLabel + ' ' + countryName + ' median at ×' + slider.toFixed(2) + '. Adjusted targets: Gel Manicure ' + cfg.symbol + adjGel + ' · BIAB ' + cfg.symbol + adjBiab + '. Back this with quality, consistency, and a strong brand presence.';
+    cls = 'badge-premium'; label = 'Above Market'; icon = '⭐';
+  } else {
+    text = 'Premium tier positioning for a ' + areaLabel + ' ' + countryName + ' ' + businessType + ' tech. Adjusted targets: Gel Manicure ' + cfg.symbol + adjGel + ' · BIAB ' + cfg.symbol + adjBiab + '. At ×' + slider.toFixed(2) + ', your brand, skills, and presentation must match the expectation — but the margin is excellent.';
+    cls = 'badge-premium'; label = 'Premium Positioning'; icon = '⭐';
+  }
+
+  document.getElementById('insightText').textContent = text;
+  document.getElementById('insightBadge').innerHTML  = '<div class="insight-badge ' + cls + '">' + icon + ' ' + label + '</div>';
+}
+
+/* ════════════════════════════════════════════════
+   BUSINESS SUMMARY — hybrid model
+════════════════════════════════════════════════ */
+function updateSummary() {
+  var eff     = effectiveRate();
+  var named   = services.filter(function (s) { return s.name && s.name.trim(); });
+
+  var avgRec = 0, avgMkt = 0, mktCount = 0, costLedCount = 0, mktLedCount = 0;
+  if (named.length) {
+    named.forEach(function (s) {
+      var p = calcServicePrices(s);
+      avgRec += p.recommended;
+      if (p.hasMarket && p.marketBenchmark !== null) {
+        avgMkt += p.marketBenchmark;
+        mktCount++;
+      }
+      if (p.isMarketLed) mktLedCount++;
+      else costLedCount++;
+    });
+    avgRec /= named.length;
+    if (mktCount > 0) avgMkt /= mktCount;
+  }
+
+  document.getElementById('sumRate').textContent    = eff > 0 ? currSym + eff.toFixed(2) + '/hr' : '—';
+  document.getElementById('sumOH').textContent      = ohPerClient > 0 ? fmt(ohPerClient) : '—';
+  document.getElementById('sumAvgRec').textContent  = avgRec > 0 ? fmt(avgRec) : '—';
+  document.getElementById('sumAvgMkt').textContent  = avgMkt > 0 ? fmt(avgMkt) : '—';
+
+  var parts = [];
+  if (eff > 0) parts.push('Your effective hourly rate is <strong>' + currSym + eff.toFixed(2) + '</strong>.');
+  if (ohPerClient > 0) parts.push('Every appointment must cover <strong>' + fmt(ohPerClient) + '</strong> in overhead before you see profit.');
+
+  if (named.length && avgRec > 0) {
+    if (mktCount > 0 && avgMkt > 0) {
+      var diff = avgRec - avgMkt;
+      if (Math.abs(diff) < avgMkt * 0.05) {
+        parts.push('Your average recommended price of <strong>' + fmt(avgRec) + '</strong> sits right at your market benchmark — competitive, sustainable, and well-positioned.');
+      } else if (avgRec > avgMkt) {
+        parts.push('Your average recommended rate of <strong>' + fmt(avgRec) + '</strong> sits <strong>' + fmt(diff) + '</strong> above your market benchmark of ' + fmt(avgMkt) + '. Your business model requires faster service times, lower costs, or stronger premium positioning to sustain this.');
+      } else {
+        parts.push('Your average recommended price of <strong>' + fmt(avgRec) + '</strong> sits comfortably within your market benchmark of ' + fmt(avgMkt) + '. You have room to price confidently.');
+      }
+    } else {
+      parts.push('Your average recommended price across named services is <strong>' + fmt(avgRec) + '</strong>.');
+    }
+
+    if (mktLedCount > 0 && costLedCount === 0) {
+      parts.push('All your services are <strong>market-led</strong> — your area and positioning support pricing above your personal floor. A strong position to be in.');
+    } else if (costLedCount > 0 && mktLedCount === 0) {
+      parts.push('All your services are <strong>cost-led</strong> — your business needs drive your prices above the local benchmark. Focus on efficiency, premium positioning, or both.');
+    } else if (mktLedCount > 0 && costLedCount > 0) {
+      parts.push('<strong>' + mktLedCount + ' service' + (mktLedCount > 1 ? 's' : '') + '</strong> are market-led and <strong>' + costLedCount + '</strong> are cost-led. Review your cost-led services for efficiency opportunities.');
+    }
+  }
+
+  document.getElementById('summaryText').innerHTML = parts.length
+    ? parts.join(' ')
+    : 'Add your income goals and overhead above to unlock your business summary.';
+}
+
+/* ════════════════════════════════════════════════
+   RENDER SERVICES
+════════════════════════════════════════════════ */
+function renderServices() {
+  var container = document.getElementById('servicesList');
+  if (!services.length) {
+    container.innerHTML = emptyState('💅', 'No services yet. Add your first service above.');
+    return;
+  }
+  // Remove stale cards
+  container.querySelectorAll('.service-card').forEach(function (card) {
+    if (!services.find(function (s) { return 'sc-' + s.id === card.id; })) card.remove();
+  });
+  var emptyEl = container.querySelector('.empty-state');
+  if (emptyEl) emptyEl.remove();
+
+  services.forEach(function (s) {
+    if (document.getElementById('sc-' + s.id)) return;
+    var p       = calcServicePrices(s);
+    var ins     = getInsight(p, s);
+    var icons   = { green: '✓', amber: '⚠', red: '↑', purple: '✦' };
+    var paceNote = getPaceNote(s);
+    var impNote  = getImpactNote(s);
+    var impWarn  = getImpactWarning(s);
+
+    var catOptionsHTML = MARKET_CATS.map(function (c) {
+      return '<option value="' + c.key + '"' + ((s.marketCategory || '') === c.key ? ' selected' : '') + '>' + c.label + '</option>';
+    }).join('');
+
+    // Complexity options
+    var compHTML =
+      '<option value="none"'     + ((!s.complexity || s.complexity==='none')     ? ' selected' : '') + '>Basic — no surcharge</option>' +
+      '<option value="medium"'   + (s.complexity === 'medium'   ? ' selected' : '') + '>Medium — +10% skill premium</option>' +
+      '<option value="advanced"' + (s.complexity === 'advanced' ? ' selected' : '') + '>Advanced — +20% skill premium</option>';
+
+    var leadBadgeClass = !p.hasMarket ? 'lead-none' : (p.isMarketLed ? 'lead-market' : 'lead-cost');
+    var leadBadgeText  = !p.hasMarket ? 'Cost-based' : (p.isMarketLed ? 'Market-led' : 'Cost-led');
+    var mbbVisible     = p.hasMarket ? ' visible' : '';
+    var nbVisible      = (!p.hasMarket && (!s.marketCategory || s.marketCategory === 'Custom')) ? ' visible' : '';
+
+    var card = document.createElement('div');
+    card.className = 'service-card';
+    card.id = 'sc-' + s.id;
+
+    card.innerHTML =
+      '<div class="service-card-header">' +
+        '<input class="svc-name-input" type="text" placeholder="Service name (e.g. Gel Manicure)"' +
+          ' value="' + esc(s.name) + '" data-sid="' + s.id + '" data-key="name" data-type="str">' +
+        '<button type="button" class="btn btn-danger" data-remove="' + s.id + '">Remove</button>' +
+      '</div>' +
+
+      '<div class="market-cat-row">' +
+        '<span class="market-cat-label">Market Category</span>' +
+        '<select data-sid="' + s.id + '" data-key="marketCategory">' + catOptionsHTML + '</select>' +
+      '</div>' +
+      '<div class="no-benchmark-note' + nbVisible + '">No direct market benchmark available for this category — recommendation will rely on your cost-based pricing only.</div>' +
+
+      '<div class="grid-2" style="margin-bottom:0">' +
+        '<div class="field"><label>Material Cost</label>' +
+          '<div class="prefix-wrap"><span class="prefix svc-pfx">' + currSym + '</span>' +
+          '<input type="number" value="' + (s.materialCost||0) + '" min="0" step="0.5" inputmode="decimal"' +
+          ' data-sid="' + s.id + '" data-key="materialCost"></div>' +
+          '<span class="helper">Products &amp; consumables for this service.</span></div>' +
+        '<div class="field"><label>Complexity</label>' +
+          '<select data-sid="' + s.id + '" data-key="complexity">' + compHTML + '</select>' +
+          '<span class="helper">Adds 0%, 10% or 20% skill premium to your time-based cost.</span></div>' +
+      '</div>' +
+
+      '<div class="duration-section">' +
+        '<div class="duration-title">⏱ Service Duration</div>' +
+        '<div class="duration-subtitle">Use the time a competent professional would take — the time a client would reasonably expect. Your current personal time is for speed coaching only and never increases your price.</div>' +
+        '<div class="duration-grid">' +
+          '<div class="field">' +
+            '<label>Market Duration (mins)</label>' +
+            '<input type="number" value="' + (s.marketDuration||60) + '" min="5" step="5" inputmode="numeric"' +
+            ' data-sid="' + s.id + '" data-key="marketDuration">' +
+            '<span class="helper">Drives your minimum viable price. Experienced tech standard.</span>' +
+          '</div>' +
+          '<div class="field">' +
+            '<label>Your Current Time (mins) — optional</label>' +
+            '<input type="number" value="' + (s.personalDuration||'') + '" min="5" step="5" inputmode="numeric" placeholder="Optional"' +
+            ' data-sid="' + s.id + '" data-key="personalDuration">' +
+            '<span class="helper">For speed training insight only. Never affects your price.</span>' +
+          '</div>' +
+        '</div>' +
+        '<div class="pace-note' + (paceNote?' visible':'') + '" id="pace-' + s.id + '">' + esc(paceNote||'') + '</div>' +
+      '</div>' +
+
+      '<div class="service-prices">' +
+        '<div class="price-bubble tier-be">' +
+          '<div class="pb-label">True Break-Even</div>' +
+          '<div class="pb-desc">Materials + overhead only</div>' +
+          '<div class="pb-value pb-be">' + currSym + p.trueBreakEven + '</div>' +
+        '</div>' +
+        '<div class="price-bubble tier-mv">' +
+          '<div class="pb-label">Min Viable</div>' +
+          '<div class="pb-desc">Lowest sustainable rate</div>' +
+          '<div class="pb-value pb-mv">' + currSym + p.minimumViable + '</div>' +
+        '</div>' +
+        '<div class="price-bubble tier-rec">' +
+          '<div class="pb-label">Recommended ⭐</div>' +
+          '<div class="pb-desc">Your standard posted rate</div>' +
+          '<div class="pb-value pb-rec">' + currSym + p.recommended + '</div>' +
+          '<div class="pb-lead-badge ' + leadBadgeClass + '">' + leadBadgeText + '</div>' +
+        '</div>' +
+        '<div class="price-bubble tier-pre">' +
+          '<div class="pb-label">Premium</div>' +
+          '<div class="pb-desc">Specialist positioning</div>' +
+          '<div class="pb-value pb-pre">' + currSym + p.premium + '</div>' +
+        '</div>' +
+      '</div>' +
+
+      '<div class="market-bench-bar' + mbbVisible + '">' +
+        '<span class="mbb-label">📊 Market benchmark for this service:</span>' +
+        '<span class="mbb-value">' + (p.hasMarket ? currSym + p.marketBenchmark : '—') + '</span>' +
+        '<span style="font-size:11px;color:var(--green);opacity:0.8">(' + businessType + ' · ' + document.getElementById('areaType').options[document.getElementById('areaType').selectedIndex].text + ')</span>' +
+      '</div>' +
+
+      '<div>' +
+        '<button type="button" class="breakdown-toggle-btn" data-sid="' + s.id + '">▾ Why this price?</button>' +
+        '<div class="breakdown-panel" id="bd-' + s.id + '">' + getBreakdownHTML(p, s) + '</div>' +
+      '</div>' +
+
+      '<div class="svc-insight si-' + ins.t + '"><span>' + (icons[ins.t]||'•') + '</span> ' + ins.msg + '</div>' +
+
+      '<div class="freq-row">' +
+        '<div class="field">' +
+          '<label>Monthly frequency</label>' +
+          '<input type="number" value="' + (s.monthlyFreq||'') + '" min="0" step="1" inputmode="numeric" placeholder="e.g. 8"' +
+          ' data-sid="' + s.id + '" data-key="monthlyFreq">' +
+        '</div>' +
+        '<span class="freq-hint">How many times per month? Used to calculate your underpricing cost below.</span>' +
+      '</div>' +
+      '<div class="impact-note' + (impNote?' visible':'') + '" id="impact-' + s.id + '">' + (impNote||'') + '</div>' +
+      '<div class="impact-warning' + (impWarn?' visible':'') + '" id="impact-warn-' + s.id + '">' + (impWarn||'') + '</div>';
+
+    container.appendChild(card);
+    if (!s.name) card.querySelector('.svc-name-input').focus();
+  });
+}
+
+function addService() {
+  services.push({
+    id: Date.now(), name: '', marketDuration: 60, personalDuration: null,
+    materialCost: 0, complexity: 'none', monthlyFreq: null, marketCategory: 'Gel_Manicure'
+  });
+  saveToStorage();
+  renderServices();
+}
+
+/* ════════════════════════════════════════════════
+   ADD-ONS
+════════════════════════════════════════════════ */
+function calcAddon(a) {
+  var rhr = effectiveRate();
+  var slider = getSliderValue();
+  var area   = getAreaModifier();
+  return a.mode === 'time' ? roundP((a.time / 60) * rhr * area * slider) : roundP(a.fixedVal);
+}
+
+function rebuildAddons() {
+  document.getElementById('addonsList').innerHTML = addons.map(function (a, i) {
+    return (
+      '<div class="addon-row">' +
+      '<div class="field"><label>Add-on Name</label>' +
+        '<input type="text" value="' + esc(a.name) + '" data-addon-i="' + i + '" data-addon-key="name"></div>' +
+      '<div class="field"><label>Mode</label>' +
+        '<select data-addon-mode="' + i + '">' +
+          '<option value="fixed"' + (a.mode==='fixed'?' selected':'') + '>Fixed price</option>' +
+          '<option value="time"'  + (a.mode==='time' ?' selected':'') + '>Time-based</option>' +
+        '</select></div>' +
+      (a.mode === 'fixed'
+        ? '<div class="field"><label>Fixed Price</label>' +
+          '<div class="prefix-wrap"><span class="prefix currency-pfx">' + currSym + '</span>' +
+          '<input type="number" value="' + a.fixedVal + '" step="0.5" min="0" inputmode="decimal"' +
+          ' data-addon-i="' + i + '" data-addon-key="fixedVal"></div></div>'
+        : '<div class="field"><label>Time (mins)</label>' +
+          '<input type="number" value="' + a.time + '" step="5" min="5" inputmode="numeric"' +
+          ' data-addon-i="' + i + '" data-addon-key="time"></div>') +
+      '<div class="field"><label>Calculated Price</label>' +
+        '<div class="addon-price-display" id="addon-price-' + i + '">' + currSym + calcAddon(a) + '</div></div>' +
+      '</div>'
+    );
+  }).join('');
+}
+
+/* ════════════════════════════════════════════════
+   PRICE LIST
+════════════════════════════════════════════════ */
+function renderPriceList() {
+  var biz  = (document.getElementById('businessName').value||'').trim() || 'Your Business';
+  var loc  = (document.getElementById('businessLocation').value||'').trim();
+  var tier = document.getElementById('priceListTier').value || 'recommended';
+
+  document.getElementById('plBizName').textContent = biz;
+  var locEl = document.getElementById('plLocation');
+  locEl.textContent = loc; locEl.style.display = loc ? 'block' : 'none';
+
+  var named = services.filter(function (s) { return s.name && s.name.trim(); });
+  var svcHTML = '';
+  if (named.length) {
+    svcHTML = '<div class="pl-section-title">Services</div>';
+    svcHTML += named.map(function (s) {
+      var p = calcServicePrices(s);
+      var price = p[tier] !== undefined ? p[tier] : p.recommended;
+      if (price === null || price === undefined) price = p.recommended;
+      var mins = parseFloat(s.marketDuration) || 60;
+      var h = Math.floor(mins/60), rem = mins%60;
+      var dur = h > 0 ? (h+'h'+(rem?' '+rem+'m':'')) : (mins+'m');
+      return '<div class="pl-item"><span><span class="pl-item-name">' + esc(s.name) + '</span><span class="pl-item-dur"> · ' + dur + '</span></span><span class="pl-item-price">' + currSym + price + '</span></div>';
+    }).join('');
+  }
+  var addonHTML = '';
+  if (addons.length) {
+    addonHTML = '<div class="pl-section-title">Add-ons</div>';
+    addonHTML += addons.map(function (a) {
+      return '<div class="pl-item"><span class="pl-item-name">' + esc(a.name) + '</span><span class="pl-item-price">' + currSym + calcAddon(a) + '</span></div>';
+    }).join('');
+  }
+  document.getElementById('plServices').innerHTML = svcHTML;
+  document.getElementById('plAddons').innerHTML   = addonHTML;
+}
+
+/* ════════════════════════════════════════════════
+   DEMO DATA
+════════════════════════════════════════════════ */
+function loadDemoData() {
+  if (services.length > 0 || parseFloat(document.getElementById('rent').value) > 0) {
+    if (!confirm('Load example data? This will replace your current setup.')) return;
+  }
+  document.getElementById('country').value         = 'United Kingdom';
+  document.getElementById('areaType').value        = 'town';
+  document.getElementById('rent').value            = '600';
+  document.getElementById('utilities').value       = '80';
+  document.getElementById('supplies').value        = '150';
+  document.getElementById('tools').value           = '40';
+  document.getElementById('subscriptions').value   = '25';
+  document.getElementById('marketing').value       = '50';
+  document.getElementById('other').value           = '30';
+  document.getElementById('targetIncome').value    = '2800';
+  document.getElementById('workingDays').value     = '22';
+  document.getElementById('clientsPerMonth').value = '44';
+  document.getElementById('businessName').value    = 'The Nail Atelier';
+  document.getElementById('businessLocation').value= 'Manchester, UK';
+  document.getElementById('hourlyRate').value      = '30';
+  document.getElementById('userSlider').value      = '1.05';
+
+  businessType = 'Solo';
+  document.querySelectorAll('.biz-type-btn').forEach(function (b) {
+    b.classList.toggle('active', b.dataset.biz === 'Solo');
+  });
+
+  setHourlyMode('auto');
+
+  services = [
+    { id:1001, name:'Gel Manicure',       marketDuration:60,  personalDuration:75,  materialCost:8,  complexity:'none',     monthlyFreq:16, marketCategory:'Gel_Manicure'        },
+    { id:1002, name:'BIAB / Builder Gel', marketDuration:90,  personalDuration:110, materialCost:12, complexity:'medium',   monthlyFreq:12, marketCategory:'BIAB_Builder_Gel'    },
+    { id:1003, name:'Full Set (Gel-X)',   marketDuration:90,  personalDuration:null, materialCost:14, complexity:'advanced', monthlyFreq:8,  marketCategory:'Full_Set_Extensions' },
+    { id:1004, name:'Nail Art Design',    marketDuration:45,  personalDuration:null, materialCost:6,  complexity:'advanced', monthlyFreq:6,  marketCategory:'Nail_Art_Addon'      },
+    { id:1005, name:'Gel Removal',        marketDuration:25,  personalDuration:30,  materialCost:2,  complexity:'none',     monthlyFreq:10, marketCategory:'Removal'             }
+  ];
+  addons = DEFAULT_ADDONS.map(function (a) { return Object.assign({}, a); });
+
+  document.getElementById('servicesList').innerHTML = '';
+  applyCountry(false);
+  saveToStorage();
+  renderServices();
+  rebuildAddons();
+  renderPriceList();
+  updateSummary();
+  updateInsight();
+  var slider = document.getElementById('userSlider');
+  var val = parseFloat(slider.value);
+  slider.style.setProperty('--fill', ((val - 0.75) / (1.35 - 0.75) * 100).toFixed(2) + '%');
+  document.getElementById('sliderValDisplay').textContent = '×' + val.toFixed(2);
+  updateSliderMeaning(val);
+  document.getElementById('demoBanner').style.display = 'flex';
+}
+
+/* ════════════════════════════════════════════════
+   RESET
+════════════════════════════════════════════════ */
+function resetAll() {
+  if (!confirm('Reset everything? All saved data will be cleared.')) return;
+  try { localStorage.clear(); } catch(e) {}
+  services = [];
+  addons   = DEFAULT_ADDONS.map(function (a) { return Object.assign({}, a); });
+  businessType = 'Solo';
+  document.querySelectorAll('.biz-type-btn').forEach(function (b) {
+    b.classList.toggle('active', b.dataset.biz === 'Solo');
+  });
+  ['rent','utilities','supplies','tools','subscriptions','marketing','other',
+   'targetIncome','workingDays','clientsPerMonth','businessName','businessLocation','hourlyRate']
+    .forEach(function (id) { var el=document.getElementById(id); if(el) el.value=''; });
+  document.getElementById('country').value    = 'United Kingdom';
+  document.getElementById('areaType').value   = 'town';
+  document.getElementById('userSlider').value = '1.0';
+  setHourlyMode('auto');
+  document.getElementById('servicesList').innerHTML = '';
+  applyCountry(true);
+  recalculate();
+  renderServices();
+  rebuildAddons();
+  renderPriceList();
+  updateSummary();
+  updateInsight();
+  var slider = document.getElementById('userSlider');
+  slider.style.setProperty('--fill', ((1.0 - 0.75) / (1.35 - 0.75) * 100).toFixed(2) + '%');
+  document.getElementById('demoBanner').style.display = 'flex';
+}
+
+/* ════════════════════════════════════════════════
+   UTILITIES
+════════════════════════════════════════════════ */
+function roundP(v) {
+  if (!v || v <= 0) return 0;
+  // Round to nearest 0.5 — produces realistic salon prices (e.g. 34.5, 39, 42.5)
+  return Math.round(v * 2) / 2;
+}
+function fmt(v) {
+  var n = parseFloat(v);
+  return (isNaN(n) || n === 0) ? currSym + '0' : currSym + Math.round(n);
+}
+function esc(s) {
+  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function emptyState(emoji, msg) {
+  return '<div class="empty-state"><div class="empty-emoji">'+emoji+'</div><p>'+msg+'</p></div>';
+}
+
+/* ════════════════════════════════════════════════
+   LOCAL STORAGE
+════════════════════════════════════════════════ */
+var SAVE_KEYS = ['country','areaType','userSlider','rent','utilities','supplies','tools',
+  'subscriptions','marketing','other','targetIncome','workingDays','clientsPerMonth','hourlyRate'];
+
+function saveToStorage() {
+  try {
+    SAVE_KEYS.forEach(function (k) {
+      var el = document.getElementById(k); if (el) localStorage.setItem('ni2_'+k, el.value);
+    });
+    localStorage.setItem('ni2_services',     JSON.stringify(services));
+    localStorage.setItem('ni2_addons',       JSON.stringify(addons));
+    localStorage.setItem('ni2_hourlyMode',   hourlyMode);
+    localStorage.setItem('ni2_businessType', businessType);
+    localStorage.setItem('ni2_pricingMode',  pricingMode);
+    var bn=document.getElementById('businessName'), bl=document.getElementById('businessLocation');
+    if(bn) localStorage.setItem('ni2_biz', bn.value);
+    if(bl) localStorage.setItem('ni2_loc', bl.value);
+  } catch(e) {}
+}
+
+function loadFromStorage() {
+  try {
+    SAVE_KEYS.forEach(function (k) {
+      var v = localStorage.getItem('ni2_'+k);
+      var el = document.getElementById(k);
+      if (el && v !== null) el.value = v;
+    });
+
+    var savedBiz = localStorage.getItem('ni2_businessType');
+    if (savedBiz === 'Solo' || savedBiz === 'Salon') {
+      businessType = savedBiz;
+      document.querySelectorAll('.biz-type-btn').forEach(function (b) {
+        b.classList.toggle('active', b.dataset.biz === businessType);
+      });
+    }
+
+    var svcRaw = localStorage.getItem('ni2_services');
+    if (svcRaw) {
+      services = JSON.parse(svcRaw).map(function (s) {
+        if (!s.marketDuration && s.duration) s.marketDuration = s.duration;
+        if (s.personalDuration === undefined) s.personalDuration = null;
+        if (s.monthlyFreq === undefined) s.monthlyFreq = null;
+        if (!s.marketCategory) s.marketCategory = 'Gel_Manicure';
+        // migrate old complexity values (0,2,5) to new keys
+        if (s.complexity === 0 || s.complexity === '0') s.complexity = 'none';
+        else if (s.complexity === 2 || s.complexity === '2') s.complexity = 'medium';
+        else if (s.complexity === 5 || s.complexity === '5') s.complexity = 'advanced';
+        if (!s.complexity) s.complexity = 'none';
+        return s;
+      });
+    } else { services = []; }
+
+    var adnRaw = localStorage.getItem('ni2_addons');
+    addons = adnRaw ? JSON.parse(adnRaw) : DEFAULT_ADDONS.map(function (a) { return Object.assign({},a); });
+
+    var savedPricingMode = localStorage.getItem('ni2_pricingMode');
+    if (savedPricingMode === 'cost') { pricingMode = 'cost'; setPricingMode('cost'); }
+
+    var savedMode = localStorage.getItem('ni2_hourlyMode');
+    if (savedMode === 'manual') {
+      hourlyMode = 'manual';
+      document.getElementById('modeAutoBtn').classList.remove('active');
+      document.getElementById('modeManualBtn').classList.add('active');
+      document.getElementById('hourlyAutoBlock').style.display   = 'none';
+      document.getElementById('hourlyManualBlock').style.display = 'block';
+    }
+
+    var bn=localStorage.getItem('ni2_biz'), bl=localStorage.getItem('ni2_loc');
+    if(bn) document.getElementById('businessName').value     = bn;
+    if(bl) document.getElementById('businessLocation').value = bl;
+
+    if (services.length) {
+      var banner = document.getElementById('demoBanner');
+      if (banner) banner.style.display = 'none';
+    }
+  } catch(e) {
+    services = [];
+    addons   = DEFAULT_ADDONS.map(function (a) { return Object.assign({},a); });
+  }
+}
+</script>
+</body>
+</html>
