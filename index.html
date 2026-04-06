@@ -41,10 +41,7 @@
 ════════════════════════════════════════════════ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html {
-  -webkit-text-size-adjust: 100%;
-  scroll-behavior: smooth;
-}
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
 
 body {
   font-family: 'DM Sans', sans-serif;
@@ -58,12 +55,9 @@ body {
 
 button {
   font-family: inherit;
-  cursor: pointer;
-  border: none;
-  background: none;
+  cursor: pointer; border: none; background: none;
   -webkit-tap-highlight-color: transparent;
-  touch-action: manipulation;
-  user-select: none;
+  touch-action: manipulation; user-select: none;
 }
 
 input, select, textarea {
@@ -75,276 +69,182 @@ input, select, textarea {
    HEADER
 ════════════════════════════════════════════════ */
 .header {
-  position: sticky;
-  top: 0;
-  z-index: 300;
+  position: sticky; top: 0; z-index: 300;
   height: var(--header-h);
   background: var(--white);
   border-bottom: 1px solid var(--border);
   box-shadow: 0 2px 16px var(--shadow);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: flex; align-items: center; justify-content: space-between;
   padding: 0 40px;
 }
+.logo { display: flex; align-items: baseline; gap: 8px; text-decoration: none; }
+.logo-text { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--deep-rose); letter-spacing: -0.3px; }
+.logo-sub  { font-size: 11.5px; color: var(--light-mid); font-weight: 400; letter-spacing: 0.5px; text-transform: uppercase; }
 
-.logo {
-  display: flex;
-  align-items: baseline;
-  gap: 8px;
-  text-decoration: none;
-}
-.logo-text {
-  font-family: 'Playfair Display', serif;
-  font-size: 22px;
-  font-weight: 700;
-  color: var(--deep-rose);
-  letter-spacing: -0.3px;
-}
-.logo-sub {
-  font-size: 11.5px;
-  color: var(--light-mid);
-  font-weight: 400;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-}
-
-/* ─ Desktop tab nav ─ */
-.desktop-tabs {
-  display: flex;
-  gap: 4px;
-}
+.desktop-tabs { display: flex; gap: 4px; }
 .tab-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 18px;
-  border-radius: 8px;
-  font-size: 13.5px;
-  font-weight: 500;
-  color: var(--mid);
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 18px; border-radius: 8px;
+  font-size: 13.5px; font-weight: 500; color: var(--mid);
   transition: background 0.18s, color 0.18s;
   min-height: 44px;
 }
-.tab-btn:hover { background: var(--cream); color: var(--charcoal); }
+.tab-btn:hover  { background: var(--cream); color: var(--charcoal); }
 .tab-btn.active { background: var(--deep-rose); color: #fff; }
 .tab-num {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  font-size: 10px;
-  font-weight: 700;
-  background: rgba(255,255,255,0.25);
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 18px; height: 18px; border-radius: 50%;
+  font-size: 10px; font-weight: 700; background: rgba(255,255,255,0.25);
 }
-.tab-btn:not(.active) .tab-num {
-  background: var(--border);
-  color: var(--mid);
-}
+.tab-btn:not(.active) .tab-num { background: var(--border); color: var(--mid); }
 
 /* ════════════════════════════════════════════════
-   MAIN CONTENT AREA
+   MAIN
 ════════════════════════════════════════════════ */
 .main {
-  max-width: 1100px;
-  margin: 0 auto;
+  max-width: 1100px; margin: 0 auto;
   padding: 40px 24px calc(var(--tab-bar-h) + env(safe-area-inset-bottom, 0px) + 32px);
 }
-
 .tab-panel { display: none; }
 .tab-panel.active { display: block; }
 
-/* ─ Section heading ─ */
 .section-heading { margin-bottom: 28px; }
-.section-heading h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: 28px;
-  font-weight: 600;
-  color: var(--charcoal);
-}
-.section-heading p {
-  color: var(--mid);
-  margin-top: 6px;
-  font-size: 14.5px;
-}
+.section-heading h2 { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 600; color: var(--charcoal); }
+.section-heading p  { color: var(--mid); margin-top: 6px; font-size: 14.5px; }
 
 /* ════════════════════════════════════════════════
    CARDS
 ════════════════════════════════════════════════ */
 .card {
-  background: var(--white);
-  border-radius: 16px;
-  padding: 28px 32px;
-  border: 1px solid var(--border);
-  box-shadow: 0 4px 20px var(--shadow);
-  margin-bottom: 20px;
+  background: var(--white); border-radius: 16px;
+  padding: 28px 32px; border: 1px solid var(--border);
+  box-shadow: 0 4px 20px var(--shadow); margin-bottom: 20px;
 }
 .card-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 17px;
-  font-weight: 600;
-  color: var(--dark);
-  margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 600; color: var(--dark);
+  margin-bottom: 20px; display: flex; align-items: center; gap: 10px;
 }
 .card-icon {
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
+  width: 32px; height: 32px; border-radius: 8px;
   background: linear-gradient(135deg, var(--blush), var(--rose));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 15px;
-  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0;
 }
 
 /* ════════════════════════════════════════════════
-   GRID LAYOUTS
+   GRIDS
 ════════════════════════════════════════════════ */
 .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
 .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 
 /* ════════════════════════════════════════════════
-   FORM FIELDS
+   FORM FIELDS  — fixed prefix spacing
 ════════════════════════════════════════════════ */
 .field { display: flex; flex-direction: column; gap: 6px; }
 .field label {
-  font-size: 12.5px;
-  font-weight: 600;
-  color: var(--mauve);
-  letter-spacing: 0.4px;
-  text-transform: uppercase;
+  font-size: 12.5px; font-weight: 600; color: var(--mauve);
+  letter-spacing: 0.4px; text-transform: uppercase;
 }
 .field input[type="text"],
 .field input[type="number"],
 .field select {
   padding: 11px 14px;
-  border: 1.5px solid var(--border);
-  border-radius: 10px;
-  font-size: 16px;
-  color: var(--charcoal);
-  background: var(--cream);
-  outline: none;
-  transition: border-color 0.2s, background 0.2s;
-  -webkit-appearance: none;
-  width: 100%;
+  border: 1.5px solid var(--border); border-radius: 10px;
+  font-size: 16px; color: var(--charcoal); background: var(--cream);
+  outline: none; transition: border-color 0.2s, background 0.2s;
+  -webkit-appearance: none; width: 100%;
 }
-.field input:focus,
-.field select:focus {
-  border-color: var(--rose);
-  background: var(--white);
-}
+.field input:focus, .field select:focus { border-color: var(--rose); background: var(--white); }
 .helper { font-size: 12px; color: var(--light-mid); margin-top: 2px; line-height: 1.4; }
 
-.prefix-wrap { position: relative; }
+/* ── Prefix wrap — robust no-overlap solution ── */
+.prefix-wrap { position: relative; display: flex; align-items: stretch; }
 .prefix-wrap .prefix {
-  position: absolute;
-  left: 13px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: var(--mid);
-  font-weight: 600;
-  font-size: 14px;
-  pointer-events: none;
-  z-index: 1;
+  position: absolute; left: 0; top: 0; bottom: 0;
+  width: 36px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--mid); font-weight: 600; font-size: 14px;
+  pointer-events: none; z-index: 1;
+  border-right: 1px solid var(--border);
+  background: rgba(237,229,232,0.45);
+  border-radius: 10px 0 0 10px;
 }
-.prefix-wrap input { padding-left: 28px; }
+.prefix-wrap input { padding-left: 46px !important; flex: 1; }
+
+/* ── Hourly rate read-only display ── */
+.rate-display {
+  padding: 11px 14px;
+  border: 1.5px solid var(--border); border-radius: 10px;
+  font-size: 16px;
+  background: linear-gradient(135deg, #fdf5f7, #faf0f3);
+  display: flex; align-items: center; gap: 6px;
+  min-height: 46px;
+}
+.rate-display .rate-val {
+  font-family: 'Playfair Display', serif; font-weight: 600; color: var(--deep-rose);
+}
+.rate-display .rate-note { font-size: 12px; color: var(--light-mid); }
+.rate-display .rate-sym  { font-size: 14px; font-weight: 600; color: var(--mauve); }
+
+/* ── Hourly mode toggle ── */
+.mode-bar {
+  display: flex; background: var(--cream);
+  border: 1.5px solid var(--border); border-radius: 10px;
+  overflow: hidden; margin-bottom: 10px;
+}
+.mode-btn {
+  flex: 1; padding: 9px 12px;
+  font-size: 12.5px; font-weight: 600; color: var(--mid);
+  border: none; background: transparent; cursor: pointer;
+  transition: background 0.18s, color 0.18s;
+  text-align: center; min-height: 40px;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+.mode-btn.active { background: var(--deep-rose); color: #fff; }
 
 /* ════════════════════════════════════════════════
    SLIDER
 ════════════════════════════════════════════════ */
 .slider-section { margin-top: 4px; }
 .slider-labels {
-  display: flex;
-  justify-content: space-between;
-  font-size: 12px;
-  color: var(--light-mid);
-  margin-bottom: 4px;
-  user-select: none;
+  display: flex; justify-content: space-between;
+  font-size: 12px; color: var(--light-mid);
+  margin-bottom: 4px; user-select: none;
 }
-
-/* Wrapper gives generous touch area */
 .slider-hit-area {
-  padding: 14px 0;
-  cursor: pointer;
-  touch-action: none;
-  -webkit-user-select: none;
-  user-select: none;
+  padding: 14px 0; cursor: pointer;
+  touch-action: none; -webkit-user-select: none; user-select: none;
   position: relative;
 }
-
 input[type="range"] {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 100%;
-  height: 6px;
-  border-radius: 3px;
+  -webkit-appearance: none; appearance: none;
+  width: 100%; height: 6px; border-radius: 3px;
   background: linear-gradient(to right,
-    var(--deep-rose) 0%,
-    var(--deep-rose) var(--fill, 60%),
-    var(--border) var(--fill, 60%)
+    var(--deep-rose) 0%, var(--deep-rose) var(--fill, 60%), var(--border) var(--fill, 60%)
   );
-  outline: none;
-  cursor: pointer;
-  display: block;
-  margin: 0;
-  padding: 0;
-  pointer-events: none; /* JS handles touch; mouse events re-enabled below */
+  outline: none; cursor: pointer; display: block; margin: 0; padding: 0;
+  pointer-events: none;
 }
-
-/* Re-enable native mouse drag on non-touch devices */
-@media (hover: hover) and (pointer: fine) {
-  input[type="range"] { pointer-events: auto; }
-}
-
+@media (hover: hover) and (pointer: fine) { input[type="range"] { pointer-events: auto; } }
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
+  width: 28px; height: 28px; border-radius: 50%;
   background: var(--deep-rose);
   box-shadow: 0 2px 10px rgba(181,81,108,0.45);
-  border: 3px solid #fff;
-  cursor: grab;
-  margin-top: -11px;
+  border: 3px solid #fff; cursor: grab; margin-top: -11px;
 }
 input[type="range"]::-moz-range-thumb {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: var(--deep-rose);
-  border: 3px solid #fff;
-  cursor: grab;
-  box-shadow: 0 2px 10px rgba(181,81,108,0.45);
+  width: 28px; height: 28px; border-radius: 50%;
+  background: var(--deep-rose); border: 3px solid #fff;
+  cursor: grab; box-shadow: 0 2px 10px rgba(181,81,108,0.45);
 }
 input[type="range"]::-webkit-slider-runnable-track { height: 6px; border-radius: 3px; }
-input[type="range"]::-moz-range-track  { height: 6px; border-radius: 3px; background: var(--border); }
-
-.slider-value-row {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 6px;
-}
-.slider-val-badge {
-  font-weight: 700;
-  color: var(--deep-rose);
-  font-size: 16px;
-}
+input[type="range"]::-moz-range-track { height: 6px; border-radius: 3px; background: var(--border); }
+.slider-value-row { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 6px; }
+.slider-val-badge { font-weight: 700; color: var(--deep-rose); font-size: 16px; }
 .multiplier-note {
-  font-size: 13px;
-  color: var(--mid);
-  text-align: center;
-  margin-top: 6px;
-  padding: 8px 12px;
-  background: var(--cream);
-  border-radius: 8px;
+  font-size: 13px; color: var(--mid); text-align: center;
+  margin-top: 6px; padding: 8px 12px; background: var(--cream); border-radius: 8px;
 }
 .multiplier-note strong { color: var(--deep-rose); }
 
@@ -352,70 +252,68 @@ input[type="range"]::-moz-range-track  { height: 6px; border-radius: 3px; backgr
    STAT TILES
 ════════════════════════════════════════════════ */
 .stat-row {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 14px;
-  margin-bottom: 20px;
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 14px; margin-bottom: 20px;
 }
 .stat-tile {
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 18px 12px;
-  text-align: center;
-  box-shadow: 0 2px 12px var(--shadow);
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 14px; padding: 18px 12px;
+  text-align: center; box-shadow: 0 2px 12px var(--shadow);
 }
-.stat-label {
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  color: var(--light-mid);
-  margin-bottom: 6px;
-}
-.stat-value {
-  font-family: 'Playfair Display', serif;
-  font-size: 26px;
-  font-weight: 700;
-  color: var(--deep-rose);
-  line-height: 1;
-}
-.stat-sub { font-size: 11px; color: var(--taupe); margin-top: 4px; }
+.stat-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--light-mid); margin-bottom: 6px; }
+.stat-value { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700; color: var(--deep-rose); line-height: 1; }
+.stat-sub   { font-size: 11px; color: var(--taupe); margin-top: 4px; }
 
 /* ════════════════════════════════════════════════
-   MARKET INSIGHT CARD
+   BUSINESS SUMMARY CARD
+════════════════════════════════════════════════ */
+.summary-card {
+  background: linear-gradient(135deg, #2C2420 0%, #3D2B2F 100%);
+  border-radius: 16px; padding: 28px 32px; margin-bottom: 20px;
+  color: #fff; position: relative; overflow: hidden;
+}
+.summary-card::before {
+  content: ''; position: absolute; top: -40px; right: -40px;
+  width: 160px; height: 160px; border-radius: 50%;
+  background: rgba(212,112,138,0.12); pointer-events: none;
+}
+.summary-card::after {
+  content: ''; position: absolute; bottom: -20px; left: 60px;
+  width: 100px; height: 100px; border-radius: 50%;
+  background: rgba(242,196,206,0.07); pointer-events: none;
+}
+.summary-label {
+  font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+  color: var(--blush); margin-bottom: 16px; display: flex; align-items: center; gap: 7px;
+}
+.summary-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 16px; margin-bottom: 16px; position: relative; z-index: 1;
+}
+.summary-tile { text-align: center; }
+.summary-val   { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--blush); line-height: 1; }
+.summary-tlabel { font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 4px; font-weight: 500; }
+.summary-divider { height: 1px; background: rgba(255,255,255,0.1); margin: 16px 0; position: relative; z-index: 1; }
+.summary-narrative {
+  font-size: 13.5px; color: rgba(255,255,255,0.72); line-height: 1.55;
+  position: relative; z-index: 1;
+}
+.summary-narrative strong { color: #fff; }
+
+/* ════════════════════════════════════════════════
+   MARKET INSIGHT
 ════════════════════════════════════════════════ */
 .insight-card {
   background: linear-gradient(135deg, #FDF0F3 0%, #FAF5F7 100%);
-  border: 1.5px solid var(--blush);
-  border-radius: 16px;
-  padding: 24px 28px;
-  margin-bottom: 20px;
+  border: 1.5px solid var(--blush); border-radius: 16px;
+  padding: 24px 28px; margin-bottom: 20px;
 }
-.insight-label {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: var(--rose);
-  margin-bottom: 8px;
-}
-.insight-text {
-  font-family: 'Playfair Display', serif;
-  font-size: 17px;
-  color: var(--dark);
-  line-height: 1.55;
-  font-style: italic;
-}
+.insight-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--rose); margin-bottom: 8px; }
+.insight-text  { font-family: 'Playfair Display', serif; font-size: 17px; color: var(--dark); line-height: 1.55; font-style: italic; }
 .insight-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  margin-top: 12px;
-  padding: 5px 12px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 600;
+  display: inline-flex; align-items: center; gap: 5px;
+  margin-top: 12px; padding: 5px 12px; border-radius: 20px;
+  font-size: 12px; font-weight: 600;
 }
 .badge-conservative { background: var(--amber-bg); color: var(--amber); }
 .badge-standard     { background: var(--green-bg);  color: var(--green); }
@@ -425,315 +323,200 @@ input[type="range"]::-moz-range-track  { height: 6px; border-radius: 3px; backgr
    BUTTONS
 ════════════════════════════════════════════════ */
 .btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 13px 24px;
-  border-radius: 10px;
-  font-size: 14px;
-  font-weight: 600;
-  min-height: 50px;
-  transition: opacity 0.15s, transform 0.1s;
-  white-space: nowrap;
-  position: relative;
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: 8px; padding: 13px 24px; border-radius: 10px;
+  font-size: 14px; font-weight: 600;
+  min-height: 50px; transition: opacity 0.15s, transform 0.1s;
+  white-space: nowrap; position: relative;
 }
 .btn:active { transform: scale(0.97); opacity: 0.88; }
-
-.btn-primary  { background: var(--deep-rose); color: #fff; box-shadow: 0 4px 16px rgba(181,81,108,0.3); }
+.btn-primary   { background: var(--deep-rose); color: #fff; box-shadow: 0 4px 16px rgba(181,81,108,0.3); }
 .btn-secondary { background: var(--cream); color: var(--charcoal); border: 1.5px solid var(--border); }
-.btn-danger   { background: transparent; color: var(--red); border: 1.5px solid #F5C0C8; padding: 9px 15px; font-size: 13px; min-height: 42px; }
-.btn-pdf      { background: linear-gradient(135deg, #B5516C, #8B3A52); color: #fff; box-shadow: 0 4px 16px rgba(139,58,82,0.35); }
-.btn-demo     { background: linear-gradient(135deg, #f0e0e6, #f5e8ec); color: var(--mauve); border: 1.5px solid var(--blush); font-size: 13px; }
+.btn-danger    { background: transparent; color: var(--red); border: 1.5px solid #F5C0C8; padding: 9px 15px; font-size: 13px; min-height: 42px; }
+.btn-pdf       { background: linear-gradient(135deg, #B5516C, #8B3A52); color: #fff; box-shadow: 0 4px 16px rgba(139,58,82,0.35); }
+.btn-demo      { background: linear-gradient(135deg, #f0e0e6, #f5e8ec); color: var(--mauve); border: 1.5px solid var(--blush); font-size: 13px; }
+.btn-ghost     { background: transparent; color: var(--mid); border: 1.5px solid var(--border); font-size: 13px; }
 
-/* ─ Nav row ─ */
 .nav-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 24px;
-  gap: 12px;
-  flex-wrap: wrap;
+  display: flex; align-items: center; justify-content: space-between;
+  margin-top: 24px; gap: 12px; flex-wrap: wrap;
 }
 
 /* ════════════════════════════════════════════════
    SERVICE CARDS
 ════════════════════════════════════════════════ */
 .service-card {
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 24px;
-  margin-bottom: 16px;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 16px; padding: 24px; margin-bottom: 16px;
   box-shadow: 0 3px 16px var(--shadow);
 }
 .service-card-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  margin-bottom: 20px;
-  gap: 12px;
+  display: flex; align-items: flex-start; justify-content: space-between;
+  margin-bottom: 20px; gap: 12px;
 }
 .svc-name-input {
-  font-family: 'Playfair Display', serif;
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--dark);
-  border: none;
-  background: transparent;
-  outline: none;
-  flex: 1;
-  padding: 0;
-  border-bottom: 1.5px solid transparent;
-  transition: border-color 0.2s;
-  min-width: 0;
-  -webkit-appearance: none;
+  font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 600; color: var(--dark);
+  border: none; background: transparent; outline: none;
+  flex: 1; padding: 0;
+  border-bottom: 1.5px solid transparent; transition: border-color 0.2s;
+  min-width: 0; -webkit-appearance: none;
 }
 .svc-name-input:focus { border-bottom-color: var(--rose); }
 .svc-name-input::placeholder { color: var(--taupe); }
 
-.service-prices {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 12px;
-  margin-top: 18px;
-}
-.price-bubble { border-radius: 12px; padding: 14px 16px; text-align: center; }
+/* ── Price tier bubbles with descriptions ── */
+.service-prices { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-top: 18px; }
+.price-bubble   { border-radius: 12px; padding: 14px 16px; text-align: center; }
 .price-bubble.breakeven    { background: #F5F5F5; }
 .price-bubble.recommended  { background: linear-gradient(135deg, var(--blush), #F8D5DC); }
 .price-bubble.premium-tier { background: linear-gradient(135deg, var(--rose), var(--deep-rose)); }
 
 .pb-label {
-  font-size: 10.5px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.6px;
-  margin-bottom: 4px;
+  font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 2px;
 }
 .breakeven    .pb-label { color: var(--mid); }
 .recommended  .pb-label { color: var(--mauve); }
 .premium-tier .pb-label { color: rgba(255,255,255,0.8); }
 
+.pb-desc { font-size: 9.5px; line-height: 1.3; margin-bottom: 6px; }
+.breakeven    .pb-desc { color: var(--light-mid); }
+.recommended  .pb-desc { color: var(--mauve); opacity: 0.75; }
+.premium-tier .pb-desc { color: rgba(255,255,255,0.55); }
+
 .pb-value {
-  font-family: 'Playfair Display', serif;
-  font-size: 22px;
-  font-weight: 700;
-  line-height: 1.1;
+  font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; line-height: 1.1;
 }
 .breakeven    .pb-value { color: var(--mid); }
 .recommended  .pb-value { color: var(--deep-rose); }
 .premium-tier .pb-value { color: #fff; }
 
 .svc-insight {
-  margin-top: 14px;
-  padding: 10px 14px;
-  border-radius: 8px;
-  font-size: 13px;
-  font-weight: 500;
-  display: flex;
-  align-items: flex-start;
-  gap: 7px;
-  line-height: 1.45;
+  margin-top: 14px; padding: 10px 14px; border-radius: 8px;
+  font-size: 13px; font-weight: 500;
+  display: flex; align-items: flex-start; gap: 7px; line-height: 1.45;
 }
 .si-green { background: var(--green-bg); color: var(--green); }
 .si-amber { background: var(--amber-bg); color: var(--amber); }
 .si-red   { background: var(--red-bg);   color: var(--red);   }
 
-/* ─ Duration section ─ */
-.duration-section {
-  margin-top: 16px;
-  padding-top: 16px;
-  border-top: 1px solid var(--border);
+/* ── Monthly impact note ── */
+.impact-note {
+  margin-top: 10px; padding: 10px 14px; border-radius: 8px;
+  font-size: 12.5px; background: #F0E8F4; color: #6B3C8A;
+  display: none; align-items: flex-start; gap: 7px; line-height: 1.45;
 }
+.impact-note.visible { display: flex; }
+
+/* ── Duration section ── */
+.duration-section { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border); }
 .duration-title {
-  font-size: 11.5px;
-  font-weight: 700;
-  color: var(--mauve);
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  margin-bottom: 12px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
+  font-size: 11.5px; font-weight: 700; color: var(--mauve);
+  letter-spacing: 0.5px; text-transform: uppercase;
+  margin-bottom: 4px; display: flex; align-items: center; gap: 6px;
 }
+.duration-subtitle { font-size: 12px; color: var(--light-mid); margin-bottom: 12px; line-height: 1.4; }
 .duration-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 .pace-note {
-  margin-top: 10px;
-  padding: 10px 14px;
-  border-radius: 8px;
-  font-size: 12.5px;
-  color: var(--amber);
-  background: var(--amber-bg);
-  display: none;
-  line-height: 1.45;
-  gap: 7px;
+  margin-top: 10px; padding: 10px 14px; border-radius: 8px;
+  font-size: 12.5px; color: var(--amber); background: var(--amber-bg);
+  display: none; line-height: 1.45; gap: 7px;
 }
 .pace-note.visible { display: flex; align-items: flex-start; }
+
+/* ── Frequency row ── */
+.freq-row {
+  display: flex; align-items: center; gap: 12px;
+  margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border);
+}
+.freq-row .field { flex: 0 0 180px; }
+.freq-hint { font-size: 12px; color: var(--light-mid); line-height: 1.4; }
 
 /* ════════════════════════════════════════════════
    ADD-ONS
 ════════════════════════════════════════════════ */
 .addon-row {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
-  gap: 12px;
-  align-items: end;
-  padding: 16px 0;
-  border-bottom: 1px solid var(--border);
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 12px; align-items: end;
+  padding: 16px 0; border-bottom: 1px solid var(--border);
 }
 .addon-row:last-child { border-bottom: none; }
 .addon-price-display {
-  font-family: 'Playfair Display', serif;
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--deep-rose);
-  padding-bottom: 11px;
+  font-family: 'Playfair Display', serif; font-size: 18px;
+  font-weight: 700; color: var(--deep-rose); padding-bottom: 11px;
 }
 
 /* ════════════════════════════════════════════════
    PRICE LIST PREVIEW
 ════════════════════════════════════════════════ */
 .price-list-preview {
-  background: #fff;
-  border-radius: 20px;
-  padding: 50px 48px;
-  border: 1px solid var(--border);
-  box-shadow: 0 6px 40px var(--shadow-deep);
-  max-width: 680px;
-  margin: 0 auto 28px;
+  background: #fff; border-radius: 20px; padding: 50px 48px;
+  border: 1px solid var(--border); box-shadow: 0 6px 40px var(--shadow-deep);
+  max-width: 680px; margin: 0 auto 28px;
 }
-.pl-biz-name {
-  font-family: 'Playfair Display', serif;
-  font-size: 32px;
-  font-weight: 700;
-  color: var(--charcoal);
-  text-align: center;
-  margin-bottom: 4px;
-}
-.pl-location {
-  text-align: center;
-  color: var(--mid);
-  font-size: 14px;
-  margin-bottom: 32px;
-  font-style: italic;
-}
-.pl-divider {
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--rose), transparent);
-  margin: 20px 0;
-}
-.pl-section-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--rose);
-  margin: 28px 0 14px;
-}
-.pl-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  padding: 9px 0;
-  border-bottom: 1px dotted var(--border);
-}
+.pl-biz-name { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 700; color: var(--charcoal); text-align: center; margin-bottom: 4px; }
+.pl-location { text-align: center; color: var(--mid); font-size: 14px; margin-bottom: 32px; font-style: italic; }
+.pl-divider  { height: 2px; background: linear-gradient(90deg, transparent, var(--rose), transparent); margin: 20px 0; }
+.pl-section-title { font-family: 'Playfair Display', serif; font-size: 13px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--rose); margin: 28px 0 14px; }
+.pl-item { display: flex; justify-content: space-between; align-items: baseline; padding: 9px 0; border-bottom: 1px dotted var(--border); }
 .pl-item:last-child { border-bottom: none; }
-.pl-item-name { font-weight: 500; color: var(--charcoal); font-size: 15px; }
-.pl-item-dur  { color: var(--light-mid); font-size: 13px; margin-left: 8px; }
+.pl-item-name  { font-weight: 500; color: var(--charcoal); font-size: 15px; }
+.pl-item-dur   { color: var(--light-mid); font-size: 13px; margin-left: 8px; }
 .pl-item-price { font-family: 'Playfair Display', serif; font-weight: 700; color: var(--deep-rose); font-size: 16px; }
-.pl-footer { margin-top: 36px; text-align: center; font-size: 12px; color: var(--taupe); font-style: italic; }
+.pl-footer     { margin-top: 36px; text-align: center; font-size: 12px; color: var(--taupe); font-style: italic; }
 
-.export-row {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-bottom: 40px;
-}
+.export-row { display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; margin-bottom: 40px; }
 
 /* ════════════════════════════════════════════════
    DEMO BANNER
 ════════════════════════════════════════════════ */
 .demo-banner {
   background: linear-gradient(135deg, #fdf0f3, #faf5f7);
-  border: 1.5px solid var(--blush);
-  border-radius: 12px;
+  border: 1.5px solid var(--blush); border-radius: 12px;
   padding: 14px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 14px;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 14px; margin-bottom: 20px; flex-wrap: wrap;
 }
 .demo-banner-text { font-size: 13.5px; color: var(--mauve); }
 .demo-banner-text strong { color: var(--deep-rose); }
+.demo-actions { display: flex; gap: 10px; flex-wrap: wrap; }
 
 /* ════════════════════════════════════════════════
    EMPTY STATE
 ════════════════════════════════════════════════ */
-.empty-state {
-  text-align: center;
-  padding: 48px 20px;
-  color: var(--light-mid);
-}
+.empty-state { text-align: center; padding: 48px 20px; color: var(--light-mid); }
 .empty-emoji { font-size: 40px; margin-bottom: 12px; }
 
 /* ════════════════════════════════════════════════
-   MOBILE BOTTOM TAB BAR
+   MOBILE BOTTOM BAR
 ════════════════════════════════════════════════ */
 .mobile-bar {
   display: none;
-  position: fixed;
-  bottom: 0; left: 0; right: 0;
-  z-index: 400;
-  background: #fff;
-  border-top: 1px solid var(--border);
+  position: fixed; bottom: 0; left: 0; right: 0;
+  z-index: 400; background: #fff; border-top: 1px solid var(--border);
   height: calc(var(--tab-bar-h) + env(safe-area-inset-bottom, 0px));
-  padding-top: 6px;
-  padding-bottom: env(safe-area-inset-bottom, 0px);
-  justify-content: space-around;
-  align-items: flex-start;
+  padding-top: 6px; padding-bottom: env(safe-area-inset-bottom, 0px);
+  justify-content: space-around; align-items: flex-start;
 }
 .mob-btn {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
-  font-size: 10px;
-  font-weight: 600;
-  color: var(--light-mid);
-  padding: 4px 0;
-  min-width: 72px;
-  min-height: 50px;
-  justify-content: center;
-  transition: color 0.15s;
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+  font-size: 10px; font-weight: 600; color: var(--light-mid);
+  padding: 4px 0; min-width: 72px; min-height: 50px;
+  justify-content: center; transition: color 0.15s;
 }
 .mob-btn.active { color: var(--deep-rose); }
 .mob-icon { font-size: 22px; line-height: 1.2; }
 
-/* ════════════════════════════════════════════════
-   SELECT STYLING
-════════════════════════════════════════════════ */
 select option { background: #fff; }
 
 /* ════════════════════════════════════════════════
-   PRINT / PDF
+   PRINT
 ════════════════════════════════════════════════ */
 @media print {
   body * { visibility: hidden; }
-  .price-list-preview,
-  .price-list-preview * { visibility: visible; }
+  .price-list-preview, .price-list-preview * { visibility: visible; }
   .price-list-preview {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%;
-    box-shadow: none;
-    border: none;
-    padding: 40px 50px;
-    border-radius: 0;
+    position: fixed; top: 0; left: 0; width: 100%;
+    box-shadow: none; border: none; padding: 40px 50px; border-radius: 0;
   }
 }
 
@@ -744,27 +527,21 @@ select option { background: #fff; }
   .header { padding: 0 16px; height: 56px; }
   .desktop-tabs { display: none; }
   .mobile-bar { display: flex; }
-
-  .main {
-    padding: 20px 14px calc(var(--tab-bar-h) + env(safe-area-inset-bottom, 0px) + 24px);
-  }
+  .main { padding: 20px 14px calc(var(--tab-bar-h) + env(safe-area-inset-bottom, 0px) + 24px); }
   .card { padding: 18px 16px; }
-
-  .grid-3,
-  .grid-2 { grid-template-columns: 1fr; }
-
+  .grid-3, .grid-2 { grid-template-columns: 1fr; }
   .stat-row { grid-template-columns: 1fr 1fr; }
+  .summary-grid { grid-template-columns: 1fr 1fr; }
   .service-prices { grid-template-columns: 1fr 1fr; }
-
   .addon-row { grid-template-columns: 1fr 1fr; }
-
   .price-list-preview { padding: 28px 20px; }
   .pl-biz-name { font-size: 24px; }
-
   .export-row { flex-direction: column; align-items: stretch; }
   .export-row .btn { width: 100%; }
-
   .duration-grid { grid-template-columns: 1fr; }
+  .freq-row { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .freq-row .field { flex: none; width: 100%; }
+  .summary-card { padding: 22px 20px; }
 }
 
 @media (max-width: 400px) {
@@ -774,9 +551,7 @@ select option { background: #fff; }
 </head>
 <body>
 
-<!-- ══════════════════════════════════════════════
-     HEADER
-══════════════════════════════════════════════ -->
+<!-- ═══════════ HEADER ═══════════ -->
 <header class="header">
   <div class="logo">
     <span class="logo-text">Nailed It</span>
@@ -790,12 +565,10 @@ select option { background: #fff; }
   </nav>
 </header>
 
-<!-- ══════════════════════════════════════════════
-     MAIN CONTENT
-══════════════════════════════════════════════ -->
+<!-- ═══════════ MAIN ═══════════ -->
 <main class="main" id="mainContent">
 
-  <!-- ── TAB 0: SETUP ── -->
+  <!-- ══ TAB 0: SETUP ══ -->
   <div class="tab-panel active" id="tab-0">
     <div class="section-heading">
       <h2>Business Setup</h2>
@@ -804,7 +577,10 @@ select option { background: #fff; }
 
     <div class="demo-banner" id="demoBanner">
       <span class="demo-banner-text">New here? <strong>Load example data</strong> to explore with realistic values.</span>
-      <button class="btn btn-demo" id="loadDemoBtn" type="button">✨ Load Example</button>
+      <div class="demo-actions">
+        <button class="btn btn-demo" id="loadDemoBtn" type="button">✨ Load Example</button>
+        <button class="btn btn-ghost" id="resetBtn" type="button">↺ Reset All</button>
+      </div>
     </div>
 
     <!-- Market & Location -->
@@ -838,13 +614,10 @@ select option { background: #fff; }
         </div>
       </div>
 
-      <!-- Pricing Multiplier Slider -->
       <div class="field slider-section">
         <label for="userSlider">Pricing Adjustment</label>
         <div class="slider-labels">
-          <span>Entry (×0.25)</span>
-          <span>Market (×1.0)</span>
-          <span>Premium (×1.5)</span>
+          <span>Entry (×0.25)</span><span>Market (×1.0)</span><span>Premium (×1.5)</span>
         </div>
         <div class="slider-hit-area" id="sliderHitArea">
           <input type="range" id="userSlider" min="0.25" max="1.5" step="0.05" value="1.0">
@@ -857,7 +630,7 @@ select option { background: #fff; }
     </div>
 
     <!-- Market Insight -->
-    <div class="insight-card" id="insightCard">
+    <div class="insight-card">
       <div class="insight-label">✦ Market Positioning Insight</div>
       <div class="insight-text" id="insightText">Select your country and area type to see your market positioning.</div>
       <div id="insightBadge"></div>
@@ -877,7 +650,7 @@ select option { background: #fff; }
       </div>
     </div>
 
-    <!-- Income Goals -->
+    <!-- Income Goals + Hourly Rate -->
     <div class="card">
       <div class="card-title"><div class="card-icon">🎯</div> Income Goals</div>
       <div class="grid-3">
@@ -885,10 +658,29 @@ select option { background: #fff; }
         <div class="field"><label>Working Days / Month</label><input type="number" id="workingDays" placeholder="20" min="1" max="31" inputmode="numeric"></div>
         <div class="field"><label>Clients / Month</label><input type="number" id="clientsPerMonth" placeholder="40" min="1" inputmode="numeric"></div>
       </div>
-      <div class="field" style="margin-top:16px">
-        <label for="hourlyRate">Suggested Hourly Rate (editable)</label>
-        <div class="prefix-wrap"><span class="prefix currency-pfx">$</span><input type="number" id="hourlyRate" placeholder="40" min="0" step="0.5" inputmode="decimal"></div>
-        <span class="helper" id="hourlyHint">Based on your country. You can override this.</span>
+
+      <div style="margin-top:20px">
+        <div style="margin-bottom:6px">
+          <span style="font-size:12.5px;font-weight:600;color:var(--mauve);letter-spacing:0.4px;text-transform:uppercase">Hourly Rate Used for Pricing</span>
+        </div>
+        <div class="mode-bar">
+          <button class="mode-btn active" id="modeAutoBtn" type="button">⚡ Auto-calculated from goals</button>
+          <button class="mode-btn" id="modeManualBtn" type="button">✏️ Custom override</button>
+        </div>
+        <!-- Auto mode -->
+        <div id="hourlyAutoBlock">
+          <div class="rate-display">
+            <span class="rate-sym currency-pfx">$</span>
+            <span class="rate-val" id="hourlyAutoVal">—</span>
+            <span class="rate-note">/ hr · auto-calculated</span>
+          </div>
+          <span class="helper" id="hourlyAutoHint">Calculated from your target income, overhead, and working hours above.</span>
+        </div>
+        <!-- Manual mode -->
+        <div id="hourlyManualBlock" style="display:none">
+          <div class="prefix-wrap"><span class="prefix currency-pfx">$</span><input type="number" id="hourlyRate" placeholder="40" min="0" step="0.5" inputmode="decimal"></div>
+          <span class="helper" id="hourlyManualHint">Your custom rate overrides auto-calculation for all service pricing.</span>
+        </div>
       </div>
     </div>
 
@@ -897,7 +689,20 @@ select option { background: #fff; }
       <div class="stat-tile"><div class="stat-label">Total Overhead</div><div class="stat-value" id="statOverhead">—</div><div class="stat-sub">per month</div></div>
       <div class="stat-tile"><div class="stat-label">Per-Client Cost</div><div class="stat-value" id="statPerClient">—</div><div class="stat-sub">to cover overhead</div></div>
       <div class="stat-tile"><div class="stat-label">Working Hours</div><div class="stat-value" id="statHours">—</div><div class="stat-sub">per month</div></div>
-      <div class="stat-tile"><div class="stat-label">Req. Hourly Rate</div><div class="stat-value" id="statReqHourly">—</div><div class="stat-sub">to hit your goal</div></div>
+      <div class="stat-tile"><div class="stat-label">Effective Rate</div><div class="stat-value" id="statReqHourly">—</div><div class="stat-sub">used for pricing</div></div>
+    </div>
+
+    <!-- Business Summary -->
+    <div class="summary-card">
+      <div class="summary-label">✦ Your Business at a Glance</div>
+      <div class="summary-grid">
+        <div class="summary-tile"><div class="summary-val" id="sumRate">—</div><div class="summary-tlabel">Effective hourly rate</div></div>
+        <div class="summary-tile"><div class="summary-val" id="sumOH">—</div><div class="summary-tlabel">Overhead per client</div></div>
+        <div class="summary-tile"><div class="summary-val" id="sumTarget">—</div><div class="summary-tlabel">Target revenue / client</div></div>
+        <div class="summary-tile"><div class="summary-val" id="sumAvg">—</div><div class="summary-tlabel">Avg recommended price</div></div>
+      </div>
+      <div class="summary-divider"></div>
+      <div class="summary-narrative" id="summaryText">Add your income goals and overhead above to unlock your business summary.</div>
     </div>
 
     <div class="nav-row">
@@ -906,11 +711,11 @@ select option { background: #fff; }
     </div>
   </div>
 
-  <!-- ── TAB 1: SERVICES ── -->
+  <!-- ══ TAB 1: SERVICES ══ -->
   <div class="tab-panel" id="tab-1">
     <div class="section-heading">
       <h2>Your Services</h2>
-      <p>Add every service you offer. Prices use <em>market-acceptable time</em> — not how long you currently take.</p>
+      <p>Add every service you offer. Always price using <em>market-acceptable time</em> — not how long you currently take.</p>
     </div>
     <div id="servicesList"></div>
     <button class="btn btn-primary" id="addServiceBtn" type="button" style="margin-bottom:24px">+ Add a Service</button>
@@ -920,7 +725,7 @@ select option { background: #fff; }
     </div>
   </div>
 
-  <!-- ── TAB 2: ADD-ONS ── -->
+  <!-- ══ TAB 2: ADD-ONS ══ -->
   <div class="tab-panel" id="tab-2">
     <div class="section-heading">
       <h2>Add-ons &amp; Extras</h2>
@@ -936,7 +741,7 @@ select option { background: #fff; }
     </div>
   </div>
 
-  <!-- ── TAB 3: PRICE LIST ── -->
+  <!-- ══ TAB 3: PRICE LIST ══ -->
   <div class="tab-panel" id="tab-3">
     <div class="section-heading">
       <h2>Your Price List</h2>
@@ -950,11 +755,11 @@ select option { background: #fff; }
         <div class="field"><label for="businessLocation">Location Line</label><input type="text" id="businessLocation" placeholder="e.g. London, UK" autocomplete="off"></div>
       </div>
       <div class="field" style="margin-top:14px">
-        <label for="priceListTier">Which price tier to show?</label>
+        <label for="priceListTier">Price tier to display</label>
         <select id="priceListTier">
-          <option value="breakeven">Break-Even (minimum floor)</option>
-          <option value="recommended" selected>Recommended (sweet spot)</option>
-          <option value="premium">Premium (top-tier positioning)</option>
+          <option value="breakeven">Break-Even — your minimum floor price</option>
+          <option value="recommended" selected>Recommended — your standard posted rate</option>
+          <option value="premium">Premium — specialist or luxury positioning</option>
         </select>
       </div>
     </div>
@@ -976,9 +781,7 @@ select option { background: #fff; }
 
 </main>
 
-<!-- ══════════════════════════════════════════════
-     MOBILE BOTTOM BAR
-══════════════════════════════════════════════ -->
+<!-- ═══════════ MOBILE BAR ═══════════ -->
 <nav class="mobile-bar" id="mobileBar" aria-label="App sections">
   <button class="mob-btn active" data-tab="0" type="button"><span class="mob-icon">⚙️</span>Setup</button>
   <button class="mob-btn" data-tab="1" type="button"><span class="mob-icon">💅</span>Services</button>
@@ -986,13 +789,11 @@ select option { background: #fff; }
   <button class="mob-btn" data-tab="3" type="button"><span class="mob-icon">📋</span>List</button>
 </nav>
 
-<!-- ══════════════════════════════════════════════
-     JAVASCRIPT
-══════════════════════════════════════════════ -->
+<!-- ═══════════ JAVASCRIPT ═══════════ -->
 <script>
 'use strict';
 
-// ── CONFIG ────────────────────────────────────────────────
+/* ── CONFIG ── */
 var COUNTRIES = {
   US: { symbol:'$',  name:'US',          hourly:40, baseline:1.20 },
   CA: { symbol:'$',  name:'Canada',      hourly:35, baseline:1.15 },
@@ -1003,10 +804,7 @@ var COUNTRIES = {
   NZ: { symbol:'$',  name:'New Zealand', hourly:42, baseline:1.20 },
 };
 var AREA_LABELS = {
-  '1.2': 'premium central',
-  '1.1': 'standard urban',
-  '1.0': 'suburban',
-  '0.9': 'small town / rural',
+  '1.2':'premium central','1.1':'standard urban','1.0':'suburban','0.9':'small town / rural',
 };
 var DEFAULT_ADDONS = [
   { name:'Nail Art (per nail)', mode:'fixed', fixedVal:3,  time:5  },
@@ -1018,30 +816,31 @@ var DEFAULT_ADDONS = [
   { name:'Extra Length',        mode:'time',  fixedVal:8,  time:10 },
 ];
 
-// ── STATE ─────────────────────────────────────────────────
-var services        = [];
-var addons          = [];
-var currSym         = '$';
-var reqHourly       = 0;
-var ohPerClient     = 0;
-var finalMult       = 1.0;
+/* ── STATE ── */
+var services    = [];
+var addons      = [];
+var currSym     = '$';
+var reqHourly   = 0;
+var ohPerClient = 0;
+var finalMult   = 1.0;
+var hourlyMode  = 'auto'; // 'auto' | 'manual'
 
-// ── INIT ──────────────────────────────────────────────────
+/* ── INIT ── */
 document.addEventListener('DOMContentLoaded', function () {
   loadFromStorage();
   applyCountry(true);
   recalculate();
   renderServices();
-  renderAddons();
+  rebuildAddons(); // builds HTML; listeners attached once below
   renderPriceList();
   initSlider();
   attachEventListeners();
+  updateSummary();
 });
 
-// ── TAB SWITCHING ─────────────────────────────────────────
+/* ── TAB SWITCHING ── */
 function switchTab(idx) {
   idx = parseInt(idx, 10);
-
   document.querySelectorAll('.tab-panel').forEach(function (p, i) {
     p.classList.toggle('active', i === idx);
   });
@@ -1051,160 +850,136 @@ function switchTab(idx) {
   document.querySelectorAll('#mobileBar .mob-btn').forEach(function (b, i) {
     b.classList.toggle('active', i === idx);
   });
-
   if (idx === 3) renderPriceList();
-
-  // Scroll to top
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// ── SLIDER ────────────────────────────────────────────────
+/* ── SLIDER ── */
 function initSlider() {
-  var slider  = document.getElementById('userSlider');
-  var hitArea = document.getElementById('sliderHitArea');
-  var min     = parseFloat(slider.min);   // 0.25
-  var max     = parseFloat(slider.max);   // 1.5
-  var step    = parseFloat(slider.step);  // 0.05
+  var slider   = document.getElementById('userSlider');
+  var hitArea  = document.getElementById('sliderHitArea');
+  var min      = parseFloat(slider.min);
+  var max      = parseFloat(slider.max);
+  var step     = parseFloat(slider.step);
   var dragging = false;
 
   function valFromX(clientX) {
-    var rect    = slider.getBoundingClientRect();
-    var thumb   = 14; // half of thumb width
-    var usable  = rect.width - thumb * 2;
-    var relX    = Math.max(0, Math.min(usable, clientX - rect.left - thumb));
-    var raw     = min + (relX / usable) * (max - min);
+    var rect = slider.getBoundingClientRect();
+    var thumb = 14;
+    var usable = rect.width - thumb * 2;
+    var relX   = Math.max(0, Math.min(usable, clientX - rect.left - thumb));
+    var raw    = min + (relX / usable) * (max - min);
     var snapped = Math.round(raw / step) * step;
     return Math.max(min, Math.min(max, Math.round(snapped * 100) / 100));
   }
-
   function applyVal(val) {
     slider.value = val;
     updateSliderFill(val);
     document.getElementById('sliderValDisplay').textContent = '×' + val.toFixed(2);
     saveAndUpdate();
   }
-
   function updateSliderFill(val) {
-    var pct = ((val - min) / (max - min) * 100).toFixed(2) + '%';
-    slider.style.setProperty('--fill', pct);
+    slider.style.setProperty('--fill', ((val - min) / (max - min) * 100).toFixed(2) + '%');
   }
 
-  // Touch events on the hit area
   hitArea.addEventListener('touchstart', function (e) {
-    dragging = true;
-    e.preventDefault();
+    dragging = true; e.preventDefault();
     applyVal(valFromX(e.touches[0].clientX));
   }, { passive: false });
-
   hitArea.addEventListener('touchmove', function (e) {
-    if (!dragging) return;
-    e.preventDefault();
+    if (!dragging) return; e.preventDefault();
     applyVal(valFromX(e.touches[0].clientX));
   }, { passive: false });
-
   hitArea.addEventListener('touchend', function (e) {
-    dragging = false;
-    e.preventDefault();
+    dragging = false; e.preventDefault();
     if (e.changedTouches.length) applyVal(valFromX(e.changedTouches[0].clientX));
   }, { passive: false });
-
-  // Native input event (mouse/keyboard on desktop)
   slider.addEventListener('input', function () {
     var val = parseFloat(slider.value);
     updateSliderFill(val);
     document.getElementById('sliderValDisplay').textContent = '×' + val.toFixed(2);
     saveAndUpdate();
   });
-
-  // Init fill
   updateSliderFill(parseFloat(slider.value));
 }
 
-// ── EVENT LISTENERS ───────────────────────────────────────
+/* ── HOURLY MODE TOGGLE ── */
+function setHourlyMode(mode) {
+  hourlyMode = mode;
+  document.getElementById('modeAutoBtn').classList.toggle('active', mode === 'auto');
+  document.getElementById('modeManualBtn').classList.toggle('active', mode === 'manual');
+  document.getElementById('hourlyAutoBlock').style.display   = mode === 'auto'   ? 'block' : 'none';
+  document.getElementById('hourlyManualBlock').style.display = mode === 'manual' ? 'block' : 'none';
+  saveAndUpdate();
+}
+
+/* ── EVENT LISTENERS — attached once ── */
 function attachEventListeners() {
 
-  // Desktop tab nav
+  // Tab nav
   document.getElementById('desktopTabs').addEventListener('click', function (e) {
     var btn = e.target.closest('[data-tab]');
     if (btn) switchTab(btn.dataset.tab);
   });
-
-  // Mobile bottom bar
   document.getElementById('mobileBar').addEventListener('click', function (e) {
     var btn = e.target.closest('[data-tab]');
     if (btn) switchTab(btn.dataset.tab);
   });
 
-  // data-goto nav buttons (Next / Back)
+  // data-goto
   document.addEventListener('click', function (e) {
     var btn = e.target.closest('[data-goto]');
     if (btn) switchTab(btn.dataset.goto);
   });
 
-  // PDF export
-  document.getElementById('exportPdfBtn').addEventListener('click', function () {
-    window.print();
-  });
+  // PDF
+  document.getElementById('exportPdfBtn').addEventListener('click', function () { window.print(); });
 
-  // Add service
+  // Service add
   document.getElementById('addServiceBtn').addEventListener('click', addService);
 
-  // Demo data
+  // Demo / reset
   document.getElementById('loadDemoBtn').addEventListener('click', loadDemoData);
+  document.getElementById('resetBtn').addEventListener('click', resetAll);
 
-  // Setup form inputs
+  // Hourly mode
+  document.getElementById('modeAutoBtn').addEventListener('click', function () { setHourlyMode('auto'); });
+  document.getElementById('modeManualBtn').addEventListener('click', function () { setHourlyMode('manual'); });
+
+  // Setup inputs
   ['rent','utilities','supplies','tools','subscriptions','marketing','other',
-   'targetIncome','workingDays','clientsPerMonth','hourlyRate','city'].forEach(function (id) {
+   'targetIncome','workingDays','clientsPerMonth','city','hourlyRate'].forEach(function (id) {
     var el = document.getElementById(id);
     if (el) el.addEventListener('input', saveAndUpdate);
   });
-
-  document.getElementById('country').addEventListener('change', function () {
-    applyCountry(false);
-  });
+  document.getElementById('country').addEventListener('change', function () { applyCountry(false); });
   document.getElementById('areaType').addEventListener('change', saveAndUpdate);
 
-  // Price list panel
-  document.getElementById('businessName').addEventListener('input', function () {
-    saveToStorage(); renderPriceList();
-  });
-  document.getElementById('businessLocation').addEventListener('input', function () {
-    saveToStorage(); renderPriceList();
-  });
-  document.getElementById('priceListTier').addEventListener('change', function () {
-    saveToStorage(); renderPriceList();
-  });
+  // Price list
+  document.getElementById('businessName').addEventListener('input', function () { saveToStorage(); renderPriceList(); });
+  document.getElementById('businessLocation').addEventListener('input', function () { saveToStorage(); renderPriceList(); });
+  document.getElementById('priceListTier').addEventListener('change', function () { saveToStorage(); renderPriceList(); });
 
-  // Service list — event delegation
+  // Service list — stable delegation
   var svcList = document.getElementById('servicesList');
-
   svcList.addEventListener('input', function (e) {
-    var el  = e.target;
-    var sid = el.dataset.sid;
-    var key = el.dataset.key;
+    var el = e.target, sid = el.dataset.sid, key = el.dataset.key;
     if (!sid || !key) return;
-    var svc = services.find(function (s) { return s.id === +sid; });
-    if (!svc) return;
-    svc[key] = (el.dataset.type === 'str') ? el.value : +el.value;
-    if (key === 'marketDuration' || key === 'personalDuration') updatePaceNote(svc);
-    saveToStorage();
-    patchServicePrices();
-    renderPriceList();
+    var s = services.find(function (s) { return s.id === +sid; });
+    if (!s) return;
+    s[key] = (el.dataset.type === 'str') ? el.value : +el.value;
+    if (key === 'marketDuration' || key === 'personalDuration') updatePaceNote(s);
+    if (key === 'monthlyFreq') updateImpactNote(s);
+    saveToStorage(); patchServicePrices(); renderPriceList(); updateSummary();
   });
-
   svcList.addEventListener('change', function (e) {
-    var el  = e.target;
-    var sid = el.dataset.sid;
-    var key = el.dataset.key;
+    var el = e.target, sid = el.dataset.sid, key = el.dataset.key;
     if (!sid || !key) return;
-    var svc = services.find(function (s) { return s.id === +sid; });
-    if (!svc) return;
-    svc[key] = +el.value;
-    saveToStorage();
-    patchServicePrices();
-    renderPriceList();
+    var s = services.find(function (s) { return s.id === +sid; });
+    if (!s) return;
+    s[key] = +el.value;
+    saveToStorage(); patchServicePrices(); renderPriceList(); updateSummary();
   });
-
   svcList.addEventListener('click', function (e) {
     var btn = e.target.closest('[data-remove]');
     if (!btn) return;
@@ -1212,52 +987,80 @@ function attachEventListeners() {
     services = services.filter(function (s) { return s.id !== id; });
     var card = document.getElementById('sc-' + id);
     if (card) card.remove();
-    if (!services.length) {
-      svcList.innerHTML = emptyState('💅', 'No services yet. Add your first service above.');
-    }
+    if (!services.length) svcList.innerHTML = emptyState('💅', 'No services yet. Add your first service above.');
+    saveToStorage(); renderPriceList(); updateSummary();
+  });
+
+  // Add-ons — stable delegation on the container (bound once here, never in rebuildAddons)
+  var adnList = document.getElementById('addonsList');
+  adnList.addEventListener('input', function (e) {
+    var el = e.target, i = el.dataset.addonI, key = el.dataset.addonKey;
+    if (i === undefined || !key) return;
+    addons[+i][key] = key === 'name' ? el.value : +el.value;
     saveToStorage();
+    var priceEl = document.getElementById('addon-price-' + i);
+    if (priceEl) priceEl.textContent = currSym + calcAddon(addons[+i]);
     renderPriceList();
+  });
+  adnList.addEventListener('change', function (e) {
+    var el = e.target, i = el.dataset.addonMode;
+    if (i === undefined) return;
+    addons[+i].mode = el.value;
+    saveToStorage();
+    rebuildAddons(); // rebuild HTML only, listeners stay on parent
   });
 }
 
-// ── COUNTRY ───────────────────────────────────────────────
+/* ── COUNTRY ── */
 function applyCountry(skipSave) {
-  var cfg   = COUNTRIES[document.getElementById('country').value];
-  currSym   = cfg.symbol;
+  var cfg = COUNTRIES[document.getElementById('country').value];
+  currSym = cfg.symbol;
   document.querySelectorAll('.currency-pfx').forEach(function (el) { el.textContent = currSym; });
   var rateEl = document.getElementById('hourlyRate');
   if (!rateEl.value || skipSave) rateEl.value = cfg.hourly;
-  document.getElementById('hourlyHint').textContent =
-    'Suggested for ' + cfg.name + '. Adjust to match your experience level.';
+  document.getElementById('hourlyManualHint').textContent =
+    'Suggested for ' + cfg.name + ': ' + cfg.symbol + cfg.hourly + '/hr. Adjust to your experience level.';
   if (skipSave) recalculate(); else saveAndUpdate();
 }
 
-// ── CALCULATE ─────────────────────────────────────────────
+/* ── CALCULATE ── */
 function saveAndUpdate() { saveToStorage(); recalculate(); }
+
+function effectiveRate() {
+  if (hourlyMode === 'manual') return parseFloat(document.getElementById('hourlyRate').value) || 0;
+  return reqHourly || parseFloat(document.getElementById('hourlyRate').value) || 0;
+}
 
 function recalculate() {
   var cfg = COUNTRIES[document.getElementById('country').value];
-
-  var ohFields  = ['rent','utilities','supplies','tools','subscriptions','marketing','other'];
-  var totalOH   = ohFields.reduce(function (s, id) { return s + (parseFloat(document.getElementById(id).value) || 0); }, 0);
-  var clients   = parseFloat(document.getElementById('clientsPerMonth').value) || 1;
-  ohPerClient   = totalOH / clients;
+  var ohFields = ['rent','utilities','supplies','tools','subscriptions','marketing','other'];
+  var totalOH  = ohFields.reduce(function (s, id) { return s + (parseFloat(document.getElementById(id).value) || 0); }, 0);
+  var clients  = parseFloat(document.getElementById('clientsPerMonth').value) || 1;
+  ohPerClient  = totalOH / clients;
 
   var days   = parseFloat(document.getElementById('workingDays').value) || 20;
   var hours  = days * 8;
   var target = parseFloat(document.getElementById('targetIncome').value) || 0;
-  reqHourly  = (target + totalOH) / hours || 0;
+  reqHourly  = hours > 0 ? (target + totalOH) / hours : 0;
+
+  // Auto block display
+  document.getElementById('hourlyAutoVal').textContent = reqHourly > 0 ? reqHourly.toFixed(2) : '—';
+  document.getElementById('hourlyAutoHint').textContent = reqHourly > 0
+    ? 'Calculated: (' + currSym + target + ' income + ' + currSym + Math.round(totalOH) + ' overhead) ÷ ' + hours + ' hrs.'
+    : 'Enter your income goals above to auto-calculate.';
+
+  var eff = effectiveRate();
 
   document.getElementById('statOverhead').textContent  = fmt(totalOH);
   document.getElementById('statPerClient').textContent = fmt(ohPerClient);
   document.getElementById('statHours').textContent     = hours;
-  document.getElementById('statReqHourly').textContent = fmt(reqHourly);
+  document.getElementById('statReqHourly').textContent = fmt(eff);
 
-  var sliderVal = parseFloat(document.getElementById('userSlider').value);
-  var area      = parseFloat(document.getElementById('areaType').value);
-  finalMult     = cfg.baseline * area * sliderVal;
+  var sv   = parseFloat(document.getElementById('userSlider').value);
+  var area = parseFloat(document.getElementById('areaType').value);
+  finalMult = cfg.baseline * area * sv;
 
-  document.getElementById('sliderValDisplay').textContent    = '×' + sliderVal.toFixed(2);
+  document.getElementById('sliderValDisplay').textContent       = '×' + sv.toFixed(2);
   document.getElementById('finalMultiplierDisplay').textContent = '×' + finalMult.toFixed(2);
 
   updateInsight(cfg, area, finalMult);
@@ -1267,11 +1070,51 @@ function recalculate() {
     var el = document.getElementById('addon-price-' + i);
     if (el) el.textContent = currSym + calcAddon(a);
   });
+
+  updateSummary();
 }
 
-// ── SERVICE MATH ──────────────────────────────────────────
+/* ── BUSINESS SUMMARY ── */
+function updateSummary() {
+  var eff     = effectiveRate();
+  var clients = parseFloat(document.getElementById('clientsPerMonth').value) || 1;
+  var target  = parseFloat(document.getElementById('targetIncome').value) || 0;
+  var totalOH = ['rent','utilities','supplies','tools','subscriptions','marketing','other']
+    .reduce(function (s, id) { return s + (parseFloat(document.getElementById(id).value) || 0); }, 0);
+  var targetPerClient = clients > 0 ? (target + totalOH) / clients : 0;
+
+  var named = services.filter(function (s) { return s.name && s.name.trim(); });
+  var avgRec = 0;
+  if (named.length) {
+    avgRec = named.reduce(function (sum, s) { return sum + parseFloat(calcService(s).recommended || 0); }, 0) / named.length;
+  }
+
+  document.getElementById('sumRate').textContent   = eff > 0 ? currSym + eff.toFixed(2) + '/hr' : '—';
+  document.getElementById('sumOH').textContent     = ohPerClient > 0 ? fmt(ohPerClient) : '—';
+  document.getElementById('sumTarget').textContent = targetPerClient > 0 ? fmt(targetPerClient) : '—';
+  document.getElementById('sumAvg').textContent    = avgRec > 0 ? fmt(avgRec) : '—';
+
+  var parts = [];
+  if (eff > 0) parts.push('Your effective hourly rate is <strong>' + currSym + eff.toFixed(2) + '</strong>.');
+  if (ohPerClient > 0) parts.push('Every appointment must cover <strong>' + fmt(ohPerClient) + '</strong> in overhead before you see any profit.');
+  if (targetPerClient > 0) parts.push('To hit your income target, you need an average of <strong>' + fmt(targetPerClient) + '</strong> per client visit.');
+  if (avgRec > 0 && targetPerClient > 0) {
+    if (avgRec >= targetPerClient) {
+      parts.push('Your average recommended price of <strong>' + fmt(avgRec) + '</strong> is on track — well positioned.');
+    } else {
+      var gap = targetPerClient - avgRec;
+      parts.push('Your average recommended price is <strong>' + fmt(avgRec) + '</strong> — <strong>' + fmt(gap) + '</strong> below your per-client target. Consider raising prices or adding higher-value services to close the gap.');
+    }
+  }
+
+  document.getElementById('summaryText').innerHTML = parts.length
+    ? parts.join(' ')
+    : 'Add your income goals and overhead above to unlock your business summary.';
+}
+
+/* ── SERVICE MATH ── */
 function calcService(s) {
-  var rhr  = reqHourly || (parseFloat(document.getElementById('hourlyRate').value) || 0);
+  var rhr  = effectiveRate();
   var mins = s.marketDuration || s.duration || 60;
   var base = (mins / 60 * rhr) + s.materialCost + s.complexity + ohPerClient;
   var rec  = base * finalMult;
@@ -1279,35 +1122,52 @@ function calcService(s) {
 }
 
 function getInsight(prices, s) {
-  var rhr    = reqHourly || (parseFloat(document.getElementById('hourlyRate').value) || 0);
+  var rhr    = effectiveRate();
   var profit = +prices.recommended - +prices.breakeven;
   var hrs    = (s.marketDuration || s.duration || 60) / 60;
-  if (+prices.breakeven <= 0)                        return { t:'amber', msg:'Enter your income goals in Setup to unlock smart insights.' };
-  if (+prices.recommended < +prices.breakeven * 0.95) return { t:'red',   msg:'You are likely undercharging for this service.' };
-  if (profit < rhr * hrs * 0.15)                     return { t:'amber', msg:'Low profit margin relative to time spent. Consider raising your rate or trimming material costs.' };
-  if (s.materialCost > +prices.recommended * 0.35)   return { t:'amber', msg:'Material costs are eating into this one. Buying in bulk could meaningfully improve your margin.' };
-  if (profit >= rhr * hrs * 0.35)                    return { t:'green', msg:'This service supports your income target well — a healthy earner.' };
-  return { t:'green', msg:'This service is priced to support your goals. Well balanced.' };
+  if (+prices.breakeven <= 0)                         return { t:'amber', msg:'Complete your income goals in Setup to see accurate pricing insights.' };
+  if (+prices.recommended < +prices.breakeven * 0.95) return { t:'red',   msg:'Your recommended price is below break-even — you\'re likely undercharging for this service.' };
+  if (profit < rhr * hrs * 0.15)                      return { t:'amber', msg:'Low profit margin relative to time spent. Consider raising your rate or reducing material costs.' };
+  if (s.materialCost > +prices.recommended * 0.35)    return { t:'amber', msg:'Material costs are high relative to your price here. Buying in bulk could significantly improve your margin.' };
+  if (profit >= rhr * hrs * 0.35)                     return { t:'green', msg:'This service supports your income target well — a healthy earner in your menu.' };
+  return { t:'green', msg:'Well balanced. This service is priced to support your goals.' };
 }
 
 function getPaceNote(s) {
-  var market   = +(s.marketDuration) || 0;
-  var personal = +(s.personalDuration) || 0;
+  var market = +(s.marketDuration) || 0, personal = +(s.personalDuration) || 0;
   if (!market || !personal || personal <= market) return null;
   var diff = personal - market;
-  var h = Math.floor(diff / 60), m = diff % 60;
-  var diffStr   = h > 0 ? (h + 'h' + (m ? ' ' + m + 'm' : '')) : (m + 'm');
-  var mH = Math.floor(market / 60), mM = market % 60;
-  var mktStr    = mH > 0 ? (mH + 'h' + (mM ? ' ' + mM + 'm' : '')) : (market + 'm');
-  return '⏱ Priced on the ' + mktStr + ' market standard — you currently take ' + diffStr + ' longer. Your price is right for when you hit that pace. In the meantime, use this as your target.';
+  var h = Math.floor(diff/60), m = diff%60;
+  var diffStr = h > 0 ? (h+'h'+(m?' '+m+'m':'')) : (m+'m');
+  var mH = Math.floor(market/60), mM = market%60;
+  var mktStr = mH > 0 ? (mH+'h'+(mM?' '+mM+'m':'')) : (market+'m');
+  return '⏱ Priced on the ' + mktStr + ' market standard — you currently take ' + diffStr + ' longer. That\'s normal at your stage. Price at the market rate now, and use your current time as a personal speed target to work toward.';
+}
+
+function getImpactNote(s) {
+  var freq = +(s.monthlyFreq) || 0;
+  if (freq <= 0) return null;
+  var p = calcService(s);
+  var rec = +p.recommended, be = +p.breakeven;
+  if (rec <= 0 || be <= 0 || rec <= be) return null;
+  var monthly = (rec - be) * freq;
+  return '💜 Charging your recommended price ' + freq + 'x per month instead of break-even earns you an extra <strong>' + fmt(monthly) + ' per month</strong>. Pricing at break-even feels safe — but it costs you real income.';
 }
 
 function updatePaceNote(s) {
-  var el   = document.getElementById('pace-' + s.id);
+  var el = document.getElementById('pace-' + s.id);
   if (!el) return;
   var note = getPaceNote(s);
   if (note) { el.textContent = note; el.classList.add('visible'); }
   else      { el.textContent = '';   el.classList.remove('visible'); }
+}
+
+function updateImpactNote(s) {
+  var el = document.getElementById('impact-' + s.id);
+  if (!el) return;
+  var note = getImpactNote(s);
+  if (note) { el.innerHTML = note; el.classList.add('visible'); }
+  else      { el.innerHTML = '';   el.classList.remove('visible'); }
 }
 
 function patchServicePrices() {
@@ -1315,31 +1175,25 @@ function patchServicePrices() {
   services.forEach(function (s) {
     var card = document.getElementById('sc-' + s.id);
     if (!card) return;
-    var p   = calcService(s);
-    var ins = getInsight(p, s);
+    var p = calcService(s), ins = getInsight(p, s);
     card.querySelector('.pb-be').textContent  = currSym + p.breakeven;
     card.querySelector('.pb-rec').textContent = currSym + p.recommended;
     card.querySelector('.pb-pre').textContent = currSym + p.premium;
-    var pfxEls = card.querySelectorAll('.svc-pfx');
-    pfxEls.forEach(function (el) { el.textContent = currSym; });
+    card.querySelectorAll('.svc-pfx').forEach(function (el) { el.textContent = currSym; });
     var pill = card.querySelector('.svc-insight');
-    if (pill) {
-      pill.className = 'svc-insight si-' + ins.t;
-      pill.innerHTML = '<span>' + icons[ins.t] + '</span> ' + ins.msg;
-    }
+    if (pill) { pill.className = 'svc-insight si-' + ins.t; pill.innerHTML = '<span>' + icons[ins.t] + '</span> ' + ins.msg; }
     updatePaceNote(s);
+    updateImpactNote(s);
   });
 }
 
-// ── RENDER SERVICES ───────────────────────────────────────
+/* ── RENDER SERVICES ── */
 function renderServices() {
   var container = document.getElementById('servicesList');
   if (!services.length) {
     container.innerHTML = emptyState('💅', 'No services yet. Add your first service above.');
     return;
   }
-
-  // Remove cards for services that no longer exist
   container.querySelectorAll('.service-card').forEach(function (card) {
     if (!services.find(function (s) { return 'sc-' + s.id === card.id; })) card.remove();
   });
@@ -1349,13 +1203,12 @@ function renderServices() {
   var icons = { green:'✓', amber:'⚠', red:'↑' };
 
   services.forEach(function (s) {
-    if (document.getElementById('sc-' + s.id)) return; // already in DOM
-
-    var p        = calcService(s);
-    var ins      = getInsight(p, s);
-    var paceNote = getPaceNote(s);
-    var mDur     = s.marketDuration || s.duration || 60;
-    var pDur     = s.personalDuration || '';
+    if (document.getElementById('sc-' + s.id)) return;
+    var p = calcService(s), ins = getInsight(p, s);
+    var paceNote = getPaceNote(s), impNote = getImpactNote(s);
+    var mDur = s.marketDuration || s.duration || 60;
+    var pDur = s.personalDuration || '';
+    var freq = s.monthlyFreq || '';
 
     var card = document.createElement('div');
     card.className = 'service-card';
@@ -1364,8 +1217,7 @@ function renderServices() {
     card.innerHTML =
       '<div class="service-card-header">' +
         '<input class="svc-name-input" type="text" placeholder="Service name (e.g. Gel Manicure)"' +
-          ' value="' + esc(s.name) + '"' +
-          ' data-sid="' + s.id + '" data-key="name" data-type="str">' +
+          ' value="' + esc(s.name) + '" data-sid="' + s.id + '" data-key="name" data-type="str">' +
         '<button type="button" class="btn btn-danger" data-remove="' + s.id + '">Remove</button>' +
       '</div>' +
 
@@ -1373,42 +1225,65 @@ function renderServices() {
         '<div class="field"><label>Material Cost</label>' +
           '<div class="prefix-wrap"><span class="prefix svc-pfx">' + currSym + '</span>' +
           '<input type="number" value="' + s.materialCost + '" min="0" step="0.5" inputmode="decimal"' +
-          ' data-sid="' + s.id + '" data-key="materialCost"></div></div>' +
-        '<div class="field"><label>Complexity</label>' +
+          ' data-sid="' + s.id + '" data-key="materialCost"></div>' +
+          '<span class="helper">Products &amp; consumables for this service.</span></div>' +
+        '<div class="field"><label>Complexity Surcharge</label>' +
           '<select data-sid="' + s.id + '" data-key="complexity">' +
-            '<option value="0"' + (s.complexity === 0 ? ' selected' : '') + '>Basic</option>' +
-            '<option value="2"' + (s.complexity === 2 ? ' selected' : '') + '>Medium (+' + currSym + '2)</option>' +
-            '<option value="5"' + (s.complexity === 5 ? ' selected' : '') + '>Advanced (+' + currSym + '5)</option>' +
-          '</select></div>' +
+            '<option value="0"'  + (s.complexity===0?' selected':'') + '>Basic — no surcharge</option>' +
+            '<option value="2"'  + (s.complexity===2?' selected':'') + '>Medium (+' + currSym + '2)</option>' +
+            '<option value="5"'  + (s.complexity===5?' selected':'') + '>Advanced (+' + currSym + '5)</option>' +
+          '</select>' +
+          '<span class="helper">Skill premium on top of time-based cost.</span></div>' +
       '</div>' +
 
       '<div class="duration-section">' +
         '<div class="duration-title">⏱ Service Duration</div>' +
+        '<div class="duration-subtitle">Always price using the time an experienced technician would take — not your current personal speed. Beginner slowness should never inflate your prices.</div>' +
         '<div class="duration-grid">' +
           '<div class="field">' +
             '<label>Market Duration (mins)</label>' +
             '<input type="number" value="' + mDur + '" min="5" step="5" inputmode="numeric"' +
             ' data-sid="' + s.id + '" data-key="marketDuration">' +
-            '<span class="helper">The time a client would reasonably expect. This drives your price.</span>' +
+            '<span class="helper">Standard time an experienced tech takes. This drives your price.</span>' +
           '</div>' +
           '<div class="field">' +
             '<label>Your Current Time (mins) — optional</label>' +
-            '<input type="number" value="' + (pDur || '') + '" min="5" step="5" inputmode="numeric" placeholder="Optional"' +
+            '<input type="number" value="' + (pDur||'') + '" min="5" step="5" inputmode="numeric" placeholder="Optional"' +
             ' data-sid="' + s.id + '" data-key="personalDuration">' +
-            '<span class="helper">For coaching insight only. Does not affect your price.</span>' +
+            '<span class="helper">For speed coaching only. Never affects your price.</span>' +
           '</div>' +
         '</div>' +
-        '<div class="pace-note' + (paceNote ? ' visible' : '') + '" id="pace-' + s.id + '">' +
-          esc(paceNote || '') +
-        '</div>' +
+        '<div class="pace-note' + (paceNote?' visible':'') + '" id="pace-' + s.id + '">' + esc(paceNote||'') + '</div>' +
       '</div>' +
 
       '<div class="service-prices">' +
-        '<div class="price-bubble breakeven"><div class="pb-label">Break-Even</div><div class="pb-value pb-be">' + currSym + p.breakeven + '</div></div>' +
-        '<div class="price-bubble recommended"><div class="pb-label">Recommended</div><div class="pb-value pb-rec">' + currSym + p.recommended + '</div></div>' +
-        '<div class="price-bubble premium-tier"><div class="pb-label">Premium</div><div class="pb-value pb-pre">' + currSym + p.premium + '</div></div>' +
+        '<div class="price-bubble breakeven">' +
+          '<div class="pb-label">Break-Even</div>' +
+          '<div class="pb-desc">Your minimum floor — costs covered, no profit</div>' +
+          '<div class="pb-value pb-be">' + currSym + p.breakeven + '</div>' +
+        '</div>' +
+        '<div class="price-bubble recommended">' +
+          '<div class="pb-label">Recommended</div>' +
+          '<div class="pb-desc">Your standard posted rate — this is what to charge</div>' +
+          '<div class="pb-value pb-rec">' + currSym + p.recommended + '</div>' +
+        '</div>' +
+        '<div class="price-bubble premium-tier">' +
+          '<div class="pb-label">Premium</div>' +
+          '<div class="pb-desc">Specialist or luxury positioning</div>' +
+          '<div class="pb-value pb-pre">' + currSym + p.premium + '</div>' +
+        '</div>' +
       '</div>' +
-      '<div class="svc-insight si-' + ins.t + '"><span>' + icons[ins.t] + '</span> ' + ins.msg + '</div>';
+      '<div class="svc-insight si-' + ins.t + '"><span>' + icons[ins.t] + '</span> ' + ins.msg + '</div>' +
+
+      '<div class="freq-row">' +
+        '<div class="field">' +
+          '<label>Monthly frequency</label>' +
+          '<input type="number" value="' + (freq||'') + '" min="0" step="1" inputmode="numeric" placeholder="e.g. 8"' +
+          ' data-sid="' + s.id + '" data-key="monthlyFreq">' +
+        '</div>' +
+        '<span class="freq-hint">How many times per month do you perform this? Used to calculate your underpricing cost.</span>' +
+      '</div>' +
+      '<div class="impact-note' + (impNote?' visible':'') + '" id="impact-' + s.id + '">' + (impNote||'') + '</div>';
 
     container.appendChild(card);
     if (!s.name) card.querySelector('.svc-name-input').focus();
@@ -1416,18 +1291,18 @@ function renderServices() {
 }
 
 function addService() {
-  services.push({ id: Date.now(), name:'', marketDuration:60, personalDuration:null, materialCost:0, complexity:0 });
+  services.push({ id: Date.now(), name:'', marketDuration:60, personalDuration:null, materialCost:0, complexity:0, monthlyFreq:null });
   saveToStorage();
   renderServices();
 }
 
-// ── ADD-ONS ───────────────────────────────────────────────
+/* ── ADD-ONS — HTML only, listeners are on parent from attachEventListeners ── */
 function calcAddon(a) {
-  var rhr = reqHourly || (parseFloat(document.getElementById('hourlyRate').value) || 0);
+  var rhr = effectiveRate();
   return a.mode === 'time' ? round((a.time / 60) * rhr * finalMult) : round(a.fixedVal);
 }
 
-function renderAddons() {
+function rebuildAddons() {
   document.getElementById('addonsList').innerHTML = addons.map(function (a, i) {
     return (
       '<div class="addon-row">' +
@@ -1435,8 +1310,8 @@ function renderAddons() {
         '<input type="text" value="' + esc(a.name) + '" data-addon-i="' + i + '" data-addon-key="name"></div>' +
       '<div class="field"><label>Mode</label>' +
         '<select data-addon-mode="' + i + '">' +
-          '<option value="fixed"' + (a.mode === 'fixed' ? ' selected' : '') + '>Fixed</option>' +
-          '<option value="time"' + (a.mode === 'time' ? ' selected' : '') + '>Time-based</option>' +
+          '<option value="fixed"' + (a.mode==='fixed'?' selected':'') + '>Fixed price</option>' +
+          '<option value="time"'  + (a.mode==='time' ?' selected':'') + '>Time-based</option>' +
         '</select></div>' +
       (a.mode === 'fixed'
         ? '<div class="field"><label>Fixed Price</label>' +
@@ -1446,146 +1321,73 @@ function renderAddons() {
         : '<div class="field"><label>Time (mins)</label>' +
           '<input type="number" value="' + a.time + '" step="5" min="5" inputmode="numeric"' +
           ' data-addon-i="' + i + '" data-addon-key="time"></div>') +
-      '<div class="field"><label>Price</label>' +
+      '<div class="field"><label>Calculated Price</label>' +
         '<div class="addon-price-display" id="addon-price-' + i + '">' + currSym + calcAddon(a) + '</div></div>' +
       '</div>'
     );
   }).join('');
-
-  // Bind addon events after render
-  var list = document.getElementById('addonsList');
-
-  list.addEventListener('input', function (e) {
-    var el  = e.target;
-    var i   = el.dataset.addonI;
-    var key = el.dataset.addonKey;
-    if (i === undefined || !key) return;
-    addons[+i][key] = key === 'name' ? el.value : +el.value;
-    saveToStorage();
-    var priceEl = document.getElementById('addon-price-' + i);
-    if (priceEl) priceEl.textContent = currSym + calcAddon(addons[+i]);
-    renderPriceList();
-  });
-
-  list.addEventListener('change', function (e) {
-    var el = e.target;
-    var i  = el.dataset.addonMode;
-    if (i === undefined) return;
-    addons[+i].mode = el.value;
-    saveToStorage();
-    renderAddons();
-  });
 }
 
-// ── MARKET INSIGHT ────────────────────────────────────────
+/* ── MARKET INSIGHT ── */
 function updateInsight(cfg, area, m) {
   var loc    = document.getElementById('city').value.trim() || cfg.name;
   var aLabel = AREA_LABELS[String(area)] || 'suburban';
   var text, cls, label, icon;
-
   if (m < 0.6) {
-    text  = 'At ×' + m.toFixed(2) + ', your pricing is in entry-level territory for ' + aLabel + ' ' + loc + '. This can work while building a portfolio, but move toward market rates as your confidence grows.';
-    cls   = 'badge-conservative'; label = 'Entry-Level Positioning'; icon = '↗';
+    text='At ×'+m.toFixed(2)+', your pricing is in entry-level territory for '+aLabel+' '+loc+'. This can work while building a portfolio, but move toward market rates as your confidence grows.';
+    cls='badge-conservative';label='Entry-Level Positioning';icon='↗';
   } else if (m < 1.0) {
-    text  = pickConservative(loc, aLabel, m);
-    cls   = 'badge-conservative'; label = 'Conservative Positioning'; icon = '⬇️';
+    text=pickConservative(loc,aLabel,m);cls='badge-conservative';label='Conservative Positioning';icon='⬇️';
   } else if (m <= 1.2) {
-    text  = pickStandard(loc, aLabel, m);
-    cls   = 'badge-standard';     label = 'Market-Aligned Pricing';  icon = '✓';
+    text=pickStandard(loc,aLabel,m);cls='badge-standard';label='Market-Aligned Pricing';icon='✓';
   } else {
-    text  = pickPremium(loc, aLabel, m);
-    cls   = 'badge-premium';      label = 'Premium Positioning';     icon = '⭐';
+    text=pickPremium(loc,aLabel,m);cls='badge-premium';label='Premium Positioning';icon='⭐';
   }
-
   document.getElementById('insightText').textContent = text;
-  document.getElementById('insightBadge').innerHTML  =
-    '<div class="insight-badge ' + cls + '">' + icon + ' ' + label + '</div>';
+  document.getElementById('insightBadge').innerHTML  = '<div class="insight-badge '+cls+'">'+icon+' '+label+'</div>';
 }
+function pickConservative(loc,area,m){var p=['Your current setup suggests conservative pricing for a '+area+' market in '+loc+'. There\'s meaningful room to grow your rates without losing clients.','You\'re pricing below typical expectations for '+loc+'\'s '+area+' market — this may attract volume but leaves real profit on the table.','At ×'+m.toFixed(2)+', your prices sit on the lower end for '+area+' '+loc+'. Consider whether this reflects your value or just your confidence.','These settings place you in an affordable tier for '+area+' '+loc+'. If your books are full, it\'s a strong signal to raise your rates.'];return p[Math.floor(m*100)%p.length];}
+function pickStandard(loc,area,m){var p=['Your pricing is well-aligned with the '+area+' market in '+loc+'. You\'re positioned to attract steady, sustainable bookings.','At ×'+m.toFixed(2)+', you\'re sitting in the sweet spot for '+area+' '+loc+' — competitive without underselling your craft.','These rates reflect a solid market position for '+loc+'\'s '+area+' clientele. A strong foundation for building loyalty.','Your setup mirrors what most established nail techs charge across '+area+' '+loc+' — professional, fair, and sustainable.'];return p[Math.floor(m*100)%p.length];}
+function pickPremium(loc,area,m){var p=['At ×'+m.toFixed(2)+', your pricing sits firmly in the premium tier for '+area+' '+loc+'. Make sure your branding and experience match the expectation.','You\'re positioning above the '+area+' '+loc+' market average — ideal if you specialise, are fully booked, or work in a luxury setting.','These are premium rates for '+loc+'\'s '+area+' market — a powerful signal to high-quality, loyal clients.','Your '+area+' '+loc+' pricing suggests an aspirational brand tier. Back it up with exceptional service and presentation.'];return p[Math.floor(m*100)%p.length];}
 
-function pickConservative(loc, area, m) {
-  var p = [
-    'Your current setup suggests conservative pricing for a ' + area + ' market in ' + loc + '. There\'s meaningful room to grow your rates without losing clients.',
-    'You\'re pricing below typical expectations for ' + loc + '\'s ' + area + ' market — this may attract volume but leaves real profit on the table.',
-    'At ×' + m.toFixed(2) + ', your prices sit on the lower end for ' + area + ' ' + loc + '. Consider whether this reflects your value or just your confidence.',
-    'These settings place you in an affordable tier for ' + area + ' ' + loc + '. If your books are full, it\'s a strong signal to raise your rates.',
-  ];
-  return p[Math.floor(m * 100) % p.length];
-}
-
-function pickStandard(loc, area, m) {
-  var p = [
-    'Your pricing is well-aligned with the ' + area + ' market in ' + loc + '. You\'re positioned to attract steady, sustainable bookings.',
-    'At ×' + m.toFixed(2) + ', you\'re sitting in the sweet spot for ' + area + ' ' + loc + ' — competitive without underselling your craft.',
-    'These rates reflect a solid market position for ' + loc + '\'s ' + area + ' clientele. A strong foundation for building loyalty.',
-    'Your setup mirrors what most established nail techs charge across ' + area + ' ' + loc + ' — professional, fair, and sustainable.',
-  ];
-  return p[Math.floor(m * 100) % p.length];
-}
-
-function pickPremium(loc, area, m) {
-  var p = [
-    'At ×' + m.toFixed(2) + ', your pricing sits firmly in the premium tier for ' + area + ' ' + loc + '. Make sure your branding and experience match the expectation.',
-    'You\'re positioning above the ' + area + ' ' + loc + ' market average — ideal if you specialise, are fully booked, or work in a luxury setting.',
-    'These are premium rates for ' + loc + '\'s ' + area + ' market — a powerful signal to high-quality, loyal clients.',
-    'Your ' + area + ' ' + loc + ' pricing suggests an aspirational brand tier. Back it up with exceptional service and presentation.',
-  ];
-  return p[Math.floor(m * 100) % p.length];
-}
-
-// ── PRICE LIST ────────────────────────────────────────────
+/* ── PRICE LIST ── */
 function renderPriceList() {
-  var biz  = (document.getElementById('businessName').value  || '').trim() || 'Your Business';
-  var loc  = (document.getElementById('businessLocation').value || '').trim();
+  var biz  = (document.getElementById('businessName').value||'').trim() || 'Your Business';
+  var loc  = (document.getElementById('businessLocation').value||'').trim();
   var tier = document.getElementById('priceListTier').value || 'recommended';
 
   document.getElementById('plBizName').textContent = biz;
   var locEl = document.getElementById('plLocation');
-  locEl.textContent    = loc;
-  locEl.style.display  = loc ? 'block' : 'none';
+  locEl.textContent = loc; locEl.style.display = loc ? 'block' : 'none';
 
   var named = services.filter(function (s) { return s.name && s.name.trim(); });
   var svcHTML = '';
   if (named.length) {
     svcHTML = '<div class="pl-section-title">Services</div>';
     svcHTML += named.map(function (s) {
-      var p     = calcService(s);
-      var price = p[tier] || p.recommended;
-      var mins  = s.marketDuration || s.duration || 60;
-      var h = Math.floor(mins / 60), rem = mins % 60;
-      var dur = h > 0 ? (h + 'h' + (rem ? ' ' + rem + 'm' : '')) : (mins + 'm');
-      return (
-        '<div class="pl-item">' +
-        '<span><span class="pl-item-name">' + esc(s.name) + '</span>' +
-        '<span class="pl-item-dur"> · ' + dur + '</span></span>' +
-        '<span class="pl-item-price">' + currSym + price + '</span>' +
-        '</div>'
-      );
+      var p = calcService(s), price = p[tier] || p.recommended;
+      var mins = s.marketDuration || s.duration || 60;
+      var h = Math.floor(mins/60), rem = mins%60;
+      var dur = h > 0 ? (h+'h'+(rem?' '+rem+'m':'')) : (mins+'m');
+      return '<div class="pl-item"><span><span class="pl-item-name">'+esc(s.name)+'</span><span class="pl-item-dur"> · '+dur+'</span></span><span class="pl-item-price">'+currSym+price+'</span></div>';
     }).join('');
   }
-
   var addonHTML = '';
   if (addons.length) {
     addonHTML = '<div class="pl-section-title">Add-ons</div>';
     addonHTML += addons.map(function (a) {
-      return (
-        '<div class="pl-item">' +
-        '<span class="pl-item-name">' + esc(a.name) + '</span>' +
-        '<span class="pl-item-price">' + currSym + calcAddon(a) + '</span>' +
-        '</div>'
-      );
+      return '<div class="pl-item"><span class="pl-item-name">'+esc(a.name)+'</span><span class="pl-item-price">'+currSym+calcAddon(a)+'</span></div>';
     }).join('');
   }
-
   document.getElementById('plServices').innerHTML = svcHTML;
   document.getElementById('plAddons').innerHTML   = addonHTML;
 }
 
-// ── DEMO DATA ─────────────────────────────────────────────
+/* ── DEMO DATA ── */
 function loadDemoData() {
   if (services.length > 0 || parseFloat(document.getElementById('rent').value) > 0) {
     if (!confirm('Load example data? This will replace your current setup.')) return;
   }
-
   document.getElementById('country').value          = 'UK';
   document.getElementById('city').value             = 'Manchester';
   document.getElementById('areaType').value         = '1.1';
@@ -1602,26 +1404,53 @@ function loadDemoData() {
   document.getElementById('businessName').value     = 'The Nail Atelier';
   document.getElementById('businessLocation').value = 'Manchester, UK';
   document.getElementById('hourlyRate').value       = '30';
+  document.getElementById('userSlider').value       = '1.05';
 
-  var slider = document.getElementById('userSlider');
-  slider.value = '1.05';
+  setHourlyMode('auto');
 
   services = [
-    { id:1001, name:'Gel Manicure',     marketDuration:60,  personalDuration:null, materialCost:8,  complexity:0 },
-    { id:1002, name:'Acrylic Full Set', marketDuration:90,  personalDuration:null, materialCost:14, complexity:5 },
-    { id:1003, name:'Gel Pedicure',     marketDuration:75,  personalDuration:null, materialCost:9,  complexity:2 },
-    { id:1004, name:'Nail Art Design',  marketDuration:45,  personalDuration:null, materialCost:6,  complexity:5 },
+    { id:1001, name:'Gel Manicure',     marketDuration:60,  personalDuration:null, materialCost:8,  complexity:0, monthlyFreq:16 },
+    { id:1002, name:'Acrylic Full Set', marketDuration:90,  personalDuration:null, materialCost:14, complexity:5, monthlyFreq:8  },
+    { id:1003, name:'Gel Pedicure',     marketDuration:75,  personalDuration:null, materialCost:9,  complexity:2, monthlyFreq:10 },
+    { id:1004, name:'Nail Art Design',  marketDuration:45,  personalDuration:null, materialCost:6,  complexity:5, monthlyFreq:6  },
   ];
+  addons = DEFAULT_ADDONS.map(function (a) { return Object.assign({}, a); });
+
+  document.getElementById('servicesList').innerHTML = '';
 
   applyCountry(false);
   saveToStorage();
   renderServices();
-  renderAddons();
+  rebuildAddons();
   renderPriceList();
-  document.getElementById('demoBanner').style.display = 'none';
+  updateSummary();
+  document.getElementById('demoBanner').style.display = 'flex';
 }
 
-// ── UTILITIES ─────────────────────────────────────────────
+/* ── RESET ── */
+function resetAll() {
+  if (!confirm('Reset everything? All saved data will be cleared.')) return;
+  try { localStorage.clear(); } catch(e) {}
+  services = [];
+  addons   = DEFAULT_ADDONS.map(function (a) { return Object.assign({}, a); });
+  ['rent','utilities','supplies','tools','subscriptions','marketing','other',
+   'targetIncome','workingDays','clientsPerMonth','city','businessName','businessLocation','hourlyRate']
+    .forEach(function (id) { var el=document.getElementById(id); if(el) el.value=''; });
+  document.getElementById('country').value    = 'US';
+  document.getElementById('areaType').value   = '1.0';
+  document.getElementById('userSlider').value = '1.0';
+  setHourlyMode('auto');
+  document.getElementById('servicesList').innerHTML = '';
+  applyCountry(true);
+  recalculate();
+  renderServices();
+  rebuildAddons();
+  renderPriceList();
+  updateSummary();
+  document.getElementById('demoBanner').style.display = 'flex';
+}
+
+/* ── UTILITIES ── */
 function round(v) {
   if (!v || v <= 0) return '0';
   var r = Math.round(v * 2) / 2;
@@ -1632,74 +1461,69 @@ function fmt(v) {
   return (isNaN(n) || n === 0) ? currSym + '0' : currSym + Math.round(n);
 }
 function esc(s) {
-  return String(s || '')
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
+  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 function emptyState(emoji, msg) {
-  return '<div class="empty-state"><div class="empty-emoji">' + emoji + '</div><p>' + msg + '</p></div>';
+  return '<div class="empty-state"><div class="empty-emoji">'+emoji+'</div><p>'+msg+'</p></div>';
 }
 
-// ── LOCAL STORAGE ─────────────────────────────────────────
-var SAVE_KEYS = [
-  'country','city','areaType','userSlider',
-  'rent','utilities','supplies','tools','subscriptions','marketing','other',
-  'targetIncome','workingDays','clientsPerMonth','hourlyRate',
-];
+/* ── LOCAL STORAGE ── */
+var SAVE_KEYS = ['country','city','areaType','userSlider','rent','utilities','supplies','tools',
+  'subscriptions','marketing','other','targetIncome','workingDays','clientsPerMonth','hourlyRate'];
 
 function saveToStorage() {
   try {
     SAVE_KEYS.forEach(function (k) {
-      var el = document.getElementById(k);
-      if (el) localStorage.setItem('ni_' + k, el.value);
+      var el = document.getElementById(k); if (el) localStorage.setItem('ni_'+k, el.value);
     });
-    localStorage.setItem('ni_services', JSON.stringify(services));
-    localStorage.setItem('ni_addons',   JSON.stringify(addons));
-    var bn = document.getElementById('businessName');
-    var bl = document.getElementById('businessLocation');
-    if (bn) localStorage.setItem('ni_biz', bn.value);
-    if (bl) localStorage.setItem('ni_loc', bl.value);
-  } catch (e) { /* localStorage may be blocked in private mode */ }
+    localStorage.setItem('ni_services',   JSON.stringify(services));
+    localStorage.setItem('ni_addons',     JSON.stringify(addons));
+    localStorage.setItem('ni_hourlyMode', hourlyMode);
+    var bn=document.getElementById('businessName'), bl=document.getElementById('businessLocation');
+    if(bn) localStorage.setItem('ni_biz', bn.value);
+    if(bl) localStorage.setItem('ni_loc', bl.value);
+  } catch(e) {}
 }
 
 function loadFromStorage() {
   try {
     SAVE_KEYS.forEach(function (k) {
-      var v  = localStorage.getItem('ni_' + k);
-      var el = document.getElementById(k);
+      var v=localStorage.getItem('ni_'+k), el=document.getElementById(k);
       if (el && v !== null) el.value = v;
     });
-
     var svcRaw = localStorage.getItem('ni_services');
     if (svcRaw) {
       services = JSON.parse(svcRaw).map(function (s) {
         if (!s.marketDuration && s.duration) s.marketDuration = s.duration;
         if (s.personalDuration === undefined) s.personalDuration = null;
+        if (s.monthlyFreq === undefined) s.monthlyFreq = null;
         return s;
       });
-    } else {
-      services = [];
-    }
+    } else { services = []; }
 
     var adnRaw = localStorage.getItem('ni_addons');
-    addons = adnRaw
-      ? JSON.parse(adnRaw)
-      : DEFAULT_ADDONS.map(function (a) { return Object.assign({}, a); });
+    addons = adnRaw ? JSON.parse(adnRaw) : DEFAULT_ADDONS.map(function (a) { return Object.assign({},a); });
 
-    var bn = localStorage.getItem('ni_biz');
-    var bl = localStorage.getItem('ni_loc');
-    if (bn) document.getElementById('businessName').value     = bn;
-    if (bl) document.getElementById('businessLocation').value = bl;
+    var savedMode = localStorage.getItem('ni_hourlyMode');
+    if (savedMode === 'manual') {
+      hourlyMode = 'manual';
+      document.getElementById('modeAutoBtn').classList.remove('active');
+      document.getElementById('modeManualBtn').classList.add('active');
+      document.getElementById('hourlyAutoBlock').style.display   = 'none';
+      document.getElementById('hourlyManualBlock').style.display = 'block';
+    }
+
+    var bn=localStorage.getItem('ni_biz'), bl=localStorage.getItem('ni_loc');
+    if(bn) document.getElementById('businessName').value     = bn;
+    if(bl) document.getElementById('businessLocation').value = bl;
 
     if (services.length) {
       var banner = document.getElementById('demoBanner');
       if (banner) banner.style.display = 'none';
     }
-  } catch (e) {
+  } catch(e) {
     services = [];
-    addons   = DEFAULT_ADDONS.map(function (a) { return Object.assign({}, a); });
+    addons   = DEFAULT_ADDONS.map(function (a) { return Object.assign({},a); });
   }
 }
 </script>
